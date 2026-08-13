@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 import {
   Sparkles,
   ShieldCheck,
@@ -170,17 +171,18 @@ function Home() {
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
-            <button
+            <Link
+              to="/login"
               className={`px-5 py-2.5 rounded-full text-sm font-semibold border transition-colors ${scrolled
                 ? "border-[#EAE2D6] text-[#1C1917] hover:bg-[#FBF3EA]"
                 : "border-white/30 text-white hover:bg-white/10"
                 }`}
             >
               Login
-            </button>
-            <button className="rounded-full bg-orange-500 px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-orange-500/20 hover:bg-orange-600 transition-colors">
+            </Link>
+            <Link to="/register" className="rounded-full bg-orange-500 px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-orange-500/20 hover:bg-orange-600 transition-colors">
               Register
-            </button>
+            </Link>
           </div>
 
           <button
@@ -200,10 +202,10 @@ function Home() {
             <a href="#how-it-works" className="text-[#57534E] text-lg font-medium">How It Works</a>
             <a href="#features" className="text-[#57534E] text-lg font-medium">Features</a>
             <div className="w-full h-px bg-[#EAE2D6] my-2" />
-            <button className="w-full text-left text-[#57534E] text-lg font-medium">Login</button>
-            <button className="w-full rounded-full bg-orange-500 px-6 py-3 text-center text-lg font-semibold text-white">
+            <Link to="/login" className="w-full text-left text-[#57534E] text-lg font-medium">Login</Link>
+            <Link to="/register" className="w-full rounded-full bg-orange-500 px-6 py-3 text-center text-lg font-semibold text-white">
               Register
-            </button>
+            </Link>
           </div>
         )}
       </nav>
@@ -729,9 +731,9 @@ function Home() {
             <button className="rounded-full bg-orange-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-all hover:bg-orange-600 hover:scale-[1.03]">
               Start Planning
             </button>
-            <button className="rounded-full border border-[#EAE2D6] bg-white px-8 py-4 text-base font-semibold text-[#1C1917] transition-all hover:bg-orange-50">
+            <Link to="/register" className="rounded-full flex items-center justify-center border border-[#EAE2D6] bg-white px-8 py-4 text-base font-semibold text-[#1C1917] transition-all hover:bg-orange-50">
               Create Account
-            </button>
+            </Link>
           </div>
         </Reveal>
       </section>
