@@ -1,0 +1,16 @@
+﻿tag_id,tag,definition
+T001,budget,Typically lower-cost / casual local eating.
+T002,authentic-local,Strong local-food orientation based on cuisine fit and/or repeated local recommendation.
+T003,street-food,Street-food style item or area.
+T004,late-night,Useful for later-night dining.
+T005,vegetarian,Strong vegetarian suitability.
+T006,vegan,Strong vegan/plant-based suitability.
+T007,halal-style,Associated with Muslim/halal dining; certification should be verified for strict requirements.
+T008,heritage,Food/place linked to Sri Lankan cultural or community heritage.
+T009,northern-sri-lankan,Jaffna / Northern Sri Lankan cuisine.
+T010,seafood,Seafood-focused.
+T011,breakfast,Suitable for breakfast recommendations.
+T012,premium,Higher-cost / special-occasion dining.
+T013,tourist-experience,Ambience/cultural experience in addition to food.
+T014,healthy,Health/organic/plant-based orientation.
+T015,family,Suitable for family-style restaurant recommendations.

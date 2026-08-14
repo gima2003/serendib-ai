@@ -1,0 +1,11 @@
+﻿query_id,sample_user_query,expected_filters_or_intent,relevant_place_ids,notes
+Q001,I want cheap authentic Sri Lankan rice and curry in Ella.,budget + authentic-local + rice-and-curry,"ELA-P001,ELA-P002,ELA-P003,ELA-P005,ELA-P007",Matey Hut/Kitchen Garden should rank above high-popularity mixed cafes.
+Q002,I am vegan and want a local Sri Lankan meal in Ella.,vegan + Sri Lankan + local,"ELA-P002,ELA-P023,ELA-P004",Kitchen Garden and Little Folly are strong candidates; Cafe Chill has an explicit vegan option.
+Q003,Where can I try jackfruit and banana flower curry?,jackfruit + banana-flower + authentic,ELA-P001,Matey Hut has strongest current dish evidence.
+Q004,I want a Sri Lankan cooking experience in Ella.,cooking-class + cultural-experience,"ELA-P020,ELA-P001",Ella Spice Garden has direct official evidence; Matey Hut is associated with cooking-class interest.
+Q005,"I want local breakfast, not an expensive tourist cafe.",breakfast + budget + local,"ELA-P003,ELA-P018,ELA-P022",Wimala/Little Restaurant/Ceylon Tea Center should be considered before premium mixed cafes.
+Q006,Where can I have string hoppers or coconut roti with curry?,string-hoppers + coconut-roti + curry,ELA-P004,Cafe Chill has explicit menu evidence.
+Q007,"I want vegetarian food under LKR 2,000.",vegetarian + budget,"ELA-P015,ELA-P023,ELA-P002",Exact current menu prices should be rechecked; Dosa Cafe is a strong structured match.
+Q008,I want tea and a Sri Lankan breakfast in Ella.,tea + breakfast + Sri Lankan,ELA-P022,Ceylon Tea Center should rank highly.
+Q009,I prefer a quiet place outside the busiest tourist street.,quiet-local-area + local food,"ELA-P012,ELA-P013,ELA-P020",Kithal Ella / Passara Road candidates should get a preference boost.
+Q010,My group wants both local Sri Lankan dishes and international choices late at night.,mixed-group + late-night,"ELA-P004,ELA-P009,ELA-P010",Cafe Chill/UFO/360 are suitable mixed-group candidates.

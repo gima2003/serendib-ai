@@ -1,0 +1,6 @@
+﻿query_id,query,expected_places
+Q001,Best seafood near Yala,"YAL-P001,YAL-P004,YAL-P008"
+Q002,Best rice & curry after safari,"YAL-P005,YAL-P006"
+Q003,Luxury dinner,"YAL-P001,YAL-P002"
+Q004,Breakfast before safari,YAL-P010
+Q005,Family dinner,"YAL-P009,YAL-P002"

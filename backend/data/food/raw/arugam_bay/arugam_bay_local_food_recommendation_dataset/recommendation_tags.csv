@@ -1,0 +1,16 @@
+﻿tag_id,tag,definition
+T001,budget,Affordable / casual dining.
+T002,authentic-local,Strong Sri Lankan/Tamil local-food orientation.
+T003,fresh-catch,Strong evidence of freshly caught fish/seafood.
+T004,seafood,Seafood-focused place or dish.
+T005,beach-dining,Beachfront or beach-oriented meal experience.
+T006,vegetarian,Strong vegetarian suitability.
+T007,vegan-friendly,Public source indicates vegan-friendly options.
+T008,surf-cafe,Cafe oriented toward surfers / daytime lifestyle.
+T009,late-night,Useful for late dining.
+T010,cooking-class,Hands-on Sri Lankan cooking experience.
+T011,tamil-food,Tamil/South-Indian cuisine relevance.
+T012,dosa,Dosa-focused or strong dosa availability.
+T013,roti,Roti is a core food item.
+T014,social,Atmosphere/live music/backpacker social value.
+T015,spice-authenticity,Useful when the user prioritizes strong local spice rather than tourist-adapted mild food.

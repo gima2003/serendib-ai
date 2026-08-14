@@ -1,0 +1,16 @@
+﻿tag_id,tag,definition
+T001,budget,Affordable / casual dining.
+T002,authentic-local,Strong Sri Lankan everyday-food orientation.
+T003,home-style,Family/home-style food signal.
+T004,vegetarian,Useful for vegetarian filtering.
+T005,vegan-friendly,Public source indicates vegan suitability or listing.
+T006,hill-country,Strong link to Bandarawela's cool-climate setting.
+T007,tea,Tea or tea-country relevance.
+T008,family,Family-friendly dining.
+T009,scenic,Setting/view is part of the experience.
+T010,breakfast,Suitable for morning meals.
+T011,rice-and-curry,Rice-and-curry is a core recommendation.
+T012,mixed-group,Local + international choices available.
+T013,social-impact,Dining supports a community/social enterprise.
+T014,local-vegetables,Vegetable-forward hill-country meal signal.
+T015,quiet-town,Useful for travellers preferring non-touristy settings.
