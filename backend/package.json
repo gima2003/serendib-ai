@@ -1,0 +1,12 @@
+{
+  "name": "serendib-ai-backend",
+  "version": "1.0.0",
+  "description": "FastAPI backend for Serendib AI Tourism System",
+  "private": true,
+  "scripts": {
+    "start": "python -m uvicorn main:app --reload"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
