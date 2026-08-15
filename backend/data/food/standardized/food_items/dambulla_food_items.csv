@@ -1,0 +1,13 @@
+food_id,food_name,alternate_names,city,category,meal_type,typical_spice_level,vegetarian_possible,vegan_possible,key_components,description,city_relevance,recommendation_tags,source_type,source_url,verified_date,confidence
+DAM-F001,Rice & Curry,,Dambulla,Main,Lunch/Dinner,Medium,,,,Traditional Sri Lankan meal,,,,,,
+DAM-F002,Red Rice & Curry,,Dambulla,Main,Lunch/Dinner,Medium,,,,Village-style meal,,,,,,
+DAM-F003,Pol Roti,,Dambulla,Bread,Breakfast,Mild,,,,Coconut flatbread,,,,,,
+DAM-F004,Kottu Roti,,Dambulla,Street Food,Dinner,Medium,,,,Chopped roti,,,,,,
+DAM-F005,String Hoppers,,Dambulla,Breakfast,Breakfast,Mild,,,,Rice noodle nests,,,,,,
+DAM-F006,Hoppers,,Dambulla,Breakfast,Breakfast,Mild,,,,Traditional hopper,,,,,,
+DAM-F007,Pittu,,Dambulla,Breakfast,Breakfast,Mild,,,,Steamed rice flour,,,,,,
+DAM-F008,Dhal Curry,,Dambulla,Curry,Any,Mild,,,,Lentil curry,,,,,,
+DAM-F009,Pumpkin Curry,,Dambulla,Vegetable,Lunch,Mild,,,,Local pumpkin,,,,,,
+DAM-F010,Jackfruit Curry,,Dambulla,Vegetable,Lunch,Medium,,,,Young jackfruit curry,,,,,,
+DAM-F011,Fish Curry,,Dambulla,Seafood,Lunch/Dinner,High,,,,Fresh fish curry,,,,,,
+DAM-F012,Curd & Treacle,,Dambulla,Dessert,Dessert,Sweet,,,,Traditional dessert,,,,,,

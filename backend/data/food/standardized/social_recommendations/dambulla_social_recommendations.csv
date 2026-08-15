@@ -1,0 +1,6 @@
+signal_id,platform,place_id,place_name,food_or_topic,signal_polarity,signal_type,structured_summary,local_vs_tourist_signal,source_url,verified_date,confidence
+SOC001,Tripadvisor,,Athula Restaurant,,Positive,,Frequently recommended for authentic rice & curry,,,,
+SOC002,Tripadvisor,,Sakura Restaurant,,Positive,,Good value local meals,,,,
+SOC003,Tripadvisor,,Amaya Lake,,Positive,,Excellent buffet and service,,,,
+SOC004,Travel Blogs,,Village Restaurants,,Positive,,Recommended after visiting cave temple,,,,
+SOC005,Reddit,,Local Food,,Positive,,Village rice & curry recommended over hotel buffets,,,,

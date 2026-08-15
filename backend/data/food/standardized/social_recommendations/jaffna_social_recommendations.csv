@@ -1,0 +1,6 @@
+signal_id,platform,place_id,place_name,food_or_topic,signal_polarity,signal_type,structured_summary,local_vs_tourist_signal,source_url,verified_date,confidence
+JS001,,,Jetwing Restaurant,Jaffna cuisine,Positive,,Known for authentic Northern Sri Lankan cuisine.,,,,
+JS002,,,Malayan Cafe,Local food,Positive,,Popular among locals for affordable meals.,,,,
+JS003,,,Rio Ice Cream,Dessert,Positive,,Iconic dessert stop in Jaffna.,,,,
+JS004,,,Mangos,Vegetarian,Positive,,Frequently recommended vegetarian restaurant.,,,,
+JS005,,,Cosy Restaurant,Rice & Curry,Positive,,Recommended for traditional meals.,,,,

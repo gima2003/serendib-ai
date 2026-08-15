@@ -1,0 +1,6 @@
+signal_id,platform,place_id,place_name,food_or_topic,signal_polarity,signal_type,structured_summary,local_vs_tourist_signal,source_url,verified_date,confidence
+S001,Tripadvisor,,Jetwing Yala,,Positive,,Seafood buffet recommended,,,,
+S002,Tripadvisor,,Kirinda Seafood,,Positive,,Fresh fish praised,,,,
+S003,Travel Blogs,,Tissamaharama,,Positive,,Rice & curry before safari,,,,
+S004,Reddit,,Yala,,Positive,,Try seafood after safari,,,,
+S005,Google Reviews,,Chef Lady,,Positive,,Authentic home cooking,,,,

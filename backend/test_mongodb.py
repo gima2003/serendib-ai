@@ -6,17 +6,19 @@ from pymongo import MongoClient
 # Load variables from .env
 load_dotenv()
 
-mongodb_uri = os.getenv("MONGODB_URI")
-database_name = os.getenv("MONGODB_DB_NAME")
+mongodb_url = os.getenv("MONGODB_URL")
+database_name = os.getenv("DATABASE_NAME")
 
 try:
     client = MongoClient(
-        mongodb_uri,
+        mongodb_url,
         serverSelectionTimeoutMS=5000
     )
 
-    # Ask MongoDB server to respond
+    # Ask MongoDB Atlas server to respond
     client.admin.command("ping")
+
+    db = client[database_name]
 
     print("✅ MongoDB connection successful!")
     print(f"✅ Database selected: {database_name}")

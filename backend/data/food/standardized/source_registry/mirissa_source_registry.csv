@@ -1,0 +1,14 @@
+source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC001,Official tourism,Sri Lanka Tourism Culinary Tourism,https://www.srilanka.travel/culinary-tourism/,Dish definitions and Sri Lankan cuisine context,0.98
+SRC002,Official restaurant site,No.1 Dewmini Roti Shop,https://dewminirotishop.wordpress.com/,Business history / roti identity,0.99
+SRC003,Public social media,No.1 Dewmini Instagram,https://www.instagram.com/no.1_dewmini_roti_shop_/?hl=en,Current brand positioning,0.95
+SRC004,Review aggregation,Ceylon Curry House Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1407334-d15594168-Reviews-Ceylon_Curry_House-Mirissa_Southern_Province.html,Curry authenticity/value signals,0.88
+SRC005,Review aggregation,Dhana's Curry Pot Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1407334-d12794842-Reviews-Dhana_s_Curry_Pot-Mirissa_Southern_Province.html,Curry assortment/value signals,0.86
+SRC006,Review aggregation,Sea Gem Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1407334-d34144290-Reviews-Sea_Gem_Authentic_Sri_Lankan_Cooking-Mirissa_Southern_Province.html,Home-style dish/cooking-class signals,0.86
+SRC007,Review aggregation,Fresh Wave Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1407334-d15833016-Reviews-Fresh_Wave_Restaurant_and_Bar-Mirissa_Southern_Province.html,Fresh seafood / service aspect signals,0.86
+SRC008,Public social media,Salt Mirissa Instagram,https://www.instagram.com/saltmirissa/?hl=en,Beach/seafood brand positioning,0.95
+SRC009,Official restaurant site,Serendipity Mirissa,https://serendipitymirissa.com/the-restaurant/,Sri Lankan fusion and seafood evidence,0.99
+SRC010,Public social media,Shady Lane Instagram/Linktree,https://linktr.ee/shady_lane,Vegetarian cafe identity,0.94
+SRC011,Community forum,Reddit Mirissa kottu discussion,https://www.reddit.com/r/srilanka/comments/1jo8vg1/what_is_the_best_kottu_in_marissa/,Local/traveller kottu recommendation signal,0.76
+SRC012,Community forum,Reddit Mirissa seafood discussion,https://www.reddit.com/r/srilanka/comments/1fy53io/good_seafood_restaurants_in_mirissa_sri_lanka/,Seafood-interest/community signals,0.68
+SRC013,Travel guide,Recent Mirissa restaurant guide,https://www.kateandmikestravels.com/post/best-restaurants-in-mirissa,Discovery and tourism-oriented comparison signals,0.76

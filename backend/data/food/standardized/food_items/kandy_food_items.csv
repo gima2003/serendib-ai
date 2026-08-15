@@ -1,0 +1,11 @@
+food_id,food_name,alternate_names,city,category,meal_type,typical_spice_level,vegetarian_possible,vegan_possible,key_components,description,city_relevance,recommendation_tags,source_type,source_url,verified_date,confidence
+KDY-F001,Kandyan Rice & Curry,,Kandy,Main,Lunch/Dinner,Medium,,,,Traditional Kandyan-style curries,,,,,,
+KDY-F002,Kottu,,Kandy,Street Food,Dinner,Medium-High,,,,Popular throughout Kandy,,,,,,
+KDY-F003,Hoppers,,Kandy,Breakfast,Breakfast/Dinner,Mild,,,,Classic Sri Lankan breakfast,,,,,,
+KDY-F004,String Hoppers,,Kandy,Breakfast,Breakfast,Mild,,,,Served with dhal and sambol,,,,,,
+KDY-F005,Pittu,,Kandy,Breakfast,Breakfast,Mild,,,,Steamed flour and coconut,,,,,,
+KDY-F006,Wattalappam,,Kandy,Dessert,Dessert,Sweet,,,,Traditional dessert,,,,,,
+KDY-F007,Jaggery Curd,,Kandy,Dessert,Dessert,Sweet,,,,Buffalo curd with treacle,,,,,,
+KDY-F008,Kandyan Sweetmeats,,Kandy,Dessert,Snack,Sweet,,,,Festival sweets,,,,,,
+KDY-F009,Pol Sambol,,Kandy,Side,Any,Hot,,,,Fresh coconut sambol,,,,,,
+KDY-F010,Dhal Curry,,Kandy,Side,Any,Mild,,,,Red lentil curry,,,,,,

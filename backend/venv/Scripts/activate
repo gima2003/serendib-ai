@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\UMAR\Documents\GitHub\serendib-ai\backend\venv"
+VIRTUAL_ENV="C:\Users\gimha_9pk7du7\OneDrive\Desktop\projects\Serendib AI\backend\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

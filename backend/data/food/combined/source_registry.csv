@@ -1,0 +1,79 @@
+source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC-001,Official hotel site,Bandarawela Hotel,https://bandarawelahotel.com/,Tea-country regional identity,0.99
+SRC-002,Official cooking-class website,Cook with Mona,https://cookwithmonaarugambay.wordpress.com/,Cooking class / rice-and-curry focus,0.99
+SRC-003,Official restaurant site,Culture Colombo,https://culturecolombo.lk/,Cuisine positioning and dish evidence,0.99
+SRC-004,Official restaurant website,Dewa Restaurant & Cafe,https://dewasrilanka.com/,"Address, hours and fresh-seafood positioning",0.99
+SRC-005,Official restaurant site,No.1 Dewmini Roti Shop,https://dewminirotishop.wordpress.com/,Business history / roti identity,0.99
+SRC-006,Official cooking-class site,Eco Kitchen Sigiriya,https://ecokitchen.lk/,Cooking-class dishes / organic experience,0.99
+SRC-007,Official experience website,Ella Spice Garden,https://ellaspicegarden.com/,Cooking-class/dinner information,0.99
+SRC-008,Travel food guide,Girl on a Zebra Arugam Bay restaurants,https://girlonazebra.com/restaurants-in-arugam-bay/,Recent fresh-fish qualitative recommendation signal,0.78
+SRC-009,Public social media,Shady Lane Instagram/Linktree,https://linktr.ee/shady_lane,Vegetarian cafe identity,0.94
+SRC-010,Google Reviews,,https://maps.google.com,Reviews,
+SRC-011,Official restaurant site,Serendipity Mirissa,https://serendipitymirissa.com/the-restaurant/,Sri Lankan fusion and seafood evidence,0.99
+SRC-012,Official restaurant website,Green Door Ella,https://thegreendoor.lk/,"Address, hours, brand positioning",0.99
+SRC-013,Travel guide,Travel Insighter Sigiriya restaurants guide,https://travelinsighter.com/restaurants-in-sigiriya-sri-lanka/,Discovery and qualitative comparison signals,0.78
+SRC-014,Official restaurant site,Upali's,https://upalis.com/,Restaurant identity/contact/cuisine positioning,0.99
+SRC-015,Travel guide,Bacon is Magic Ella Food Guide,https://www.baconismagic.ca/sri-lanka/ella-food-restaurants/,Restaurant discovery and qualitative recommendation signals,0.76
+SRC-016,Official hotel site,Hotel Sigiriya Dining,https://www.brownshotels.com/hotelsigiriya/dining/,Hotel restaurant cuisine positioning,0.99
+SRC-017,Official restaurant menu,Cafe Chill Ella,https://www.cafechill.lk/cafe-chill-ella-menu.html,Menu-level local dish and vegan-option evidence,0.99
+SRC-018,Official hotel/restaurant site,Nuga Gama - Cinnamon Grand,https://www.cinnamonhotels.com/cinnamon-grand-colombo/dine-with-us/nuga-gama,Restaurant identity/experience/opening information,0.99
+SRC-019,Official hotel restaurant website,Ella Flower Garden Resort Restaurant,https://www.ellaflowergardenresort.com/restaurant,Cuisine and contact information,0.99
+SRC-020,Travel experience operator,Experience Travel Group social enterprise lunch,https://www.experiencetravelgroup.com/destinations/sri-lanka/experiences/lunch-at-a-social-enterprise-restaurant-bandarawela,Community-run traditional lunch experience,0.99
+SRC-021,Public social media,The Kitchen Garden Facebook,https://www.facebook.com/kitchengardenella/,Home-style Sri Lankan positioning,0.91
+SRC-022,Official/public social,Bandarawela Rest House Facebook,https://www.facebook.com/resthouse.bandarawela/,Home-style meal and delivery positioning,0.9
+SRC-023,Official/public social,Train View Chalet Facebook,https://www.facebook.com/TrainViewChalet/posts/-enjoy-delicious-authentic-sri-lankan-dishes-in-our-fresh-restaurant-with-a-sere/1454833466489678/,Authentic Sri Lankan restaurant positioning,0.9
+SRC-024,Public social media,Ceylon Curry Club Instagram,https://www.instagram.com/ceylon.curryclub/,Contemporary cuisine signal,0.9
+SRC-025,Public social media,Cook with Mona Instagram,https://www.instagram.com/cookwithmona_arugambay/,Coconut roti / coconut sambol evidence,0.96
+SRC-026,Public social media,The Kitchen Garden Instagram,https://www.instagram.com/kitchengardenella/,Current social/brand signal,0.91
+SRC-027,Public social media,No.1 Dewmini Instagram,https://www.instagram.com/no.1_dewmini_roti_shop_/?hl=en,Current brand positioning,0.95
+SRC-028,Public social media,Ranbath Organic Instagram,https://www.instagram.com/ranbathorganic/,Dietary/organic positioning,0.92
+SRC-029,Public social media,Salt Mirissa Instagram,https://www.instagram.com/saltmirissa/?hl=en,Beach/seafood brand positioning,0.95
+SRC-030,Public social media,Yarl Eat House Instagram,https://www.instagram.com/yarleathouse/,Brand positioning / Jaffna cuisine confirmation,0.9
+SRC-031,Travel guide,Recent Mirissa restaurant guide,https://www.kateandmikestravels.com/post/best-restaurants-in-mirissa,Discovery and tourism-oriented comparison signals,0.76
+SRC-032,Travel Blogs,,https://www.lonelyplanet.com/,Travel recommendations | Travel,
+SRC-033,Community,,https://www.reddit.com/r/srilanka/,Community insights,
+SRC-034,Community forum,Reddit Bandarawela vegetarian food thread,https://www.reddit.com/r/srilanka/comments/1408fxe/searching_for_nice_places_to_eat_vegetarian_in/,Dietary demand signal,0.74
+SRC-035,Community forum,Reddit kottu discussion,https://www.reddit.com/r/srilanka/comments/177px1i/best_place_to_get_kottu_from_around_colombo/,Kottu recommendation signals,0.75
+SRC-036,Community forum,Reddit proper Sri Lankan food,https://www.reddit.com/r/srilanka/comments/18ghi17/where_to_find_proper_sri_lankan_food/,General local-food terminology / preference context,0.78
+SRC-037,Community forum,Reddit lamprais discussion,https://www.reddit.com/r/srilanka/comments/1bcozyp/how_good_is_real_lamprais_is_the_stuff_at_green/,Lamprais preference/authenticity signals,0.76
+SRC-038,Community forum,Reddit Bandarawela local discussion,https://www.reddit.com/r/srilanka/comments/1cm7fzw/is_there_anybody_from_bandarawela/,Local food-scene context,0.7
+SRC-039,Community forum,Reddit Colombo food recommendations,https://www.reddit.com/r/srilanka/comments/1f0shnz/colombo_food_recommendations/,Dish/venue recommendation signals,0.76
+SRC-040,Community forum,Reddit Mirissa seafood discussion,https://www.reddit.com/r/srilanka/comments/1fy53io/good_seafood_restaurants_in_mirissa_sri_lanka/,Seafood-interest/community signals,0.68
+SRC-041,Community forum,Reddit: where locals eat in Ella,https://www.reddit.com/r/srilanka/comments/1h7dw3w/where_do_locals_eat_in_ella_looking_for_non/,Local-vs-tourist qualitative signal,0.78
+SRC-042,Community forum,Reddit Mirissa kottu discussion,https://www.reddit.com/r/srilanka/comments/1jo8vg1/what_is_the_best_kottu_in_marissa/,Local/traveller kottu recommendation signal,0.76
+SRC-043,Community forum,Reddit Arugam Bay Sri Lankan food | Reddit spice adaptation discussion,https://www.reddit.com/r/srilanka/comments/1kpbybo/arugam_bay_sri_lankan_food/,Spice/authenticity and Tamil-food signals | Low-confidence user-preference risk signal only,0.5
+SRC-044,Community forum,Reddit rice-and-curry discussion,https://www.reddit.com/r/srilanka/comments/1leagfb/looking_for_rice_and_curry_places/,Local recommendation signal; subjective,0.78
+SRC-045,Community forum,Reddit Arugam Bay best places to eat,https://www.reddit.com/r/srilanka/comments/1nim5ms/arugam_bay_best_places_to_eat/,Local food recommendation signals,0.78
+SRC-046,Community forum,Reddit: Ella restaurant inclusivity allegation,https://www.reddit.com/r/srilanka/comments/1p190ig/racist_restaurants_of_ella/,Responsible-AI/fairness risk signal only; not factual adjudication,0.5
+SRC-047,Community forum,Reddit Colombo restaurant favourites,https://www.reddit.com/r/srilanka/comments/1qblvlm/your_favourite_restaurant_what_you_order_in/,Local recommendation/aspect signals,0.76
+SRC-048,Community forum,Reddit Sigiriya cooking class report,https://www.reddit.com/r/SriLankaTravel/comments/1uyk66s/just_returned_from_2_weeks_in_sri_lanka_as_a_solo/,Cooking-class qualitative signal,0.76
+SRC-049,Community forum,Reddit Sri Lanka tips 2025,https://www.reddit.com/r/travel/comments/1nolwzj/sri_lanka_tips_december_2025/,Sigiriya village-cooking qualitative signal,0.74
+SRC-050,Official hotel/restaurant site,Palmyrah - Renuka City Hotel,https://www.renukacityhotel.com/dine-and-drink/palmyrah-restaurant/,Northern Sri Lankan signature dishes,0.99
+SRC-051,Sri Lanka Tourism,,https://www.srilanka.travel/,Cuisine reference | Tourism,
+SRC-052,Official tourism,Sri Lanka Tourism Culinary Tourism,https://www.srilanka.travel/culinary-tourism/,Dish definitions / Sri Lankan cuisine context | Dish definitions / cuisine context | Dish definitions and Sri Lankan cuisine context,0.98
+SRC-053,Travel guide,Coastal Campaign Arugam Bay guide,https://www.thecoastalcampaign.com/arugam-bay-things-to-do/,Beach Hut fish-BBQ / social dining signal,0.82
+SRC-054,Travel guide,Vegan food in Ella guide,https://www.thewanderfulme.com/best-vegan-food-in-ella-sri-lanka/,Vegan/vegetarian discovery signals,0.76
+SRC-055,Tripadvisor,,https://www.tripadvisor.com/,Restaurant listings | Restaurants,
+SRC-056,Review aggregation,Dude's Hut Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1051532-d12257785-Reviews-Dude_s_Hut-Bandarawela_Uva_Province.html,"Rice-and-curry, family-run and value signals",0.9
+SRC-057,Review aggregation,Gemi Gedara Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1051532-d12966571-Reviews-Gemi_Gedara_Restaurant-Bandarawela_Uva_Province.html,Taste/value and local-food signals,0.88
+SRC-058,Review aggregation,Resto Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1051532-d13148339-Reviews-Resto-Bandarawela_Uva_Province.html,Dish-level evidence for nasi goreng/devilled fish,0.88
+SRC-059,Review aggregation,Mount Edge Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1051532-d23530347-Reviews-Mount_Edge_Restaurant_And_Cafe-Bandarawela_Uva_Province.html,Hours/service and cuisine signal,0.86
+SRC-060,Review aggregation,Dhana's Curry Pot Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1407334-d12794842-Reviews-Dhana_s_Curry_Pot-Mirissa_Southern_Province.html,Curry assortment/value signals,0.86
+SRC-061,Review aggregation,Ceylon Curry House Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1407334-d15594168-Reviews-Ceylon_Curry_House-Mirissa_Southern_Province.html,Curry authenticity/value signals,0.88
+SRC-062,Review aggregation,Fresh Wave Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1407334-d15833016-Reviews-Fresh_Wave_Restaurant_and_Bar-Mirissa_Southern_Province.html,Fresh seafood / service aspect signals,0.86
+SRC-063,Review aggregation,Sea Gem Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1407334-d34144290-Reviews-Sea_Gem_Authentic_Sri_Lankan_Cooking-Mirissa_Southern_Province.html,Home-style dish/cooking-class signals,0.86
+SRC-064,Review aggregation,Sigiriya Wew Thawulla,https://www.tripadvisor.com/Restaurant_Review-g304141-d17660325-Reviews-Sigiriya_wew_Thawulla_Restaurant-Sigiriya_Central_Province.html,"Detailed hours, contact, dietary and dish-review signals",0.95
+SRC-065,Review aggregation,Kenoli Restaurant,https://www.tripadvisor.com/Restaurant_Review-g304141-d17796477-Reviews-Kenoli_Restaurant-Sigiriya_Central_Province.html,"Dietary, meal-type and ranking signals",0.92
+SRC-066,Review aggregation,S.l.kafé Restaurant & Cooking Class,https://www.tripadvisor.com/Restaurant_Review-g304141-d24038580-Reviews-S_l_kafe_Restaurant_Cooking_Class-Sigiriya_Central_Province.html,Restaurant + cooking-class signal,0.92
+SRC-067,Review aggregation,Mr Fisherman Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g3348959-d10520610-Reviews-Mr_Fisherman-Arugam_Bay_Eastern_Province.html,"Fresh-catch, crab, lobster and value signals",0.92
+SRC-068,Review aggregation,The Sketch Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g3348959-d15073393-Reviews-The_Sketch-Arugam_Bay_Eastern_Province.html,Fresh fish / authenticity signals,0.9
+SRC-069,Review aggregation,The Green Room Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g3348959-d1733566-Reviews-The_Green_Room-Arugam_Bay_Eastern_Province.html,"Authenticity, dietary and dish-level signals",0.92
+SRC-070,Review aggregation,Curry Leaves Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g3348959-d17439700-Reviews-Curry_Leaves-Arugam_Bay_Eastern_Province.html,Traditional food / mango curry signal,0.9
+SRC-071,Review aggregation,The Kitchen Garden Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g616035-d14905865-Reviews-The_Kitchen_Garden-Ella_Uva_Province.html,Dietary/cuisine/listing information,0.86
+SRC-072,Review aggregation,Ceylon Tea Center Ella Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g616035-d8407507-Reviews-Ceylon_Tea_Center_Ella-Ella_Uva_Province.html,"Cuisine, meal type, dietary and hours signals",0.86
+SRC-073,Review aggregation,Matey Hut Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g616035-d9813968-Reviews-Matey_Hut-Ella_Uva_Province.html,Aggregate traveller sentiment and dish-aspect summaries,0.84
+SRC-074,Review aggregation,Tripadvisor Bandarawela restaurants,https://www.tripadvisor.com/Restaurants-g1051532-Bandarawela_Uva_Province.html,"Current city restaurant coverage, ranking and categories",0.88
+SRC-075,Review aggregation,Sigiriya restaurant list,https://www.tripadvisor.com/Restaurants-g304141-Sigiriya_Central_Province.html,"Current ranking, rating and cheap-eats/family signals",0.88
+SRC-076,Review aggregation,Sigiriya curry listings,https://www.tripadvisor.com/Restaurants-g304141-zfd20181-Sigiriya_Central_Province-Curry.html,Curry-specific ranking signals,0.88
+SRC-077,Review aggregation,Tripadvisor Arugam Bay restaurants,https://www.tripadvisor.com/Restaurants-g3348959-Arugam_Bay_Eastern_Province.html,Current restaurant coverage / rankings,0.9
+SRC-078,Review aggregation,Tripadvisor Arugam Bay seafood,https://www.tripadvisor.com/Restaurants-g3348959-c33-Arugam_Bay_Eastern_Province.html,Seafood-specific discovery / ranking,0.92
