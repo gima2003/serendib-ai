@@ -1,6 +1,6 @@
 signal_id,platform,place_id,place_name,food_or_topic,signal_polarity,signal_type,structured_summary,local_vs_tourist_signal,source_url,verified_date,confidence
-GS001,,,Lucky Fort Restaurant,Rice & Curry,Positive,,Frequently recommended by travellers for authentic home-style Sri Lankan meals.,,,,
-GS002,,,The Tuna & The Crab,Seafood,Positive,,Known for premium seafood and crab.,,,,
-GS003,,,Pedlar's Inn Cafe,Cafe,Positive,,Popular breakfast and coffee stop inside Galle Fort.,,,,
-GS004,,,Wijaya Beach,Beach Dining,Positive,,Recommended for sunset dining and seafood.,,,,
-GS005,,,A Minute by Tuk Tuk,Sri Lankan Food,Positive,,Praised for combining local food with modern presentation.,,,,
+GAL-GS001,,,Lucky Fort Restaurant,Rice & Curry,Positive,,Frequently recommended by travellers for authentic home-style Sri Lankan meals.,,,,
+GAL-GS002,,,The Tuna & The Crab,Seafood,Positive,,Known for premium seafood and crab.,,,,
+GAL-GS003,,,Pedlar's Inn Cafe,Cafe,Positive,,Popular breakfast and coffee stop inside Galle Fort.,,,,
+GAL-GS004,,,Wijaya Beach,Beach Dining,Positive,,Recommended for sunset dining and seafood.,,,,
+GAL-GS005,,,A Minute by Tuk Tuk,Sri Lankan Food,Positive,,Praised for combining local food with modern presentation.,,,,

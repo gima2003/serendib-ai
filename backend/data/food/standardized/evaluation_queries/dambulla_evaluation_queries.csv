@@ -1,0 +1,6 @@
+query_id,city,sample_user_query,expected_filters_or_intent,relevant_place_ids,expected_result_text,notes
+DAM-Q001,Dambulla,Best authentic rice & curry in Dambulla,,"DAM-P001,DAM-P005,DAM-P009",,
+DAM-Q002,Dambulla,Vegetarian lunch,,"DAM-P010,DAM-P008",,
+DAM-Q003,Dambulla,Luxury dinner near Kandalama,,"DAM-P006,DAM-P007",,
+DAM-Q004,Dambulla,Breakfast before Sigiriya,,DAM-P003,,
+DAM-Q005,Dambulla,Village food experience,,"DAM-P005,DAM-P009",,

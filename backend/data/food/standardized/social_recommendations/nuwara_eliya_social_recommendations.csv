@@ -1,6 +1,6 @@
 signal_id,platform,place_id,place_name,food_or_topic,signal_polarity,signal_type,structured_summary,local_vs_tourist_signal,source_url,verified_date,confidence
-NS001,,,Grand Hotel Tea Lounge,Tea,Positive,,Popular for afternoon tea and scones.,,,,
-NS002,,,Salmiya,Rice & Curry,Positive,,Recommended by locals for affordable meals.,,,,
-NS003,,,Themparadu,Sri Lankan,Positive,,Known for authentic Sri Lankan food.,,,,
-NS004,,,Tea Factory Hotel,Tea Experience,Positive,,Tea-country dining experience.,,,,
-NS005,,,Gregory Lake Area,Local Food,Positive,,Good stop after sightseeing.,,,,
+NEL-NS001,,,Grand Hotel Tea Lounge,Tea,Positive,,Popular for afternoon tea and scones.,,,,
+NEL-NS002,,,Salmiya,Rice & Curry,Positive,,Recommended by locals for affordable meals.,,,,
+NEL-NS003,,,Themparadu,Sri Lankan,Positive,,Known for authentic Sri Lankan food.,,,,
+NEL-NS004,,,Tea Factory Hotel,Tea Experience,Positive,,Tea-country dining experience.,,,,
+NEL-NS005,,,Gregory Lake Area,Local Food,Positive,,Good stop after sightseeing.,,,,

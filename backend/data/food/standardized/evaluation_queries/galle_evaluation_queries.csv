@@ -1,0 +1,4 @@
+query_id,city,sample_user_query,expected_filters_or_intent,relevant_place_ids,expected_result_text,notes
+GAL-Q001,Galle,Best authentic seafood in Galle,,,The Tuna & The Crab; CocoBay,
+GAL-Q002,Galle,Cheap rice and curry in Galle Fort,,,Lucky Fort Restaurant; Fort Rope Inn,
+GAL-Q003,Galle,Best breakfast in Galle Fort,,,Pedlar's Inn Cafe; Heritage Cafe,

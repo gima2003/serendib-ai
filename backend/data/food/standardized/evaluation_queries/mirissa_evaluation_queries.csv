@@ -1,0 +1,11 @@
+query_id,city,sample_user_query,expected_filters_or_intent,relevant_place_ids,expected_result_text,notes
+MIR-Q001,Mirissa,I want cheap authentic Sri Lankan rice and curry in Mirissa.,budget + authentic-local + rice-and-curry,"MIR-P001,MIR-P002,MIR-P004,MIR-P005",,Ceylon Curry House and Dhana's should rank strongly.
+MIR-Q002,Mirissa,Where can I try the best local roti in Mirissa?,roti + authentic-local,"MIR-P003,MIR-P006,MIR-P008",,Dewmini should rank highly due to official heritage and strong review volume.
+MIR-Q003,Mirissa,I want fresh seafood on the beach at sunset.,seafood + fresh-catch + beach-dining + sunset,"MIR-P009,MIR-P012,MIR-P013,MIR-P014",,Fresh Wave/Central Beach Inn/Serendipity are strong candidates.
+MIR-Q004,Mirissa,I want a Sri Lankan cooking class with dinner.,cooking-class + Sri Lankan,"MIR-P004,MIR-P017,MIR-P003",,Sea Gem and Cosmic Power are strong structured matches; Dewmini also has cooking-school history.
+MIR-Q005,Mirissa,I'm vegetarian and want breakfast in Mirissa.,vegetarian + breakfast,"MIR-P016,MIR-P003,MIR-P017",,Shady Lane fits breakfast/vegetarian strongly; branch status should be checked live.
+MIR-Q006,Mirissa,Where can I eat kottu that locals/travellers actually recommend?,kottu + social recommendation,"MIR-P003,MIR-P006",,Dewmini has direct Reddit support and strong brand identity.
+MIR-Q007,Mirissa,"I want grilled local fish, not burgers or pizza.",fresh-catch + seafood + local-focus,"MIR-P009,MIR-P012,MIR-P004,MIR-P007",,Avoid tourist/international-only venues in ranking.
+MIR-Q008,Mirissa,Recommend an inexpensive seafood place.,budget + seafood,"MIR-P010,MIR-P018,MIR-P009",,Coco Gate and Turtle Bay are surfaced in current budget-seafood listings.
+MIR-Q009,Mirissa,I want home-style food away from a fancy beach club.,home-style + authentic-local + budget,"MIR-P004,MIR-P005,MIR-P002,MIR-P003",,The ranking should penalize tourist-club atmosphere when user requests local/home-style.
+MIR-Q010,Mirissa,My group wants seafood and nightlife in the same place.,seafood + nightlife + beach-dining,"MIR-P013,MIR-P009,MIR-P019",,Salt/Fresh Wave/Mirissa Eye fit the social atmosphere requirement.
