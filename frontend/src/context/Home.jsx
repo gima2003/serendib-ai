@@ -5,7 +5,6 @@ import {
   ShieldCheck,
   Utensils,
   Route,
-
   Brain,
   CloudSun,
   Navigation,
@@ -15,10 +14,110 @@ import {
   Menu,
   X,
   Compass,
-  ArrowDown,
   Info,
   MapPin,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+
+/* ------------------------------------------------------------------ */
+/*  Hero slideshow images — real, verified Sri Lanka photographs       */
+/*  sourced from Wikimedia Commons (Creative Commons licensed).        */
+/*  Each entry maps to a specific, correctly-identified location.      */
+/* ------------------------------------------------------------------ */
+
+const heroSlides = [
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/The_Sigiriya_Fortress.jpg?width=2400",
+    location: "Sigiriya Rock Fortress",
+    alt: "Panoramic view of Sigiriya Rock Fortress rising above the jungle, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Nine_Arches_Bridge_in_Ella.jpg?width=2400",
+    location: "Ella — Nine Arch Bridge",
+    alt: "The Nine Arch Bridge viaduct surrounded by lush hills in Ella, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Train_ride_thru_Sri_Lanka_Upcountry_tea_garden.JPG?width=2400",
+    location: "Kandy–Ella Scenic Train",
+    alt: "Blue train winding through tea plantations in Sri Lanka's hill country",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/20160130_Sri_Lanka_4279+82_4_Mirissa_sRGB_(25144418393).jpg?width=2400",
+    location: "Mirissa Beach",
+    alt: "Golden sand and palm-lined coastline at Mirissa Beach, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sri_Lanka,_Tea_plantations,_Nuwara_Eliya.jpg?width=2400",
+    location: "Nuwara Eliya Tea Plantations",
+    alt: "Rolling green tea plantations in Nuwara Eliya, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Elephants_playing_in_the_Yala_National_Park.jpg?width=2400",
+    location: "Yala National Park",
+    alt: "Wild elephants in the grasslands of Yala National Park, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/SL_Galle_Fort_asv2020-01_img24.jpg?width=2400",
+    location: "Galle Fort",
+    alt: "The historic Dutch lighthouse and ramparts of Galle Fort, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/SL_Kandy_asv2020-01_img33_Sacred_Tooth_Temple.jpg?width=2400",
+    location: "Kandy — Temple of the Tooth",
+    alt: "The Sacred Temple of the Tooth Relic in Kandy, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Arugam_bay_beach.jpg?width=2400",
+    location: "Arugam Bay",
+    alt: "Surf beach and coastline at Arugam Bay, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/SL_Horton_Plains_NP_asv2020-01_img16.jpg?width=2400",
+    location: "Horton Plains — World's End",
+    alt: "The sheer cliff drop at World's End, Horton Plains National Park, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/035_Ruwanweliseya_Stupa,_Anuradhapura,_Sri_Lanka.jpg?width=2400",
+    location: "Anuradhapura — Ruwanwelisaya",
+    alt: "The ancient white Ruwanwelisaya stupa in Anuradhapura, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Nillaveli_Beach.JPG?width=2400",
+    location: "Trincomalee — Nilaveli Beach",
+    alt: "Turquoise water and white sand at Nilaveli Beach, Trincomalee, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Beautiful_Sunrise_over_the_Colombo_Skyline_as_seen_from_the_ocean.jpg?width=2400",
+    location: "Colombo Skyline — Lotus Tower",
+    alt: "Sunrise over the Colombo skyline with the Lotus Tower, Sri Lanka",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sri_Lankan_Rice_and_Curry.jpg?width=2400",
+    location: "Traditional Sri Lankan Cuisine",
+    alt: "A traditional Sri Lankan rice and curry spread",
+  },
+  {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Kandyan_dance_performance_at_Kandyan_Cultural_Centre,_Sangaraja_Mawatha,_Kandy,_Sri_Lanka,_20260131_1727_7649.jpg?width=2400",
+    location: "Kandyan Cultural Performance",
+    alt: "Traditional Kandyan dancers performing in ceremonial costume, Sri Lanka",
+  },
+];
 
 /* ------------------------------------------------------------------ */
 /*  Static content                                                     */
@@ -29,37 +128,37 @@ const destinations = [
     name: "Sigiriya",
     category: "Culture & Heritage",
     image:
-      "https://loremflickr.com/800/600/sigiriya,rock/all?lock=10",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya_Rock_fortress.jpg?width=900",
   },
   {
     name: "Ella",
     category: "Mountains & Nature",
     image:
-      "https://loremflickr.com/800/600/ella,bridge,srilanka/all?lock=11",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Nine_Arches_Bridge.jpg?width=900",
   },
   {
     name: "Mirissa",
     category: "Beaches",
     image:
-      "https://loremflickr.com/800/600/mirissa,beach,srilanka/all?lock=12",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Secret_beach_-_Mirissa_Sri_Lanka.jpg?width=900",
   },
   {
     name: "Kandy",
     category: "Culture & Heritage",
     image:
-      "https://loremflickr.com/800/600/kandy,temple,srilanka/all?lock=13",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Zahntempel_Kandy.jpg?width=900",
   },
   {
     name: "Yala",
     category: "Wildlife",
     image:
-      "https://loremflickr.com/800/600/yala,leopard,srilanka/all?lock=14",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Srilankan_leopard_(panthera_pardus_kotiya)_shot_in_Yala_National_Park.jpg?width=900",
   },
   {
     name: "Galle",
     category: "Adventure",
     image:
-      "https://loremflickr.com/800/600/galle,fort,srilanka/all?lock=15",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Dutch_Galle_Fort,_Sri_Lanka.jpg?width=900",
   },
 ];
 
@@ -101,12 +200,84 @@ function Reveal({ children, className = "", delay = 0 }) {
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-700 ease-out motion-reduce:transition-none ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-        }`}
+      className={`${className} transition-all duration-700 ease-out motion-reduce:transition-none ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      }`}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
     >
       {children}
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  HeroSlideshow — auto-advancing crossfade slideshow with Ken Burns  */
+/* ------------------------------------------------------------------ */
+
+function HeroSlideshow({ current, onNext, onPrev, onGoTo }) {
+  return (
+    <>
+      {heroSlides.map((slide, i) => (
+        <div
+          key={slide.image}
+          className="absolute inset-0 transition-opacity duration-[1500ms] ease-in-out"
+          style={{ opacity: i === current ? 1 : 0 }}
+          aria-hidden={i !== current}
+        >
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            loading={i === 0 ? "eager" : "lazy"}
+            className="hero-kenburns absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+      ))}
+
+      {/* Readability overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black/70" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.4)_100%)]" />
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#FFFCF8] to-transparent" />
+
+      {/* Prev / Next arrows */}
+      <button
+        onClick={onPrev}
+        aria-label="Previous photo"
+        className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button
+        onClick={onNext}
+        aria-label="Next photo"
+        className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      {/* Location label */}
+      <div className="absolute bottom-24 left-6 md:left-10 z-20 flex items-center gap-2 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+        <MapPin size={16} className="text-orange-400 shrink-0" />
+        <div className="leading-tight">
+          <p className="text-sm font-semibold">{heroSlides[current].location}</p>
+          <p className="text-xs text-white/70">Sri Lanka</p>
+        </div>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+        {heroSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => onGoTo(i)}
+            aria-label={`Go to photo ${i + 1} of ${heroSlides.length}`}
+            aria-current={i === current}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === current ? "w-6 bg-orange-500" : "w-1.5 bg-white/40 hover:bg-white/70"
+            }`}
+          />
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -117,7 +288,8 @@ function Reveal({ children, className = "", delay = 0 }) {
 function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [heroLoaded, setHeroLoaded] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const timerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -125,17 +297,48 @@ function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleVideoReady = useCallback(() => setHeroLoaded(true), []);
+  // Auto-advance the slideshow every 4 seconds
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setCurrentSlide((i) => (i + 1) % heroSlides.length);
+    }, 4000);
+  }, []);
+
+  useEffect(() => {
+    startTimer();
+    return () => clearInterval(timerRef.current);
+  }, [startTimer]);
+
+  // Preload the next image so transitions stay smooth
+  useEffect(() => {
+    const nextIndex = (currentSlide + 1) % heroSlides.length;
+    const img = new Image();
+    img.src = heroSlides[nextIndex].image;
+  }, [currentSlide]);
+
+  const goToSlide = useCallback(
+    (index) => {
+      setCurrentSlide(index);
+      startTimer();
+    },
+    [startTimer]
+  );
+  const nextSlide = () => goToSlide((currentSlide + 1) % heroSlides.length);
+  const prevSlide = () => goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length);
 
   return (
     <div className="min-h-screen w-full bg-[#FFFCF8] text-[#1C1917] font-sans antialiased overflow-x-hidden">
       <style>{`
         @keyframes gentlePulse { 0%, 100% { opacity: .55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.12); } }
         .pulse-dot { animation: gentlePulse 2.4s ease-in-out infinite; }
-        @keyframes scrollHint { 0%, 100% { transform: translateY(0); opacity: .6; } 50% { transform: translateY(6px); opacity: 1; } }
-        .scroll-hint { animation: scrollHint 2s ease-in-out infinite; }
+        @keyframes heroKenBurns {
+          0%   { transform: scale(1); }
+          100% { transform: scale(1.09); }
+        }
+        .hero-kenburns { animation: heroKenBurns 20s ease-in-out infinite alternate; }
         @media (prefers-reduced-motion: reduce) {
-          .pulse-dot, .scroll-hint { animation: none; }
+          .pulse-dot, .hero-kenburns { animation: none; }
         }
       `}</style>
 
@@ -211,32 +414,15 @@ function Home() {
       </nav>
 
       {/* ============================================================ */}
-      {/* 2 & 3 & 4. CINEMATIC VIDEO HERO + CONTENT + SCROLL INDICATOR  */}
+      {/* 2 & 3 & 4. HERO PHOTO SLIDESHOW + CONTENT                     */}
       {/* ============================================================ */}
-      <section id="top" className="relative w-full h-screen min-h-[640px] overflow-hidden">
-        {/* Full-screen background video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          onCanPlay={handleVideoReady}
-          aria-hidden="true"
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${heroLoaded ? "opacity-100" : "opacity-0"
-            }`}
-        >
-          <source src="/videos/Serendib-AI.mp4.mp4" type="video/mp4" />
-        </video>
-
-        {/* Fallback base so the hero never shows a blank/broken frame while the video loads */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#3a2a1a] to-[#1c1512] -z-10" />
-
-        {/* Readability overlay: subtle dark gradient + vignette, not too dark */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/60" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.35)_100%)]" />
-        {/* Soft transition into the next (light) section */}
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#FFFCF8] to-transparent" />
+      <section id="top" className="relative w-full h-screen min-h-[640px] overflow-hidden bg-[#12100D]">
+        <HeroSlideshow
+          current={currentSlide}
+          onNext={nextSlide}
+          onPrev={prevSlide}
+          onGoTo={goToSlide}
+        />
 
         {/* Hero content */}
         <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 text-center">
@@ -248,14 +434,14 @@ function Home() {
           </Reveal>
 
           <Reveal delay={120}>
-            <h1 className="max-w-4xl text-5xl font-bold leading-[1.08] tracking-tight text-white md:text-6xl lg:text-7xl">
+            <h1 className="max-w-4xl text-5xl font-bold leading-[1.08] tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-[0_4px_18px_rgba(0,0,0,0.55)]">
               Discover Sri Lanka. <br />
               <span className="text-orange-400">Planned Around You.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={240}>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
               Serendib AI brings destinations, local food, smart routes, weather, budgets and travel
               context together to create a journey designed around you.
             </p>
@@ -284,16 +470,6 @@ function Home() {
             </div>
           </Reveal>
         </div>
-
-        {/* Scroll indicator */}
-        <a
-          href="#intro"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors scroll-hint"
-          aria-label="Scroll to explore"
-        >
-          <span className="text-xs font-medium tracking-[0.2em] uppercase">Explore</span>
-          <ArrowDown size={18} />
-        </a>
       </section>
 
       {/* ============================================================ */}
@@ -394,14 +570,14 @@ function Home() {
               Traveler
             </div>
 
-            <ArrowDown className="my-4 text-[#D6D3D1]" />
+            <div className="my-4 text-[#D6D3D1]">↓</div>
 
             <div className="relative flex h-20 px-10 items-center justify-center rounded-2xl border border-orange-200 bg-gradient-to-r from-orange-50 to-orange-100/60 text-lg font-bold text-orange-600">
               <span className="absolute -right-1.5 -top-1.5 h-4 w-4 rounded-full bg-orange-400 pulse-dot" />
               Serendib AI
             </div>
 
-            <ArrowDown className="my-4 text-[#D6D3D1]" />
+            <div className="my-4 text-[#D6D3D1]">↓</div>
 
             <div className="flex flex-col md:flex-row gap-4 w-full justify-center">
               {["Profile Intelligence", "Destination Intelligence", "Food Intelligence"].map((agent, i) => (
@@ -411,13 +587,13 @@ function Home() {
               ))}
             </div>
 
-            <ArrowDown className="my-4 text-[#D6D3D1]" />
+            <div className="my-4 text-[#D6D3D1]">↓</div>
 
             <div className="flex h-16 px-10 items-center justify-center rounded-xl border border-[#EAE2D6] bg-white font-semibold text-orange-600">
               Smart Planner
             </div>
 
-            <ArrowDown className="my-4 text-[#D6D3D1]" />
+            <div className="my-4 text-[#D6D3D1]">↓</div>
 
             <div className="flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm font-medium text-[#78716C] bg-white border border-[#EAE2D6] rounded-full px-6 py-3">
               <span>Route</span>
@@ -429,7 +605,7 @@ function Home() {
               <span>Context</span>
             </div>
 
-            <ArrowDown className="my-4 text-orange-400" />
+            <div className="my-4 text-orange-400">↓</div>
 
             <div className="flex h-16 px-12 items-center justify-center rounded-full bg-orange-500 font-bold text-white shadow-md shadow-orange-500/25">
               Personalized Itinerary
