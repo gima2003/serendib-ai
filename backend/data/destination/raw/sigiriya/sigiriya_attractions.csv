@@ -1,0 +1,4 @@
+﻿attraction_id,attraction_name,city,district,province,category,description,primary_activity,source_id,verified_date
+SIG-A001,Sigiriya Rock Fortress,Sigiriya,Matale,Central Province,Archaeological / Heritage Site,"Ancient rock citadel with palace remains, gardens, frescoes and panoramic views.",Heritage Exploration | Hiking | Architecture | Photography,SRC-SLTDA|SRC-CCF,2026-08-19
+SIG-A002,Sigiriya Museum,Sigiriya,Matale,Central Province,Museum,"Interpretive museum presenting the archaeology, history and landscape of Sigiriya.",Museum Visit | Heritage Exploration | History,SRC-CCF,2026-08-19
+SIG-A003,Pidurangala Rock,Sigiriya,Matale,Central Province,Mountain / Viewpoint,Rock hike near Sigiriya offering views toward the Sigiriya rock landscape.,Hiking | Sunrise Viewing | Scenic Views | Photography,SRC-SLTOURISM,2026-08-19

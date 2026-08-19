@@ -1,0 +1,6 @@
+﻿attraction_id,attraction_name,city,district,province,category,description,primary_activity,source_id,verified_date
+MIR-A001,Mirissa Beach,Mirissa,Matara,Southern Province,Beach,"Popular southern beach destination known for leisure, swimming and sunsets.",Beach Relaxation | Swimming | Sunset Viewing,SRC-SLTOURISM,2026-08-19
+MIR-A002,Whale Watching Mirissa,Mirissa,Matara,Southern Province,Marine Wildlife Experience,Marine excursion area associated with whale and dolphin watching off Sri Lanka's south coast.,Whale Watching | Marine Wildlife | Boating,SRC-SLTOURISM,2026-08-19
+MIR-A003,Coconut Tree Hill,Mirissa,Matara,Southern Province,Viewpoint / Coastal,Palm-covered coastal viewpoint near Mirissa.,Photography | Scenic Views | Sunset Viewing,SRC-SLTOURISM,2026-08-19
+MIR-A004,Parrot Rock,Mirissa,Matara,Southern Province,Coastal Viewpoint,"Small rocky viewpoint just off Mirissa Beach, accessible in suitable sea conditions.",Scenic Views | Photography | Beach Walk,SRC-SLTOURISM,2026-08-19
+MIR-A005,Secret Beach Mirissa,Mirissa,Matara,Southern Province,Beach,Smaller beach area near Mirissa used for coastal relaxation.,Beach Relaxation | Swimming | Photography,SRC-SLTOURISM,2026-08-19
