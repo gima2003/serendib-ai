@@ -1,0 +1,5 @@
+﻿attraction_id,attraction_name,city,district,province,category,sub_category,description,primary_activity,source_id,verified_date
+DAM-A001,Dambulla Cave Temple,Dambulla,Matale,Central Province,Religious,Religious / Heritage Site,Historic cave-temple complex containing Buddhist statues and extensive wall paintings.,Religious & Spiritual Visit | Heritage Exploration | Cave Exploration | Art,SRC-SLTDA|SRC-CCF|SRC-REVIEWS,2026-08-19
+DAM-A002,Dambulla Museum,Dambulla,Matale,Central Province,Museum & Culture,Museum,Museum supporting interpretation of Dambulla's archaeological and cultural heritage.,Museum Visit | Heritage Exploration,SRC-CCF,2026-08-19
+DAM-A003,Ibbankatuwa Megalithic Tombs,Dambulla,Matale,Central Province,Heritage,Archaeological Site,Prehistoric burial site near Dambulla providing evidence of early settlement and funerary traditions.,Archaeology | Heritage Exploration | History,SRC-SLTDA,2026-08-19
+DAM-A004,Namal Uyana / Rose Quartz Mountain,Dambulla,Matale,Central Province,Heritage,Nature / Heritage,Ironwood forest and rose-quartz mountain landscape in the wider Dambulla region.,Nature Walk | Hiking | Scenic Views,SRC-SLTDA,2026-08-19
