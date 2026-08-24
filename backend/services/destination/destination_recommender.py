@@ -74,11 +74,24 @@ def recommend_destinations(
         )
     )
 
+    # Count unique matched experience IDs.
+    #
+    # Example:
+    # heritage -> EXP017
+    # history  -> EXP017
+    #
+    # Both represent the same experience requirement.
+
+    requested_experience_ids = {
+        item["experience_id"]
+        for item in matched_experiences
+    }
+
     destination_results = (
         rank_destinations(
             attraction_results,
-            requested_interest_count=len(
-                interests
+            requested_experience_count=len(
+                requested_experience_ids
             )
         )
     )
