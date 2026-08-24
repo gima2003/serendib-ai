@@ -1,0 +1,280 @@
+﻿attraction_id,experience_id,relevance_score,matched_activity
+ANU-A001,EXP017,1.0,Heritage Exploration
+ANU-A001,EXP018,1.0,Religious & Spiritual Visit
+ANU-A002,EXP002,1.0,Photography
+ANU-A002,EXP017,1.0,Heritage Exploration
+ANU-A002,EXP018,1.0,Religious & Spiritual Visit
+ANU-A002,EXP031,0.9,Art
+ANU-A003,EXP017,1.0,Heritage Exploration
+ANU-A003,EXP018,1.0,Religious & Spiritual Visit
+ANU-A004,EXP017,1.0,Heritage Exploration
+ANU-A004,EXP018,1.0,Religious & Spiritual Visit
+ANU-A004,EXP019,0.9,Architecture
+ANU-A005,EXP017,1.0,Heritage Exploration
+ANU-A005,EXP018,1.0,Religious & Spiritual Visit
+ANU-A006,EXP017,1.0,Heritage Exploration
+ANU-A006,EXP019,0.9,Architecture
+ANU-A007,EXP017,1.0,Heritage Exploration
+ANU-A007,EXP018,1.0,Religious & Spiritual Visit
+ANU-A007,EXP031,0.9,Art
+ANU-A008,EXP001,1.0,Hiking
+ANU-A008,EXP003,1.0,Scenic Views
+ANU-A008,EXP017,1.0,Heritage Exploration
+ANU-A008,EXP018,1.0,Religious & Spiritual Visit
+ARU-A001,EXP002,1.0,Photography
+ARU-A001,EXP010,1.0,Surfing
+ARU-A001,EXP011,1.0,Swimming
+ARU-A001,EXP014,1.0,Beach Relaxation
+ARU-A001,EXP030,0.9,Beach Relaxation
+ARU-A002,EXP002,1.0,Photography
+ARU-A002,EXP010,1.0,Surfing
+ARU-A003,EXP003,1.0,Scenic Views
+ARU-A003,EXP010,1.0,Surfing
+ARU-A003,EXP014,1.0,Beach Relaxation
+ARU-A003,EXP030,0.9,Beach Relaxation
+ARU-A004,EXP010,1.0,Surfing
+ARU-A004,EXP014,1.0,Beach Relaxation
+ARU-A004,EXP016,1.0,Sunset Viewing
+ARU-A004,EXP030,0.9,Beach Relaxation
+ARU-A005,EXP017,1.0,Heritage Exploration
+ARU-A005,EXP018,1.0,Religious & Spiritual Visit
+ARU-A006,EXP001,1.0,Hiking
+ARU-A006,EXP003,1.0,Scenic Views
+ARU-A006,EXP017,1.0,Heritage Exploration
+ARU-A006,EXP018,1.0,Religious & Spiritual Visit
+ARU-A007,EXP002,1.0,Photography
+ARU-A007,EXP006,1.0,Wildlife Safari
+ARU-A007,EXP007,1.0,Bird Watching
+ARU-A007,EXP027,0.9,Nature
+BAN-A001,EXP002,1.0,Photography
+BAN-A001,EXP017,1.0,Heritage Exploration
+BAN-A001,EXP018,1.0,Religious & Spiritual Visit
+BAN-A002,EXP001,1.0,Hiking
+BAN-A002,EXP002,1.0,Photography
+BAN-A002,EXP003,1.0,Scenic Views
+BAN-A003,EXP018,1.0,Religious & Spiritual Visit
+BAN-A003,EXP019,1.0,Architecture Exploration
+BAN-A004,EXP002,1.0,Photography
+BAN-A004,EXP017,0.9,Railway Heritage
+BAN-A004,EXP024,1.0,Train Journey Experience
+BAN-A005,EXP005,1.0,Tea Experience
+BAN-A005,EXP017,1.0,Heritage Exploration
+BAN-A006,EXP001,1.0,Hiking
+BAN-A006,EXP003,1.0,Scenic Views
+BAN-A006,EXP005,1.0,Tea Experience
+BAN-A006,EXP015,1.0,Sunrise Viewing
+COL-A001,EXP002,1.0,Photography
+COL-A001,EXP017,1.0,Heritage Exploration
+COL-A001,EXP020,1.0,Museum Visit
+COL-A002,EXP001,0.9,Walking
+COL-A002,EXP003,1.0,Scenic Views
+COL-A002,EXP016,1.0,Sunset Viewing
+COL-A002,EXP021,1.0,Local Culture Experience
+COL-A002,EXP027,1.0,Walking
+COL-A003,EXP017,1.0,Heritage Exploration
+COL-A003,EXP018,1.0,Religious & Spiritual Visit
+COL-A003,EXP019,1.0,Architecture Exploration
+COL-A004,EXP002,1.0,Photography
+COL-A004,EXP014,0.9,Relaxation
+COL-A004,EXP027,1.0,Nature Walk
+COL-A004,EXP028,1.0,Garden Visit
+COL-A004,EXP030,0.9,Relaxation
+COL-A005,EXP002,1.0,Photography
+COL-A005,EXP003,1.0,Scenic Views
+COL-A005,EXP021,1.0,Urban Experience
+COL-A006,EXP021,1.0,Local Culture Experience
+COL-A006,EXP022,1.0,Local Market & Shopping
+COL-A007,EXP002,1.0,Photography
+COL-A007,EXP019,1.0,Architecture Exploration
+COL-A007,EXP022,0.9,Shopping
+COL-A008,EXP006,1.0,Wildlife Viewing
+COL-A008,EXP007,1.0,Bird Watching
+COL-A008,EXP032,1.0,Family Experience
+COL-A009,EXP011,1.0,Swimming
+COL-A009,EXP014,1.0,Beach Relaxation
+COL-A009,EXP016,1.0,Sunset Viewing
+COL-A009,EXP030,0.9,Beach Relaxation
+COL-A010,EXP002,1.0,Photography
+COL-A010,EXP017,1.0,Heritage Exploration
+COL-A010,EXP018,1.0,Religious & Spiritual Visit
+DAM-A001,EXP017,1.0,Heritage Exploration
+DAM-A001,EXP018,1.0,Religious & Spiritual Visit
+DAM-A001,EXP026,1.0,Cave Exploration
+DAM-A001,EXP031,0.9,Art
+DAM-A002,EXP017,1.0,Heritage Exploration
+DAM-A002,EXP020,1.0,Museum Visit
+DAM-A003,EXP017,1.0,Archaeology
+DAM-A004,EXP001,1.0,Hiking
+DAM-A004,EXP003,1.0,Scenic Views
+DAM-A004,EXP027,1.0,Nature Walk
+ELA-A001,EXP001,1.0,Hiking
+ELA-A001,EXP002,1.0,Photography
+ELA-A001,EXP003,1.0,Scenic Views
+ELA-A001,EXP015,1.0,Sunrise Viewing
+ELA-A002,EXP001,1.0,Hiking
+ELA-A002,EXP003,1.0,Scenic Views
+ELA-A002,EXP017,1.0,Heritage Exploration
+ELA-A003,EXP002,1.0,Photography
+ELA-A003,EXP003,1.0,Scenic Views
+ELA-A003,EXP004,1.0,Waterfall Visit
+ELA-A004,EXP001,1.0,Hiking
+ELA-A004,EXP017,1.0,Heritage Exploration
+ELA-A004,EXP018,1.0,Religious Visit
+ELA-A005,EXP002,1.0,Photography
+ELA-A005,EXP003,1.0,Scenic Views
+ELA-A005,EXP017,1.0,Heritage Exploration
+ELA-A005,EXP024,1.0,Railway Experience
+ELA-A006,EXP001,1.0,Trekking
+ELA-A006,EXP002,1.0,Photography
+ELA-A006,EXP004,1.0,Waterfall Visit
+ELA-A007,EXP001,1.0,Hiking
+ELA-A007,EXP002,1.0,Photography
+ELA-A007,EXP003,1.0,Scenic Views
+ELA-A008,EXP026,0.9,Adventure
+ELA-A008,EXP027,0.9,Nature
+ELA-A009,EXP001,0.9,Mountain Hiking
+ELA-A009,EXP002,1.0,Photography
+ELA-A009,EXP017,1.0,Heritage Exploration
+GAL-A001,EXP001,0.9,Walking
+GAL-A001,EXP002,1.0,Photography
+GAL-A001,EXP017,1.0,Heritage Exploration
+GAL-A001,EXP019,1.0,Architecture Exploration
+GAL-A001,EXP027,1.0,Walking
+GAL-A002,EXP002,1.0,Photography
+GAL-A002,EXP003,1.0,Scenic Views
+GAL-A002,EXP017,1.0,Heritage Exploration
+GAL-A003,EXP017,1.0,Heritage Exploration
+GAL-A003,EXP020,1.0,Museum Visit
+GAL-A004,EXP017,1.0,Heritage Exploration
+GAL-A004,EXP018,1.0,Religious Visit
+GAL-A004,EXP019,1.0,Architecture Exploration
+GAL-A005,EXP001,0.9,Walking
+GAL-A005,EXP002,1.0,Photography
+GAL-A005,EXP016,1.0,Sunset Viewing
+GAL-A005,EXP017,1.0,Heritage Exploration
+GAL-A005,EXP027,1.0,Walking
+GAL-A006,EXP011,1.0,Swimming
+GAL-A006,EXP014,1.0,Beach Relaxation
+GAL-A006,EXP027,1.0,Nature Walk
+GAL-A006,EXP030,0.9,Beach Relaxation
+GAL-A007,EXP011,1.0,Swimming
+GAL-A007,EXP012,1.0,Snorkeling
+GAL-A007,EXP014,1.0,Beach Relaxation
+GAL-A007,EXP030,0.9,Beach Relaxation
+JAF-A001,EXP002,1.0,Photography
+JAF-A001,EXP017,1.0,Heritage Exploration
+JAF-A001,EXP019,1.0,Architecture Exploration
+JAF-A002,EXP018,1.0,Religious & Spiritual Visit
+JAF-A002,EXP019,0.9,Architecture
+JAF-A002,EXP021,1.0,Local Culture Experience
+JAF-A003,EXP017,1.0,History
+JAF-A003,EXP019,1.0,Architecture Exploration
+JAF-A003,EXP021,1.0,Local Culture Experience
+JAF-A004,EXP017,1.0,Heritage Exploration
+JAF-A004,EXP020,1.0,Museum Visit
+JAF-A005,EXP017,1.0,Heritage Exploration
+JAF-A005,EXP018,1.0,Religious & Spiritual Visit
+JAF-A005,EXP025,1.0,Boat Journey
+JAF-A006,EXP018,1.0,Religious & Spiritual Visit
+JAF-A006,EXP019,0.9,Architecture
+JAF-A006,EXP021,1.0,Local Culture Experience
+JAF-A007,EXP011,1.0,Swimming
+JAF-A007,EXP014,1.0,Beach Relaxation
+JAF-A007,EXP016,1.0,Sunset Viewing
+JAF-A007,EXP030,0.9,Beach Relaxation
+JAF-A008,EXP002,1.0,Photography
+JAF-A008,EXP017,1.0,Heritage Exploration
+JAF-A008,EXP021,0.9,Local Culture
+JAF-A008,EXP025,1.0,Boat Journey
+KAN-A001,EXP017,1.0,Heritage Exploration
+KAN-A001,EXP018,1.0,Religious & Spiritual Visit
+KAN-A001,EXP019,0.9,Architecture
+KAN-A002,EXP001,0.9,Walking
+KAN-A002,EXP002,1.0,Photography
+KAN-A002,EXP003,1.0,Scenic Views
+KAN-A002,EXP014,0.9,Relaxation
+KAN-A002,EXP027,1.0,Walking
+KAN-A002,EXP030,0.9,Relaxation
+KAN-A003,EXP001,1.0,Hiking
+KAN-A003,EXP007,1.0,Bird Watching
+KAN-A003,EXP027,1.0,Nature Walk
+KAN-A004,EXP005,1.0,Tea Experience
+KAN-A004,EXP017,1.0,Heritage Exploration
+KAN-A004,EXP020,1.0,Museum Visit
+KAN-A005,EXP017,1.0,Heritage Exploration
+KAN-A005,EXP018,1.0,Religious & Spiritual Visit
+KAN-A005,EXP020,1.0,Museum Visit
+KAN-A006,EXP002,1.0,Photography
+KAN-A006,EXP027,1.0,Nature Walk
+KAN-A006,EXP028,1.0,Garden & Botanical Visit
+KAN-A007,EXP002,1.0,Photography
+KAN-A007,EXP003,1.0,Scenic Views
+KAN-A007,EXP018,1.0,Religious & Spiritual Visit
+KAN-A008,EXP002,1.0,Photography
+KAN-A008,EXP003,1.0,Scenic Views
+KAN-A008,EXP016,1.0,Sunset Viewing
+MIR-A001,EXP011,1.0,Swimming
+MIR-A001,EXP014,1.0,Beach Relaxation
+MIR-A001,EXP016,1.0,Sunset Viewing
+MIR-A001,EXP030,0.9,Beach Relaxation
+MIR-A002,EXP006,0.9,Marine Wildlife
+MIR-A002,EXP008,1.0,Whale Watching
+MIR-A002,EXP025,0.9,Boating
+MIR-A003,EXP002,1.0,Photography
+MIR-A003,EXP003,1.0,Scenic Views
+MIR-A003,EXP016,1.0,Sunset Viewing
+MIR-A004,EXP002,1.0,Photography
+MIR-A004,EXP003,1.0,Scenic Views
+MIR-A004,EXP014,1.0,Beach Walk
+MIR-A005,EXP002,1.0,Photography
+MIR-A005,EXP011,1.0,Swimming
+MIR-A005,EXP014,1.0,Beach Relaxation
+MIR-A005,EXP030,0.9,Beach Relaxation
+NUE-A001,EXP001,1.0,Hiking
+NUE-A001,EXP003,1.0,Scenic Views
+NUE-A001,EXP006,0.9,Wildlife
+NUE-A001,EXP008,0.9,Wildlife
+NUE-A001,EXP027,1.0,Nature Walk
+NUE-A002,EXP001,1.0,Hiking
+NUE-A002,EXP002,1.0,Photography
+NUE-A002,EXP003,1.0,Scenic Views
+NUE-A003,EXP001,1.0,Hiking
+NUE-A003,EXP002,1.0,Photography
+NUE-A003,EXP004,1.0,Waterfall Visit
+NUE-A004,EXP007,1.0,Bird Watching
+NUE-A004,EXP027,1.0,Nature Walk
+NUE-A004,EXP028,1.0,Garden Visit
+NUE-A005,EXP001,0.9,Walking
+NUE-A005,EXP003,1.0,Scenic Views
+NUE-A005,EXP014,0.9,Relaxation
+NUE-A005,EXP025,0.9,Boating
+NUE-A005,EXP027,1.0,Walking
+NUE-A005,EXP030,0.9,Relaxation
+NUE-A006,EXP002,1.0,Photography
+NUE-A006,EXP005,1.0,Tea Experience
+NUE-A006,EXP021,0.9,Local Culture
+NUE-A007,EXP003,1.0,Scenic Views
+NUE-A007,EXP005,1.0,Tea Experience
+NUE-A008,EXP003,1.0,Scenic Views
+NUE-A008,EXP005,1.0,Tea Experience
+NUE-A009,EXP003,1.0,Scenic Views
+NUE-A009,EXP029,1.0,Local Food
+NUE-A009,EXP033,1.0,Farm Experience
+SIG-A001,EXP001,1.0,Hiking
+SIG-A001,EXP002,1.0,Photography
+SIG-A001,EXP017,1.0,Heritage Exploration
+SIG-A001,EXP019,0.9,Architecture
+SIG-A002,EXP017,1.0,Heritage Exploration
+SIG-A002,EXP020,1.0,Museum Visit
+SIG-A003,EXP001,1.0,Hiking
+SIG-A003,EXP002,1.0,Photography
+SIG-A003,EXP003,1.0,Scenic Views
+SIG-A003,EXP015,1.0,Sunrise Viewing
+YAL-A001,EXP002,1.0,Photography
+YAL-A001,EXP006,1.0,Wildlife Safari
+YAL-A001,EXP007,1.0,Bird Watching
+YAL-A001,EXP009,1.0,Elephant Watching
+YAL-A002,EXP017,1.0,Heritage Exploration
+YAL-A002,EXP018,1.0,Religious & Spiritual Visit
+YAL-A003,EXP017,1.0,Heritage Exploration
+YAL-A003,EXP018,1.0,Religious & Spiritual Visit

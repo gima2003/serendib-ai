@@ -1,0 +1,34 @@
+﻿experience_id,experience_name,category,preference_keywords,description
+EXP001,Hiking,Adventure,hiking|trekking|mountain hiking|walking trail,"Walking or trekking on natural trails, hills, mountains, or viewpoints."
+EXP002,Photography,Scenic & Leisure,photography|photo|photos,Taking travel photographs at visually attractive locations.
+EXP003,Scenic Views,Scenic & Leisure,scenic views|scenery|viewpoint|panoramic views,"Experiencing panoramic landscapes, viewpoints, and scenic surroundings."
+EXP004,Waterfall Visit,Nature,waterfall visit|waterfall,Visiting and viewing natural waterfalls.
+EXP005,Tea Experience,Local Experience,tea experience|tea estate|factory tour|tea factory,"Exploring tea estates, tea factories, production processes, and Ceylon tea culture."
+EXP006,Wildlife Safari,Wildlife,wildlife safari|safari|wildlife viewing|wildlife|leopard watching,"Observing wild animals in national parks or protected areas, often by safari vehicle."
+EXP007,Bird Watching,Wildlife,bird watching|birdwatching|birds,Observing native and migratory bird species.
+EXP008,Whale Watching,Beach & Marine,whale watching|marine wildlife,Boat-based observation of whales and other marine wildlife.
+EXP009,Elephant Watching,Wildlife,elephant watching|elephants,Observing elephants responsibly in natural or protected settings.
+EXP010,Surfing,Adventure & Marine,surfing|surf,Surfing or learning to surf at coastal locations.
+EXP011,Swimming,Beach & Marine,swimming,Swimming at suitable beaches or natural water locations.
+EXP012,Snorkeling,Beach & Marine,snorkeling|snorkelling,Exploring shallow marine environments using snorkeling equipment.
+EXP013,Diving,Adventure & Marine,diving|scuba|scuba diving,Exploring underwater marine environments through recreational diving.
+EXP014,Beach Relaxation,Beach & Leisure,beach relaxation|beach walk|beach,"Relaxing, walking, and spending leisure time at beaches."
+EXP015,Sunrise Viewing,Scenic & Leisure,sunrise viewing|sunrise,Visiting locations known for attractive sunrise views.
+EXP016,Sunset Viewing,Scenic & Leisure,sunset viewing|sunset,Visiting locations known for attractive sunset views.
+EXP017,Heritage Exploration,Culture & Heritage,heritage exploration|heritage|history|archaeology|maritime history|railway heritage,"Exploring historically, archaeologically, or culturally significant places."
+EXP018,Religious & Spiritual Visit,Culture & Heritage,religious & spiritual visit|religious visit|religious|spiritual,"Visiting temples, churches, kovils, mosques, monasteries, and other spiritual sites."
+EXP019,Architecture Exploration,Culture & Heritage,architecture exploration|architecture,"Exploring distinctive historic, religious, colonial, or modern architecture."
+EXP020,Museum Visit,Culture & Heritage,museum visit|museum,"Visiting museums, galleries, and interpretive cultural spaces."
+EXP021,Local Culture Experience,Culture & Local,local culture experience|local culture|culture|urban experience,"Experiencing local traditions, urban life, communities, and everyday culture."
+EXP022,Local Market & Shopping,Urban & Local,local market & shopping|shopping|market,"Exploring markets, shops, crafts, souvenirs, and local commercial areas."
+EXP023,Cycling,Adventure,cycling|bike|bicycle,Exploring destinations and landscapes by bicycle.
+EXP024,Train Journey Experience,Scenic & Local,train journey experience|railway experience|train journey|rail journey,Experiencing scenic or culturally interesting railway journeys.
+EXP025,Boating & Lagoon Experience,Nature & Marine,boating|boat journey|boat|lagoon,"Exploring rivers, lagoons, lakes, islands, or wetlands by boat."
+EXP026,Adventure Experience,Adventure,adventure|cave exploration,Participating in physically active or exploratory tourism experiences.
+EXP027,Nature Walk,Nature,nature walk|walking|nature,"Walking through forests, parks, gardens, wetlands, or other natural environments."
+EXP028,Garden & Botanical Visit,Nature,garden & botanical visit|garden visit|botanical,"Visiting botanical gardens, landscaped gardens, or places known for plant diversity."
+EXP029,Food & Culinary Experience,Culture & Local,local food|food|culinary,"Experiencing local cuisine, food culture, cooking, and traditional dishes."
+EXP030,Wellness & Relaxation,Wellness & Leisure,relaxation|wellness,Relaxation-focused experiences such as wellness activities and quiet leisure.
+EXP031,Art Experience,Culture & Heritage,art,"Experiencing visual arts, carvings, paintings, galleries, or artistic heritage."
+EXP032,Family Experience,Leisure,family experience,Activities or attractions particularly suitable for family visitors.
+EXP033,Farm Experience,Local Experience,farm experience,Visiting farms and learning about local agricultural or dairy activities.
