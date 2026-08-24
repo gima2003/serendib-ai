@@ -23,10 +23,9 @@ OUTPUT_FILE = COMBINED_DIR / "attraction_experiences.csv"
 EXPERIENCE_ALIASES = {
 
     "EXP001": [
-        "hiking",
-        "trekking",
-        "mountain hiking",
-        "walking trail",
+    "hiking",
+    "trekking",
+    "mountain hiking",
     ],
 
     "EXP002": [
@@ -309,17 +308,8 @@ def activity_matches_experience(
         if not normalized_term:
             continue
 
-        # Exact match
         if activity_normalized == normalized_term:
             return True, 1.0
-
-        # Partial keyword match
-        if (
-            normalized_term in activity_normalized
-            or
-            activity_normalized in normalized_term
-        ):
-            return True, 0.9
 
     return False, 0.0
 
