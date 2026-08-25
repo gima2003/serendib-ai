@@ -89,14 +89,27 @@ EXTRACTION RULES:
    If preference strength cannot reasonably be determined,
    return null.
 
-8. Do not invent budget flexibility.
+8. Budget flexibility must only be assigned when the traveller
+   clearly expresses how strict or flexible the budget is.
 
-   For example:
+   Examples:
 
-   "maximum $700" -> strict
+   "maximum $700"
+   "cannot spend more than $700"
+   "hard limit of $700"
+   -> strict
 
-   "around $700" may indicate some flexibility, but if the
-   meaning is unclear, return null.
+   "around $700"
+   "about $700"
+   "approximately $700"
+   -> flexibility = null
+
+   "I can spend a little more if needed"
+   "budget is flexible"
+   -> flexible
+
+   Do not interpret approximate budget wording such as
+   "around" or "about" as strict.
 
 9. Keep explicit requirements and inferred preferences
    conservative.

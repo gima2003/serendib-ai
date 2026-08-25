@@ -195,3 +195,6 @@ class LLMTravellerProfile(BaseModel):
     additional_requests: List[str] = Field(
         default_factory=list
     )
+
+class TravellerTextRequest(BaseModel):
+    text: str = Field(min_length=1)
