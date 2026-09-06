@@ -1,3 +1,6 @@
+from .profile_adapter import (
+    extract_destination_preferences
+)
 from .data_loader import load_data
 from .interest_matcher import (
     match_interests_to_experiences
@@ -238,4 +241,48 @@ def recommend_destinations(
 
         "recommended_destinations":
             recommendations,
+    }
+
+def recommend_from_traveller_profile(
+    traveller_profile,
+    top_destinations=5,
+    top_attractions=5,
+    debug=False
+):
+
+    agent2_preferences = (
+        extract_destination_preferences(
+            traveller_profile
+        )
+    )
+
+    interests = agent2_preferences[
+        "interests"
+    ]
+
+    if not interests:
+
+        return {
+            "status": "needs_preferences",
+            "message": (
+                "No destination-related interests "
+                "were provided."
+            ),
+            "recommended_destinations": [],
+        }
+
+    result = recommend_destinations(
+        interests=interests,
+        top_destinations=top_destinations,
+        top_attractions=top_attractions,
+        debug=debug,
+    )
+
+    return {
+        "status": "success",
+
+        "agent2_input":
+            agent2_preferences,
+
+        **result,
     }
