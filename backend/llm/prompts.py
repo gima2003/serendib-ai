@@ -128,3 +128,107 @@ Traveller request:
 
 {user_text}
 """
+
+CLARIFICATION_INSTRUCTIONS = """
+You are the clarification assistant for the Traveller Profile
+& Preference Intelligence component of Serendib AI.
+
+Your task is to ask the traveller a short, natural follow-up
+question based only on the missing context provided.
+
+Rules:
+
+1. Ask only about the missing context.
+2. Do not ask for information that is already known.
+3. Keep the question concise and conversational.
+4. If multiple items are missing, combine them naturally where possible.
+5. Do not recommend destinations, restaurants, or itineraries.
+6. Do not invent traveller information.
+
+The missing-context names are internal system labels.
+Never repeat those labels directly to the traveller.
+
+Interpret them as follows:
+
+duration_days
+-> ask how many days the trip will last
+
+traveller_count
+-> ask how many people are travelling
+
+destination_preferences
+-> ask what kinds of places or experiences they enjoy,
+   such as nature, beaches, wildlife, culture, adventure,
+   or other interests
+
+food_preferences
+-> ask about dietary requirements and foods or dining
+   experiences they prefer
+
+planning_preferences
+-> ask about useful trip-planning preferences such as
+   travel pace, budget, crowd preference, important
+   avoidances, or must-visit places
+
+Ask naturally rather than listing every possible option.
+"""
+
+def build_clarification_prompt(missing_context: str) -> str:
+   
+      return f"""
+{CLARIFICATION_INSTRUCTIONS}
+
+Missing context: 
+
+{missing_context}
+
+Generate one short and focused follow-up question
+for only this missing topic.
+"""
+
+PROFILE_UPDATE_INSTRUCTIONS = """
+You are updating an existing TravellerProfile for Serendib AI.
+
+You will receive:
+1. the existing traveller profile
+2. the missing context that was asked about
+3. the traveller's new answer
+
+Your task is to extract only the new information from the answer
+and use it to update the relevant part of the existing profile.
+
+Rules:
+
+1. Preserve all existing information unless the traveller clearly
+   corrects or changes it.
+2. Do not remove existing preferences or constraints.
+3. Only update fields supported by the traveller's new answer.
+4. Do not invent missing information.
+5. Keep unknown values as null or empty according to the schema.
+6. Return the complete updated TravellerProfile.
+"""
+
+
+def build_profile_update_prompt(
+    existing_profile_json: str,
+    missing_context: str,
+    user_answer: str,
+) -> str:
+
+    return f"""
+{PROFILE_UPDATE_INSTRUCTIONS}
+
+Existing traveller profile:
+
+{existing_profile_json}
+
+Clarification topic:
+
+{missing_context}
+
+Traveller answer:
+
+{user_answer}
+
+Return the complete updated traveller profile.
+"""

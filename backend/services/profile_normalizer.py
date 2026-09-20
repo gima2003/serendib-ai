@@ -51,10 +51,11 @@ def normalize_currency(value: str) -> str:
 
 
 def normalize_traveller_profile(profile: TravellerProfile) -> TravellerProfile:
-    if profile.budget.currency is not None:
-        profile.budget.currency = normalize_currency(
-            profile.budget.currency
-        )
+    if profile.budget is not None:
+        if profile.budget.currency is not None:
+            profile.budget.currency = normalize_currency(
+                profile.budget.currency
+            )
 
     profile.dietary_requirements = [
         normalize_dietary_requirement(requirement)
