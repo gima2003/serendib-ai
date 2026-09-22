@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
@@ -30,7 +30,7 @@ export default function Login() {
     }
 
     if (formData.email === 'serendibadmin@gmail.com' && formData.password === 'Serendib@1234') {
-      toast.success('✓ Welcome to Admin Dashboard!');
+      toast.success('âœ“ Welcome to Admin Dashboard!');
       localStorage.setItem('user', JSON.stringify({
         name: 'Admin User',
         email: 'serendibadmin@gmail.com',
@@ -44,11 +44,11 @@ export default function Login() {
     setIsLoading(true);
     try {
       await authService.login(formData.email, formData.password);
-      toast.success('✓ Welcome back to Serendib AI!');
+      toast.success('âœ“ Welcome back to Serendib AI!');
       // Navigate to dashboard after successful login
       navigate('/dashboard');
     } catch (err) {
-      toast.error(`✕ ${err.message || 'Invalid email or password.'}`);
+      toast.error(`âœ• ${err.message || 'Invalid email or password.'}`);
     } finally {
       setIsLoading(false);
     }
@@ -73,7 +73,7 @@ export default function Login() {
         <PasswordInput 
           id="password"
           label="Password"
-          placeholder="••••••••"
+          placeholder="Enter your password"
           value={formData.password}
           onChange={handleChange}
           disabled={isLoading}
