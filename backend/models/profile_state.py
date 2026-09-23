@@ -1,8 +1,9 @@
-from typing import Literal
+from typing import Literal, Optional
 from pydantic import BaseModel
 
 from models.traveller_profile import TravellerProfile
 from models.profile_readiness import profileReadiness
+from models.planning_preferences import PlanningPreferences
 
 
 class ProfileState(BaseModel):
@@ -26,3 +27,5 @@ class ProfileState(BaseModel):
     # Tracks whether the traveller agreed to answer
     # additional clarification questions.
     clarification_permission_granted: bool | None = None
+
+    planning_preferences: Optional[PlanningPreferences] = None

@@ -1,4 +1,7 @@
-
+from models.guided_planner import GuidedPlannerRequest
+from services.guided_planner_service import (
+    build_guided_profile_state,
+)
 
 from fastapi import APIRouter, HTTPException
 
@@ -37,6 +40,8 @@ from services.clarification_controller import (
 from models.clarification_answer_request import (
     ClarificationAnswerRequest,
 )
+
+from models.profile_state import ProfileState
 
 router = APIRouter(
     prefix="/profile",
@@ -98,6 +103,15 @@ async def extract_profile(
             status_code=503,
             detail=str(error)
         )
+
+@router.post(
+    "/guided",
+    response_model=ProfileState,
+)
+async def create_guided_profile(
+    request: GuidedPlannerRequest,
+):
+    return build_guided_profile_state(request)
 
 @router.post(
     "/clarification/permission",

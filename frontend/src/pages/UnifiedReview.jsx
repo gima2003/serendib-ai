@@ -16,9 +16,27 @@ const Section = ({ title, onEdit, children }) => (
 export default function UnifiedReview() {
   const location = useLocation();
   const navigate = useNavigate();
-  const plan = location.state?.plan;
+  const profileState = location.state?.profileState;
 
-  if (!plan) {
+  if (!profileState) {
+    return (
+      <div className="min-h-screen bg-[#FFFCF8] flex items-center justify-center flex-col gap-4">
+        <p className="text-[#57534E]">No trip profile found.</p>
+
+        <Link
+          to="/plan-trip"
+          className="text-orange-500 font-medium"
+        >
+          Start Planning
+        </Link>
+      </div>
+    );
+  }
+
+  const profile = profileState.traveller_profile;
+  const planningPreferences = profileState.planning_preferences;
+
+  if (!planningPreferences) {
     return (
       <div className="min-h-screen bg-[#FFFCF8] flex items-center justify-center flex-col gap-4">
         <p className="text-[#57534E]">No trip plan found.</p>
@@ -28,7 +46,7 @@ export default function UnifiedReview() {
   }
 
   const handleGenerate = async () => {
-    navigate('/plan-trip/generating', { state: { plan } });
+    navigate('/plan-trip/generating', { state: { profileState } });
   };
 
   return (
@@ -49,63 +67,165 @@ export default function UnifiedReview() {
 
         <Section title="Trip Details" onEdit={() => navigate(-1)}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">Duration</p>
-              <p className="font-medium">{plan.duration}</p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">
+                Duration
+              </p>
+
+              <p className="font-medium">
+                {profile.duration_days
+                  ? `${profile.duration_days} days`
+                  : 'Not specified'}
+              </p>
             </div>
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">Dates</p>
-              <p className="font-medium">{plan.travelDates}</p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">
+                Starting Location
+              </p>
+
+              <p className="font-medium">
+                {profile.starting_location || 'Not specified'}
+              </p>
             </div>
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">Travellers</p>
-              <p className="font-medium">{plan.travellerType}</p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">
+                Travellers
+              </p>
+
+              <p className="font-medium">
+                {profile.traveller_count || 'Not specified'}
+              </p>
             </div>
+
+            <div>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">
+                Traveller Type
+              </p>
+
+              <p className="font-medium capitalize">
+                {profile.travel_type || 'Not specified'}
+              </p>
+            </div>
+
           </div>
         </Section>
 
         <Section title="Preferences" onEdit={() => navigate(-1)}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">Interests</p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">
+                Interests
+              </p>
+
               <div className="flex flex-wrap gap-2">
-                {plan.interests?.map((interest, i) => (
-                  <span key={i} className="bg-[#FBF3EA] text-[#57534E] border border-[#EAE2D6] px-3 py-1 rounded-full text-sm font-medium">
-                    {interest}
+                {profile.interests?.map((interest, i) => (
+                  <span
+                    key={i}
+                    className="bg-[#FBF3EA] text-[#57534E] border border-[#EAE2D6] px-3 py-1 rounded-full text-sm font-medium"
+                  >
+                    {interest.name}
                   </span>
                 ))}
               </div>
             </div>
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">Travel Pace</p>
-              <p className="font-medium">{plan.travelPace}</p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">
+                Travel Pace
+              </p>
+
+              <p className="font-medium capitalize">
+                {profile.travel_pace || 'Not specified'}
+              </p>
             </div>
+
+            <div>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">
+                Crowd Preference
+              </p>
+
+              <p className="font-medium capitalize">
+                {profile.crowd_preference || 'Not specified'}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">
+                Preferred Regions
+              </p>
+
+              <p className="font-medium">
+                {profile.preferred_destinations?.join(', ') || 'Any'}
+              </p>
+            </div>
+
           </div>
         </Section>
 
         <Section title="Budget & Style" onEdit={() => navigate(-1)}>
           <div className="grid grid-cols-2 gap-4">
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">Budget</p>
-              <p className="font-medium">{plan.budget?.amount} {plan.budget?.currency} <span className="text-sm text-[#78716C] font-normal">({plan.budget?.flexibility})</span></p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">
+                Budget
+              </p>
+
+              <p className="font-medium">
+                {profile.budget?.amount
+                  ? `${profile.budget.amount} ${profile.budget.currency || ''}`
+                  : 'Not specified'}
+
+                {profile.budget?.flexibility && (
+                  <span className="text-sm text-[#78716C] font-normal">
+                    {' '}({profile.budget.flexibility})
+                  </span>
+                )}
+              </p>
             </div>
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">Travel Style</p>
-              <p className="font-medium">{plan.travelStyle}</p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-1">
+                Travel Style
+              </p>
+
+              <p className="font-medium capitalize">
+                {planningPreferences?.travel_style || 'Not specified'}
+              </p>
             </div>
+
           </div>
         </Section>
 
-        <Section title="Accommodation & Transport" onEdit={() => navigate(-1)}>
+        <Section
+          title="Accommodation & Transport"
+          onEdit={() => navigate(-1)}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">Stays</p>
-              <p className="font-medium">{plan.accommodationPreferences?.join(', ') || 'Any'}</p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">
+                Stays
+              </p>
+
+              <p className="font-medium">
+                {planningPreferences?.accommodation_preferences?.join(', ') || 'Any'}
+              </p>
             </div>
+
             <div>
-              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">Transport</p>
-              <p className="font-medium">{plan.transportPreferences?.join(', ') || 'Any'}</p>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mb-2">
+                Transport
+              </p>
+
+              <p className="font-medium">
+                {planningPreferences?.transport_preferences?.join(', ') || 'Any'}
+              </p>
             </div>
+
           </div>
         </Section>
 

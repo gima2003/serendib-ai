@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { tripService } from '../services/tripService';
 import SearchableDropdown from '../components/SearchableDropdown';
 
 const StepIndicator = ({ currentStep, totalSteps }) => (
@@ -75,6 +76,8 @@ export default function GuidedPlanner() {
     foodPreferences: [],
     selectedActivities: []
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const updatePlan = (key, value) => {
     setPlan(prev => ({ ...prev, [key]: value }));
@@ -95,16 +98,108 @@ export default function GuidedPlanner() {
     });
   };
 
-  const nextStep = () => {
+  const nextStep = async () => {
+
+    // Move to the next Guided Planner step
     if (currentStep < totalSteps) {
       setCurrentStep(curr => curr + 1);
-    } else {
-      const reviewPlan = {
-        ...plan,
-        duration: plan.startDate && plan.endDate ? `${Math.ceil((new Date(plan.endDate) - new Date(plan.startDate)) / (1000 * 60 * 60 * 24))} days` : 'Not specified',
-        travelDates: `${plan.startDate} to ${plan.endDate}`
-      };
-      navigate('/plan-trip/review', { state: { plan: reviewPlan } });
+      return;
+    }
+
+    // Final step → send structured data to backend
+    try {
+
+      setIsLoading(true);
+      setError(null);
+
+      const response = await tripService.submitGuidedPlanner({
+
+        origin: plan.origin || null,
+
+        start_date: plan.startDate || null,
+
+        end_date: plan.endDate || null,
+
+        traveller_count: plan.travellerCount,
+
+        traveller_type:
+          plan.travellerType?.toLowerCase() || null,
+
+        interests: plan.interests,
+
+        travel_pace:
+          plan.travelPace?.toLowerCase() || null,
+
+        crowd_preference:
+          plan.crowdPreference === 'Peaceful'
+            ? 'avoid'
+            : plan.crowdPreference === 'Popular'
+              ? 'enjoy'
+              : 'neutral',
+
+        preferred_regions:
+          plan.preferredRegions,
+
+        additional_notes:
+          plan.additionalNotes || null,
+
+        budget: {
+          amount: plan.budget.amount
+            ? Number(plan.budget.amount)
+            : null,
+
+          currency: plan.budget.currency,
+
+          flexibility:
+            plan.budget.flexibility?.toLowerCase() || null
+        },
+
+        travel_style:
+          plan.travelStyle?.toLowerCase() || null,
+
+        accommodation_preferences:
+          plan.accommodationPreferences,
+
+        transport_preferences:
+          plan.transportPreferences,
+
+        dietary_preference:
+          plan.dietaryPreference,
+
+        food_preferences:
+          plan.foodPreferences,
+
+        selected_activities:
+          plan.selectedActivities
+      });
+
+      console.log(
+        'GUIDED PLANNER PROFILE STATE:',
+        response
+      );
+
+      navigate('/plan-trip/review', {
+        state: {
+          profileState: response
+        }
+      });
+
+    } catch (err) {
+
+      console.error(
+        'Guided Planner submission failed:',
+        err
+      );
+
+      setError(
+        err.message ||
+        'Unable to process your trip preferences.'
+      );
+
+    } finally {
+
+      setIsLoading(false);
+
     }
   };
 
