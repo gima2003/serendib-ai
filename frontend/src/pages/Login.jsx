@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
 
@@ -10,6 +10,7 @@ import { authService } from '../services/authService';
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -43,10 +44,17 @@ export default function Login() {
 
     setIsLoading(true);
     try {
-      await authService.login(formData.email, formData.password);
-      toast.success('✓ Welcome back to Serendib AI!');
-      // Navigate to dashboard after successful login
-      navigate('/dashboard');
+      const data = await authService.login(formData.email, formData.password);
+      const firstName = data?.user?.full_name?.split(' ')[0] || data?.user?.name?.split(' ')[0];
+      if (firstName) {
+        toast.success(`✓ Welcome back, ${firstName}!`);
+      } else {
+        toast.success('✓ Welcome back to Serendib AI!');
+      }
+      
+      // Navigate to intended destination or dashboard
+      const origin = location.state?.from?.pathname || '/dashboard';
+      navigate(origin);
     } catch (err) {
       toast.error(`✕ ${err.message || 'Invalid email or password.'}`);
     } finally {
@@ -73,7 +81,7 @@ export default function Login() {
         <PasswordInput 
           id="password"
           label="Password"
-          placeholder="••••••••"
+          placeholder="Enter your password"
           value={formData.password}
           onChange={handleChange}
           disabled={isLoading}

@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+﻿const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
 export const authService = {
   async register(userData) {
@@ -48,7 +48,7 @@ export const authService = {
     if (userStr) {
       try {
         return JSON.parse(userStr);
-      } catch (e) {
+      } catch {
         return null;
       }
     }
@@ -59,3 +59,4 @@ export const authService = {
     return localStorage.getItem('token');
   }
 };
+

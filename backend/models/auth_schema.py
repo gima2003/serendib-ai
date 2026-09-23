@@ -3,6 +3,11 @@ from typing import Optional
 from pydantic import BaseModel, EmailStr, Field, field_validator, model_validator
 from datetime import datetime
 
+class UserUpdate(BaseModel):
+    full_name: Optional[str] = None
+    country_code: Optional[str] = None
+    preferred_currency: Optional[str] = None
+
 class UserRegister(BaseModel):
     full_name: str = Field(..., min_length=2, max_length=100)
     email: EmailStr

@@ -1,0 +1,33 @@
+{
+  "trip_id": "TRIP001",
+  "duration_days": 6,
+  "start_location": "Colombo",
+  "start_date": "2026-09-10",
+
+  "travellers": {
+    "adults": 2,
+    "children": 0
+  },
+
+  "budget": {
+    "amount": 200000,
+    "currency": "LKR"
+  },
+
+  "interests": [
+    "nature",
+    "beach",
+    "local_food"
+  ],
+
+  "travel_style": "moderate",
+
+  "transport_preferences": [
+    "train",
+    "bus"
+  ],
+
+  "dietary_preferences": [
+    "vegetarian"
+  ]
+}
