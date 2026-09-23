@@ -1,4 +1,6 @@
-﻿export const tripService = {
+﻿import { apiClient } from './apiClient';
+
+export const tripService = {
   // TODO: Connect to actual FastAPI endpoints once they are ready
   
   async getCurrentTrip() {
@@ -35,8 +37,23 @@
   // Planner endpoints
   // eslint-disable-next-line no-unused-vars
   async parseNaturalLanguageTrip(text) {
-    // return apiClient.post('/api/planner/parse-nlp', { text });
-    return null;
+    return apiClient.post('/profile/extract', { text });
+  },
+
+  async requestClarificationPermission(userResponse, profile, readiness) {
+  return apiClient.post('/profile/clarification/permission', {
+    user_response: userResponse,
+    profile,
+    readiness,
+  });
+  },
+
+  async submitClarificationAnswer(userAnswer, currentContext, profile) {
+    return apiClient.post('/profile/clarification/answer', {
+      user_answer: userAnswer,
+      current_context: currentContext,
+      profile,
+    });
   },
 
   async getActivities() {
@@ -73,5 +90,9 @@
   async getTripRoute(tripId) {
     // return apiClient.get(`/api/trips/${tripId}/route`);
     return null;
-  }
+  },
+
+  async submitGuidedPlanner(plan) {
+  return apiClient.post('/profile/guided', plan);
+  },
 };
