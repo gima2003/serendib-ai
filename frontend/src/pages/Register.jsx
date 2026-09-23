@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Loader2, CheckCircle2, Circle } from 'lucide-react';
@@ -103,15 +103,15 @@ export default function Register() {
     setIsLoading(true);
     try {
       await authService.register(formData);
-      toast.success('âœ“ Account created successfully!');
+      toast.success('✓ Account created successfully!');
       navigate('/login');
     } catch (err) {
       // Show duplicate email error nicely
       if (err.message && err.message.toLowerCase().includes('email')) {
-        toast.error('âœ• An account with this email already exists.');
+        toast.error('✕ An account with this email already exists.');
         setErrors(prev => ({ ...prev, email: 'Email already exists' }));
       } else {
-        toast.error(`âœ• ${err.message || 'Unable to connect to the server.'}`);
+        toast.error(`✕ ${err.message || 'Unable to connect to the server.'}`);
       }
     } finally {
       setIsLoading(false);
@@ -181,7 +181,7 @@ export default function Register() {
         <PasswordInput
           id="password"
           label="Password"
-          placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+          placeholder="••••••••"
           value={formData.password}
           onChange={handleChange}
           error={errors.password}
@@ -202,7 +202,7 @@ export default function Register() {
         <PasswordInput
           id="confirm_password"
           label="Confirm Password"
-          placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+          placeholder="••••••••"
           value={formData.confirm_password}
           onChange={handleChange}
           error={errors.confirm_password}

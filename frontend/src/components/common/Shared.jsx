@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Sparkles,
   ArrowRight,
@@ -31,7 +32,7 @@ import {
 /* ------------------------------------------------------------------ */
 
 export const wiki = (file, w = 1200) =>
-  `https://commons.wikimedia.org/wiki/Special:FilePath/${file}•?width=${w}`;
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${file}?width=${w}`;
 
 export const IMG = {
   sigiriya: "The_Sigiriya_Fortress.jpg",
@@ -182,6 +183,13 @@ export const QUICK_CITIES = ["Colombo", "Hill Country", "South Coast", "Jaffna"]
 
 /* Placeholder link. Swap the <a> for react-router's <Link to={to}> once routes exist. */
 export function NavAnchor({ to = "#", className = "", children, ...rest }) {
+  if (to === "/plan-trip") {
+    return (
+      <Link to={to} className={className} {...rest}>
+        {children}
+      </Link>
+    );
+  }
   return (
     <a href={to} onClick={(e) => e.preventDefault()} className={className} {...rest}>
       {children}

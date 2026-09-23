@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IMG, wiki } from "../components/common/Shared";
 
 const heroSlides = [
@@ -12,10 +12,42 @@ const heroSlides = [
 ];
 
 export function useDynamicHero() {
-  const [idx, setIdx] = useState(0);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [prevIdx, setPrevIdx] = useState(null);
+
   useEffect(() => {
-    const timer = setInterval(() => setIdx((i) => (i + 1) % heroSlides.length), 7000);
-    return () => clearInterval(timer);
-  }, []);
-  return heroSlides[idx];
+    let active = true;
+
+    const loadNext = (idx) => {
+      const img = new Image();
+      img.src = heroSlides[idx].img;
+      img.onload = () => {
+        if (active) {
+          setPrevIdx(currentIdx);
+          setCurrentIdx(idx);
+        }
+      };
+      img.onerror = () => {
+        if (active) {
+          // If image fails to load, skip to the next valid one immediately
+          loadNext((idx + 1) % heroSlides.length);
+        }
+      };
+    };
+
+    const timer = setTimeout(() => {
+      loadNext((currentIdx + 1) % heroSlides.length);
+    }, 5000);
+
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
+  }, [currentIdx]);
+
+  return {
+    current: heroSlides[currentIdx],
+    previous: prevIdx !== null ? heroSlides[prevIdx] : null,
+    slides: heroSlides,
+  };
 }

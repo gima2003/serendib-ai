@@ -405,7 +405,7 @@ const PLAN_ITEMS = [
   { title: "Hotels", desc: "Find the perfect stay", icon: Building2, to: "/plan/hotels" },
   { title: "Restaurants", desc: "Best dining across Sri Lanka", icon: UtensilsCrossed, to: "/plan/restaurants" },
   { title: "Resorts", desc: "Boutique stays & beach resorts", icon: Umbrella, to: "/plan/resorts" },
-  { title: "Itinerary Builder", desc: "Build your custom trip", icon: CalendarDays, to: "/plan/itinerary-builder" },
+  { title: "Itinerary Builder", desc: "Build your custom trip", icon: CalendarDays, to: "/plan-trip" },
   { title: "Trip Cost Estimator", desc: "Budget your Sri Lanka trip", icon: Calculator, to: "/plan/trip-cost" },
   { title: "Getting Here", desc: "Flights and entry info", icon: Plane, to: "/plan/getting-here" },
   { title: "Visa Information", desc: "ETA guide & requirements", icon: FileText, to: "/plan/visa" },
@@ -418,6 +418,13 @@ const PLAN_ITEMS = [
 
 /* Placeholder link. Swap the <a> for <Link to={to}> once routes exist. */
 function NavAnchor({ to = "#", className = "", children, ...rest }) {
+  if (to === "/plan-trip") {
+    return (
+      <Link to={to} className={className} {...rest}>
+        {children}
+      </Link>
+    );
+  }
   return (
     <a href={to} onClick={(e) => e.preventDefault()} className={className} {...rest}>
       {children}
@@ -820,12 +827,12 @@ function PlanPanel() {
           <p className="mt-2 text-[13px] leading-snug text-white/75">
             Tell us your budget, dates and interests — get a complete day-by-day route.
           </p>
-          <NavAnchor
-            to="/plan/itinerary-builder"
+          <Link
+            to="/plan-trip"
             className="btn-shine relative mt-4 inline-flex items-center gap-2 overflow-hidden rounded-full bg-orange-500 px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-orange-600"
           >
             Build my itinerary <ArrowRight size={15} />
-          </NavAnchor>
+          </Link>
         </div>
       </div>
     </div>
@@ -1414,12 +1421,12 @@ function HeroPanel({ slide, weather, nextEvent }) {
         </button>
       </div>
 
-      <button
-        type="button"
+      <Link
+        to="/plan-trip"
         className="hp-tile btn-shine relative flex items-center justify-center gap-2.5 overflow-hidden rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-white shadow-lg shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-500/35"
       >
         <Sparkles size={17} /> Build your itinerary
-      </button>
+      </Link>
 
       <div className="grid grid-cols-2 gap-2.5">
         <button type="button" className={tileBase}>

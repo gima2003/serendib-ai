@@ -1,5 +1,5 @@
-﻿import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
 
@@ -10,6 +10,7 @@ import { authService } from '../services/authService';
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -30,7 +31,7 @@ export default function Login() {
     }
 
     if (formData.email === 'serendibadmin@gmail.com' && formData.password === 'Serendib@1234') {
-      toast.success('âœ“ Welcome to Admin Dashboard!');
+      toast.success('✓ Welcome to Admin Dashboard!');
       localStorage.setItem('user', JSON.stringify({
         name: 'Admin User',
         email: 'serendibadmin@gmail.com',
@@ -43,12 +44,19 @@ export default function Login() {
 
     setIsLoading(true);
     try {
-      await authService.login(formData.email, formData.password);
-      toast.success('âœ“ Welcome back to Serendib AI!');
-      // Navigate to dashboard after successful login
-      navigate('/dashboard');
+      const data = await authService.login(formData.email, formData.password);
+      const firstName = data?.user?.full_name?.split(' ')[0] || data?.user?.name?.split(' ')[0];
+      if (firstName) {
+        toast.success(`✓ Welcome back, ${firstName}!`);
+      } else {
+        toast.success('✓ Welcome back to Serendib AI!');
+      }
+      
+      // Navigate to intended destination or dashboard
+      const origin = location.state?.from?.pathname || '/dashboard';
+      navigate(origin);
     } catch (err) {
-      toast.error(`âœ• ${err.message || 'Invalid email or password.'}`);
+      toast.error(`✕ ${err.message || 'Invalid email or password.'}`);
     } finally {
       setIsLoading(false);
     }

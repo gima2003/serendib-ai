@@ -1,14 +1,11 @@
-﻿export const profileService = {
-  // TODO: Connect to actual FastAPI endpoints once they are ready
+import { apiClient } from './apiClient';
 
+export const profileService = {
   async getProfile() {
-    // return apiClient.get('/api/users/me');
-    return null;
+    return apiClient.get('/api/auth/me');
   },
 
-  // eslint-disable-next-line no-unused-vars
   async updateProfile(profileData) {
-    // return apiClient.patch('/api/users/me', profileData);
-    return null;
+    return apiClient.patch('/api/auth/me', profileData);
   }
 };
