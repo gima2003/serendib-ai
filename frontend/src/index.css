@@ -1,4 +1,26 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
+
+@theme {
+  --color-serendib-bg: #F6F3EE;
+  --color-serendib-bg-secondary: #EFEAE3;
+  --color-serendib-surface: #FFFFFF;
+  --color-serendib-text: #1C1917;
+  --color-serendib-text-muted: #78716C;
+  --color-serendib-border: #E7E1D8;
+  --color-serendib-orange: #F97316;
+  --color-serendib-orange-hover: #EA580C;
+}
+
+:root {
+  --serendib-bg: #F6F3EE;
+  --serendib-bg-secondary: #EFEAE3;
+  --serendib-surface: #FFFFFF;
+  --serendib-text: #1C1917;
+  --serendib-text-muted: #78716C;
+  --serendib-border: #E7E1D8;
+  --serendib-orange: #F97316;
+  --serendib-orange-hover: #EA580C;
+}
 
 * {
   box-sizing: border-box;
@@ -8,7 +30,7 @@ html {
   width: 100%;
   min-height: 100%;
   scroll-behavior: smooth;
-  background: #0b0b0c;
+  background: var(--serendib-bg);
 }
 
 body {
@@ -16,8 +38,8 @@ body {
   width: 100%;
   min-width: 320px;
   min-height: 100vh;
-  background: #0b0b0c;
-  color: white;
+  background: var(--serendib-bg);
+  color: var(--serendib-text);
   font-family:
     Inter,
     system-ui,

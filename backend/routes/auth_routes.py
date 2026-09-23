@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from pymongo.errors import DuplicateKeyError
 
 from database.core.database import db
-from models.auth_schema import UserRegister, UserLogin, Token, UserResponse
+from models.auth_schema import UserRegister, UserLogin, Token, UserResponse, UserUpdate
 from security.auth_security import get_password_hash, verify_password, create_access_token, get_current_user
 from database.core.config import ACCESS_TOKEN_EXPIRE_MINUTES
 
@@ -99,6 +99,20 @@ async def login(login_data: UserLogin) -> Any:
 
 @router.get("/me", response_model=UserResponse)
 async def read_users_me(current_user: dict = Depends(get_current_user)) -> Any:
+    current_user["id"] = str(current_user["_id"])
+    return current_user
+
+@router.patch("/me", response_model=UserResponse)
+async def update_users_me(update_data: UserUpdate, current_user: dict = Depends(get_current_user)) -> Any:
+    update_dict = {k: v for k, v in update_data.model_dump().items() if v is not None}
+    if update_dict:
+        update_dict["updated_at"] = datetime.utcnow()
+        await db.users.update_one(
+            {"_id": current_user["_id"]},
+            {"$set": update_dict}
+        )
+        current_user.update(update_dict)
+    
     current_user["id"] = str(current_user["_id"])
     return current_user
 
