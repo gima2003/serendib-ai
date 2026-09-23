@@ -1,0 +1,41 @@
+{
+  "destinations": [
+    {
+      "city": "Kandy",
+      "recommendation_score": 0.87,
+      "recommended_days": 2,
+      "attractions": [
+        {
+          "name": "Temple of the Tooth",
+          "category": "culture",
+          "estimated_duration_hours": 2,
+          "estimated_entry_cost_lkr": 3000,
+          "indoor_outdoor": "mixed"
+        }
+      ]
+    },
+
+    {
+      "city": "Ella",
+      "recommendation_score": 0.94,
+      "recommended_days": 2,
+      "attractions": [
+        {
+          "name": "Little Adam's Peak",
+          "category": "hiking",
+          "estimated_duration_hours": 3,
+          "estimated_entry_cost_lkr": 0,
+          "indoor_outdoor": "outdoor"
+        },
+
+        {
+          "name": "Nine Arch Bridge",
+          "category": "nature",
+          "estimated_duration_hours": 2,
+          "estimated_entry_cost_lkr": 0,
+          "indoor_outdoor": "outdoor"
+        }
+      ]
+    }
+  ]
+}
