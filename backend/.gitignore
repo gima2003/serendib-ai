@@ -1,10 +1,15 @@
-.env
-
+# Python virtual environments
 venv/
 .venv/
+backend/venv/
+backend/.venv/
 
+# Python cache
 __pycache__/
-*.pyc
+*.py[cod]
 
+# Environment variables
+.env
+
+# VS Code
 .vscode/
-.idea/
