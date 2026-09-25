@@ -34,3 +34,11 @@ backend/venv/
 # Environment variables / secrets
 .env
 backend/.env
+
+# Python virtual environment
+backend/venv/
+backend/.venv/
+
+# Python cache
+__pycache__/
+*.pyc
