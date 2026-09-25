@@ -1,0 +1,43 @@
+{
+  "food_recommendations": [
+    {
+      "city": "Kandy",
+      "restaurant_id": "KDY-R001",
+      "restaurant_name": "Test Restaurant Kandy",
+      "meal_type": "lunch",
+      "price_band": "moderate",
+      "estimated_cost_per_person_lkr": 2000,
+      "dietary_match": ["vegetarian"]
+    },
+    {
+      "city": "Ella",
+      "restaurant_id": "ELA-R001",
+      "restaurant_name": "Test Restaurant Ella",
+      "meal_type": "dinner",
+      "price_band": "moderate",
+      "estimated_cost_per_person_lkr": 2500,
+      "dietary_match": ["vegetarian"]
+    }
+  ],
+
+  "accommodation_recommendations": [
+    {
+      "city": "Kandy",
+      "accommodation_id": "KDY-H001",
+      "accommodation_name": "Test Hotel Kandy",
+      "accommodation_type": "hotel",
+      "price_band": "moderate",
+      "estimated_cost_per_night_lkr": 12000,
+      "recommended_nights": 2
+    },
+    {
+      "city": "Ella",
+      "accommodation_id": "ELA-H001",
+      "accommodation_name": "Test Hotel Ella",
+      "accommodation_type": "guesthouse",
+      "price_band": "moderate",
+      "estimated_cost_per_night_lkr": 10000,
+      "recommended_nights": 2
+    }
+  ]
+}

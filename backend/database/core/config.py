@@ -15,3 +15,7 @@ PORT = int(os.getenv("PORT", 8000))
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-super-secret-key-that-should-be-changed")
 JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 60))
+# Geoapify Configuration
+GEOAPIFY_API_KEY = os.getenv('GEOAPIFY_API_KEY', '')
+GEOAPIFY_GEOCODING_URL = os.getenv('GEOAPIFY_GEOCODING_URL', 'https://api.geoapify.com/v1/geocode/search')
+GEOAPIFY_ROUTING_URL = os.getenv('GEOAPIFY_ROUTING_URL', 'https://api.geoapify.com/v1/routing')

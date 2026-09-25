@@ -1,0 +1,9 @@
+﻿attraction_id,attraction_name,city,district,province,category,description,primary_activity,source_id,verified_date
+JAF-A001,Jaffna Fort,Jaffna,Jaffna,Northern Province,Historic Site,Large colonial fort in Jaffna with Portuguese and Dutch-period history.,Heritage Exploration | Architecture Exploration | Photography,SRC-REVIEWS,2026-08-19
+JAF-A002,Nallur Kandaswamy Kovil,Jaffna,Jaffna,Northern Province,Religious Site,Major Hindu temple in Jaffna and an important centre of Tamil religious culture.,Religious & Spiritual Visit | Local Culture Experience | Architecture,SRC-REVIEWS,2026-08-19
+JAF-A003,Jaffna Public Library,Jaffna,Jaffna,Northern Province,Cultural Landmark,Major cultural and educational landmark in Jaffna city.,Architecture Exploration | Local Culture Experience | History,SRC-SLTOURISM,2026-08-19
+JAF-A004,Jaffna Archaeological Museum,Jaffna,Jaffna,Northern Province,Museum,Regional museum presenting archaeological and cultural material from northern Sri Lanka.,Museum Visit | Heritage Exploration | History,SRC-SLTOURISM,2026-08-19
+JAF-A005,Nagadeepa Purana Vihara,Jaffna,Jaffna,Northern Province,Religious Site,Important Buddhist pilgrimage site on Nainativu island.,Religious & Spiritual Visit | Heritage Exploration | Boat Journey,SRC-SLTOURISM,2026-08-19
+JAF-A006,Nagapooshani Amman Temple,Jaffna,Jaffna,Northern Province,Religious Site,Prominent Hindu temple on Nainativu island.,Religious & Spiritual Visit | Local Culture Experience | Architecture,SRC-SLTOURISM,2026-08-19
+JAF-A007,Casuarina Beach,Jaffna,Jaffna,Northern Province,Beach,Popular shallow-water beach on the Jaffna peninsula.,Beach Relaxation | Swimming | Sunset Viewing,SRC-SLTOURISM,2026-08-19
+JAF-A008,Delft Island,Jaffna,Jaffna,Northern Province,Island / Heritage,"Island west of Jaffna known for distinctive landscapes, colonial remains and local culture.",Boat Journey | Heritage Exploration | Local Culture | Photography,SRC-SLTOURISM,2026-08-19

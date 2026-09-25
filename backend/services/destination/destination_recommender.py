@@ -1,0 +1,397 @@
+from .profile_adapter import (
+    extract_destination_preferences
+)
+
+from .data_loader import load_data
+
+from .interest_matcher import (
+    match_interests_to_experiences
+)
+
+from .attraction_ranker import (
+    score_attractions
+)
+
+from .destination_ranker import (
+    rank_destinations
+)
+
+from .text_utils import normalize_text
+
+# NEW
+from .cost_loader import load_costs
+
+
+
+def recommend_destinations(
+    interests,
+    top_destinations=5,
+    top_attractions=5,
+    debug=False
+):
+
+    (
+        attractions,
+        experiences,
+        relationships
+    ) = load_data()
+
+
+    # NEW:
+    # Load attraction entry costs
+    cost_lookup = load_costs()
+
+
+
+    matched_experiences = (
+        match_interests_to_experiences(
+            interests,
+            experiences
+        )
+    )
+
+
+    if not matched_experiences:
+
+        return {
+            "input_interests":
+                interests,
+
+            "matched_experiences":
+                [],
+
+            "unmatched_interests":
+                interests,
+
+            "recommended_destinations":
+                [],
+        }
+
+
+
+    matched_interest_names = {
+        normalize_text(
+            item[
+                "interest"
+            ]
+        )
+        for item
+        in matched_experiences
+    }
+
+
+    unmatched_interests = [
+        interest
+        for interest in interests
+        if normalize_text(
+            interest
+        )
+        not in matched_interest_names
+    ]
+
+
+
+    attraction_results = (
+        score_attractions(
+            matched_experiences,
+            attractions,
+            relationships
+        )
+    )
+
+
+
+    requested_experience_ids = {
+        item["experience_id"]
+        for item in matched_experiences
+    }
+
+
+
+    destination_results = (
+        rank_destinations(
+            attraction_results,
+            requested_experience_count=len(
+                requested_experience_ids
+            )
+        )
+    )
+
+
+
+    recommendations = []
+
+
+
+    for _, destination in (
+        destination_results
+        .head(
+            top_destinations
+        )
+        .iterrows()
+    ):
+
+
+        city = destination[
+            "city"
+        ]
+
+
+
+        city_attractions = (
+            attraction_results[
+                attraction_results[
+                    "city"
+                ]
+                == city
+            ]
+            .head(
+                top_attractions
+            )
+        )
+
+
+
+        attraction_list = []
+
+
+
+        for _, attraction in (
+            city_attractions.iterrows()
+        ):
+
+
+            attraction_id = attraction[
+                "attraction_id"
+            ]
+
+
+
+            item = {
+
+                "attraction_id":
+                    attraction_id,
+
+
+                "name":
+                    attraction[
+                        "attraction_name"
+                    ],
+
+
+                "category":
+                    attraction[
+                        "category"
+                    ],
+
+
+                "indoor_outdoor":
+                    attraction.get(
+                        "indoor_outdoor"
+                    ),
+
+
+                "sub_category":
+                    attraction[
+                        "sub_category"
+                    ],
+
+
+                "match_score":
+                    round(
+                        float(
+                            attraction[
+                                "match_score"
+                            ]
+                        ),
+                        3
+                    ),
+
+
+                "coverage_score":
+                    round(
+                        float(
+                            attraction[
+                                "coverage_score"
+                            ]
+                        ),
+                        3
+                    ),
+
+
+                # NEW
+                # Add entry costs
+                "entry_costs":
+                    cost_lookup.get(
+                        attraction_id,
+                        []
+                    )
+
+            }
+
+
+
+            if debug:
+
+                item[
+                    "debug_matches"
+                ] = attraction[
+                    "matched_experiences"
+                ]
+
+
+
+            attraction_list.append(
+                item
+            )
+
+
+
+        recommendations.append(
+
+            {
+
+                "destination":
+                    city,
+
+
+                "score":
+                    round(
+                        float(
+                            destination[
+                                "final_score"
+                            ]
+                        ),
+                        3
+                    ),
+
+
+                "interest_coverage":
+                    round(
+                        float(
+                            destination[
+                                "destination_coverage"
+                            ]
+                        ),
+                        3
+                    ),
+
+
+                "matching_attractions":
+                    int(
+                        destination[
+                            "matching_attractions"
+                        ]
+                    ),
+
+
+                "strong_attractions":
+                    int(
+                        destination[
+                            "strong_attractions"
+                        ]
+                    ),
+
+
+                "attractions":
+                    attraction_list,
+
+            }
+
+        )
+
+
+
+    return {
+
+        "input_interests":
+            interests,
+
+
+        "matched_experiences":
+            matched_experiences,
+
+
+        "unmatched_interests":
+            unmatched_interests,
+
+
+        "recommended_destinations":
+            recommendations,
+
+    }
+
+
+
+
+
+def recommend_from_traveller_profile(
+    traveller_profile,
+    top_destinations=5,
+    top_attractions=5,
+    debug=False
+):
+
+
+    agent2_preferences = (
+        extract_destination_preferences(
+            traveller_profile
+        )
+    )
+
+
+    interests = agent2_preferences[
+        "interests"
+    ]
+
+
+
+    if not interests:
+
+        return {
+
+            "status":
+                "needs_preferences",
+
+
+            "message":
+                (
+                    "No destination-related interests "
+                    "were provided."
+                ),
+
+
+            "recommended_destinations":
+                [],
+
+        }
+
+
+
+    result = recommend_destinations(
+
+        interests=interests,
+
+        top_destinations=top_destinations,
+
+        top_attractions=top_attractions,
+
+        debug=debug,
+
+    )
+
+
+
+    return {
+
+        "status":
+            "success",
+
+
+        "agent2_input":
+            agent2_preferences,
+
+
+        **result,
+
+    }
