@@ -135,6 +135,10 @@ for i, destination in enumerate(
             f"  - {attraction['name']}"
         )
 
+        print(
+            f"    Type: {attraction.get('indoor_outdoor')}"
+        )
+
 
         print(
             "    Entry costs:"

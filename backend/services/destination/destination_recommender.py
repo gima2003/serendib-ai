@@ -185,6 +185,12 @@ def recommend_destinations(
                     ],
 
 
+                "indoor_outdoor":
+                    attraction.get(
+                        "indoor_outdoor"
+                    ),
+
+
                 "sub_category":
                     attraction[
                         "sub_category"
