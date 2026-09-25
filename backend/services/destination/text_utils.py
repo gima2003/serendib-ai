@@ -1,28 +1,36 @@
 import re
 
 
-def normalize_text(value):
+def normalize_text(text):
+    """
+    Normalize text for matching.
 
-    if value is None:
+    Example:
+    "  Beach  " -> "beach"
+    "Photography " -> "photography"
+    """
+
+    if text is None:
         return ""
 
-    value = str(value).lower().strip()
 
-    value = value.replace(
-        "&",
-        " and "
-    )
+    text = str(text)
 
-    value = re.sub(
-        r"[^a-z0-9\s]",
-        " ",
-        value
-    )
 
-    value = re.sub(
+    # lowercase
+    text = text.lower()
+
+
+    # remove extra spaces
+    text = re.sub(
         r"\s+",
         " ",
-        value
+        text
     )
 
-    return value.strip()
+
+    # remove leading/trailing spaces
+    text = text.strip()
+
+
+    return text

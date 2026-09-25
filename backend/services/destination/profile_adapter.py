@@ -5,11 +5,11 @@ def extract_destination_preferences(
     traveller_profile
 ):
     """
-    Convert Agent 1's TravellerProfile into the
-    smaller input structure required by Agent 2.
+    Convert Agent 1 TravellerProfile into
+    the input structure required by Agent 2.
 
-    Agent 2 should consume structured information
-    rather than reinterpret the original user query.
+    Agent 2 receives structured preferences,
+    not the original user conversation.
     """
 
     if not isinstance(
@@ -20,36 +20,100 @@ def extract_destination_preferences(
             "traveller_profile must be a dictionary"
         )
 
-    # ---------------------------------------------
-    # Interests
-    # ---------------------------------------------
 
-    interests = traveller_profile.get(
+    # -------------------------------------------------
+    # Support both formats:
+    #
+    # 1. Full Agent 1 state:
+    # {
+    #   "status":"ready",
+    #   "profile": {...}
+    # }
+    #
+    # 2. Direct profile:
+    # {
+    #   "duration_days":6,
+    #   ...
+    # }
+    # -------------------------------------------------
+
+    profile = traveller_profile.get(
+        "profile",
+        traveller_profile
+    )
+
+
+    # -------------------------------------------------
+    # Interests
+    # -------------------------------------------------
+
+    interests = profile.get(
         "interests",
         []
     )
 
+
     if interests is None:
         interests = []
 
-    if not isinstance(interests, list):
+
+    if not isinstance(
+        interests,
+        list
+    ):
         raise ValueError(
-            "traveller_profile.interests "
-            "must be a list"
+            "traveller_profile.interests must be a list"
         )
+
 
     clean_interests = []
 
     seen_interests = set()
 
+
     for interest in interests:
+
 
         if not interest:
             continue
 
+
+        # Agent 1 format:
+        #
+        # {
+        #    "name": "beach",
+        #    "preference": "high"
+        # }
+        #
+
+        if isinstance(
+            interest,
+            dict
+        ):
+
+            interest_name = interest.get(
+                "name"
+            )
+
+        else:
+
+            # Backward compatibility
+            # if Agent 2 receives:
+            # ["beach","nature"]
+
+            interest_name = interest
+
+
+
+        if not interest_name:
+            continue
+
+
+
         normalized = normalize_text(
-            interest
+            interest_name
         )
+
 
         if (
             normalized
@@ -61,69 +125,107 @@ def extract_destination_preferences(
                 normalized
             )
 
+
             clean_interests.append(
-                interest
+                interest_name
             )
 
-    # ---------------------------------------------
-    # Optional preferred destinations
-    # ---------------------------------------------
+
+    # -------------------------------------------------
+    # Preferred destinations
+    # -------------------------------------------------
 
     preferred_destinations = (
-        traveller_profile.get(
+        profile.get(
             "preferred_destinations",
             []
         )
     )
 
+
     if preferred_destinations is None:
         preferred_destinations = []
 
-    # ---------------------------------------------
-    # Optional preference object
-    # ---------------------------------------------
 
-    preferences = traveller_profile.get(
+
+    # -------------------------------------------------
+    # Travel preferences
+    #
+    # Agent 1 currently sends:
+    #
+    # "crowd_preference": "avoid",
+    # "travel_pace": "relaxed"
+    #
+    # directly inside profile.
+    #
+    # Future support:
+    #
+    # "preferences": {
+    #      "crowd_preference":"low"
+    # }
+    #
+    # -------------------------------------------------
+
+    preferences = profile.get(
         "preferences",
         {}
     )
 
+
+    if not preferences:
+
+        preferences = profile
+
+
+
     if preferences is None:
+
         preferences = {}
+
+
 
     crowd_preference = preferences.get(
         "crowd_preference"
     )
 
+
     travel_pace = preferences.get(
         "travel_pace"
     )
 
-    # ---------------------------------------------
-    # Return only Agent 2 relevant information
-    # ---------------------------------------------
+
+    # -------------------------------------------------
+    # Return Agent 2 input
+    # -------------------------------------------------
 
     return {
+
         "interests":
             clean_interests,
+
 
         "preferred_destinations":
             preferred_destinations,
 
+
         "crowd_preference":
             crowd_preference,
+
 
         "travel_pace":
             travel_pace,
 
+
         "duration_days":
-            traveller_profile.get(
+            profile.get(
                 "duration_days"
             ),
 
+
         "accessibility_requirements":
-            traveller_profile.get(
+            profile.get(
                 "accessibility_requirements",
                 []
             ),
+
     }
