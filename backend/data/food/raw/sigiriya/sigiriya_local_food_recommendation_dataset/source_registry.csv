@@ -1,0 +1,14 @@
+﻿source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC001,Official tourism,Sri Lanka Tourism Culinary Tourism,https://www.srilanka.travel/culinary-tourism/,Dish definitions / Sri Lankan cuisine context,0.98
+SRC002,Official hotel site,Hotel Sigiriya Dining,https://www.brownshotels.com/hotelsigiriya/dining/,Hotel restaurant cuisine positioning,0.99
+SRC003,Official cooking-class site,Eco Kitchen Sigiriya,https://ecokitchen.lk/,Cooking-class dishes / organic experience,0.99
+SRC004,Review aggregation,Sigiriya restaurant list,https://www.tripadvisor.com/Restaurants-g304141-Sigiriya_Central_Province.html,"Current ranking, rating and cheap-eats/family signals",0.88
+SRC005,Review aggregation,Sigiriya curry listings,https://www.tripadvisor.com/Restaurants-g304141-zfd20181-Sigiriya_Central_Province-Curry.html,Curry-specific ranking signals,0.88
+SRC006,Review aggregation,Sigiriya Wew Thawulla,https://www.tripadvisor.com/Restaurant_Review-g304141-d17660325-Reviews-Sigiriya_wew_Thawulla_Restaurant-Sigiriya_Central_Province.html,"Detailed hours, contact, dietary and dish-review signals",0.95
+SRC007,Review aggregation,Kenoli Restaurant,https://www.tripadvisor.com/Restaurant_Review-g304141-d17796477-Reviews-Kenoli_Restaurant-Sigiriya_Central_Province.html,"Dietary, meal-type and ranking signals",0.92
+SRC008,Review aggregation,S.l.kafé Restaurant & Cooking Class,https://www.tripadvisor.com/Restaurant_Review-g304141-d24038580-Reviews-S_l_kafe_Restaurant_Cooking_Class-Sigiriya_Central_Province.html,Restaurant + cooking-class signal,0.92
+SRC009,Travel guide,Travel Insighter Sigiriya restaurants guide,https://travelinsighter.com/restaurants-in-sigiriya-sri-lanka/,Discovery and qualitative comparison signals,0.78
+SRC010,Community forum,Reddit proper Sri Lankan food,https://www.reddit.com/r/srilanka/comments/18ghi17/where_to_find_proper_sri_lankan_food/,General local-food terminology / preference context,0.78
+SRC011,Community forum,Reddit Sigiriya cooking class report,https://www.reddit.com/r/SriLankaTravel/comments/1uyk66s/just_returned_from_2_weeks_in_sri_lanka_as_a_solo/,Cooking-class qualitative signal,0.76
+SRC012,Community forum,Reddit Sri Lanka tips 2025,https://www.reddit.com/r/travel/comments/1nolwzj/sri_lanka_tips_december_2025/,Sigiriya village-cooking qualitative signal,0.74
+SRC013,Community forum,Reddit spice adaptation discussion,https://www.reddit.com/r/srilanka/comments/1kpbybo/arugam_bay_sri_lankan_food/,Low-confidence user-preference risk signal only,0.5

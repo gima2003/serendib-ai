@@ -1,0 +1,12 @@
+link_id,place_id,food_id,dish_match_type,evidence_strength,source_url,notes
+DAM-DL001,DAM-P001,DAM-F001,Signature,,,
+DAM-DL002,DAM-P001,DAM-F008,Popular,,,
+DAM-DL003,DAM-P002,DAM-F002,Signature,,,
+DAM-DL004,DAM-P003,DAM-F005,Breakfast,,,
+DAM-DL005,DAM-P004,DAM-F011,Popular,,,
+DAM-DL006,DAM-P005,DAM-F010,Signature,,,
+DAM-DL007,DAM-P006,DAM-F001,Buffet,,,
+DAM-DL008,DAM-P007,DAM-F011,Signature,,,
+DAM-DL009,DAM-P008,DAM-F009,Popular,,,
+DAM-DL010,DAM-P009,DAM-F001,Village,,,
+DAM-DL011,DAM-P010,DAM-F008,Vegetarian,,,

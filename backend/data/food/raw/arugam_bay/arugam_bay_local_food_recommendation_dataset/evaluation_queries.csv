@@ -1,0 +1,11 @@
+﻿query_id,sample_user_query,expected_filters_or_intent,relevant_place_ids,notes
+Q001,I want the freshest local fish in Arugam Bay.,fresh-catch + seafood + authentic-local,"ABY-P004,ABY-P001,ABY-P003,ABY-P010,ABY-P011",Mr Fisherman and The Sketch should rank highly.
+Q002,I want cheap authentic rice and curry.,budget + authentic-local + rice-and-curry,"ABY-P006,ABY-P020",The Green Room has strong rice-and-curry evidence; Cook with Mona is an experience option.
+Q003,"I'm vegetarian and want local food, not only smoothie bowls.",vegetarian + local + authentic,"ABY-P007,ABY-P008,ABY-P006,ABY-P020","Curry Leaves, Dosa Station, Green Room and Cook with Mona should outrank generic cafes."
+Q004,Where can I get dosa or Tamil food?,dosa + tamil-food + budget,ABY-P008,Dosa Station should rank first.
+Q005,I want crab or lobster from a local fisherman.,crab/lobster + fresh-catch + authentic,ABY-P004,Mr Fisherman has direct review evidence.
+Q006,I want a Sri Lankan cooking class.,cooking-class + authentic-local,ABY-P020,Cook with Mona should rank first.
+Q007,I want a cheap fish barbecue with a social atmosphere.,budget + fish-bbq + social,ABY-P019,Beach Hut dinner is the strongest source-backed match.
+Q008,I want vegan-friendly Sri Lankan food.,vegan-friendly + Sri Lankan,"ABY-P006,ABY-P007,ABY-P020",Strict current menu check still required.
+Q009,I want seafood and nightlife / late opening.,seafood + late-night + social,"ABY-P005,ABY-P009,ABY-P017","Bambini, Dewa and Fish Corner are strong timing/social fits."
+Q010,I want stronger spices and less tourist-adapted food.,spice-authenticity + local/Tamil,"ABY-P006,ABY-P008,ABY-P020","Use community spice signal carefully as preference guidance, not fact about every venue."

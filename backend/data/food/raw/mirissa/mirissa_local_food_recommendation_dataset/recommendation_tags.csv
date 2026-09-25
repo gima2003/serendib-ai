@@ -1,0 +1,16 @@
+﻿tag_id,tag,definition
+T001,budget,Lower-cost / casual local eating.
+T002,authentic-local,Strong Sri Lankan home-style or local-food orientation.
+T003,seafood,Seafood-focused place or dish.
+T004,fresh-catch,Public source specifically indicates fresh fish/seafood.
+T005,beach-dining,Beachfront or beach-oriented dining experience.
+T006,roti,Roti is a signature or core item.
+T007,kottu,Kottu is a signature or core item.
+T008,vegetarian,Strong vegetarian suitability.
+T009,vegan-friendly,Public source indicates vegan-friendly options.
+T010,breakfast,Suitable for breakfast.
+T011,cooking-class,Includes food preparation/cooking experience.
+T012,home-style,Family/home-style Sri Lankan food signal.
+T013,tourist-popular,High tourist visibility/review volume.
+T014,late-night,Useful for later evening dining.
+T015,sunset,Especially relevant for beach/sunset meals.

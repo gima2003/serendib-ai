@@ -1,0 +1,13 @@
+﻿food_id,food_name,category,meal_type,spice_level,description
+DAM-F001,Rice & Curry,Main,Lunch/Dinner,Medium,Traditional Sri Lankan meal
+DAM-F002,Red Rice & Curry,Main,Lunch/Dinner,Medium,Village-style meal
+DAM-F003,Pol Roti,Bread,Breakfast,Mild,Coconut flatbread
+DAM-F004,Kottu Roti,Street Food,Dinner,Medium,Chopped roti
+DAM-F005,String Hoppers,Breakfast,Breakfast,Mild,Rice noodle nests
+DAM-F006,Hoppers,Breakfast,Breakfast,Mild,Traditional hopper
+DAM-F007,Pittu,Breakfast,Breakfast,Mild,Steamed rice flour
+DAM-F008,Dhal Curry,Curry,Any,Mild,Lentil curry
+DAM-F009,Pumpkin Curry,Vegetable,Lunch,Mild,Local pumpkin
+DAM-F010,Jackfruit Curry,Vegetable,Lunch,Medium,Young jackfruit curry
+DAM-F011,Fish Curry,Seafood,Lunch/Dinner,High,Fresh fish curry
+DAM-F012,Curd & Treacle,Dessert,Dessert,Sweet,Traditional dessert

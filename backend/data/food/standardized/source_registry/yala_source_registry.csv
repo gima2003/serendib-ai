@@ -1,0 +1,5 @@
+source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC001,Sri Lanka Tourism,,https://www.srilanka.travel/,Tourism,
+SRC002,Tripadvisor,,https://www.tripadvisor.com/,Restaurants,
+SRC003,Google Reviews,,https://maps.google.com,Reviews,
+SRC004,Travel Blogs,,https://www.lonelyplanet.com/,Travel,

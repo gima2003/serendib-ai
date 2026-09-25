@@ -1,0 +1,13 @@
+source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC001,Official tourism,Sri Lanka Tourism Culinary Tourism,https://www.srilanka.travel/culinary-tourism/,Dish definitions / Sri Lankan cuisine context,0.98
+SRC002,Review aggregation,Tripadvisor Bandarawela restaurants,https://www.tripadvisor.com/Restaurants-g1051532-Bandarawela_Uva_Province.html,"Current city restaurant coverage, ranking and categories",0.88
+SRC003,Review aggregation,Dude's Hut Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1051532-d12257785-Reviews-Dude_s_Hut-Bandarawela_Uva_Province.html,"Rice-and-curry, family-run and value signals",0.9
+SRC004,Review aggregation,Gemi Gedara Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1051532-d12966571-Reviews-Gemi_Gedara_Restaurant-Bandarawela_Uva_Province.html,Taste/value and local-food signals,0.88
+SRC005,Review aggregation,Resto Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1051532-d13148339-Reviews-Resto-Bandarawela_Uva_Province.html,Dish-level evidence for nasi goreng/devilled fish,0.88
+SRC006,Review aggregation,Mount Edge Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g1051532-d23530347-Reviews-Mount_Edge_Restaurant_And_Cafe-Bandarawela_Uva_Province.html,Hours/service and cuisine signal,0.86
+SRC007,Community forum,Reddit Bandarawela vegetarian food thread,https://www.reddit.com/r/srilanka/comments/1408fxe/searching_for_nice_places_to_eat_vegetarian_in/,Dietary demand signal,0.74
+SRC008,Community forum,Reddit Bandarawela local discussion,https://www.reddit.com/r/srilanka/comments/1cm7fzw/is_there_anybody_from_bandarawela/,Local food-scene context,0.7
+SRC009,Official/public social,Train View Chalet Facebook,https://www.facebook.com/TrainViewChalet/posts/-enjoy-delicious-authentic-sri-lankan-dishes-in-our-fresh-restaurant-with-a-sere/1454833466489678/,Authentic Sri Lankan restaurant positioning,0.9
+SRC010,Official/public social,Bandarawela Rest House Facebook,https://www.facebook.com/resthouse.bandarawela/,Home-style meal and delivery positioning,0.9
+SRC011,Travel experience operator,Experience Travel Group social enterprise lunch,https://www.experiencetravelgroup.com/destinations/sri-lanka/experiences/lunch-at-a-social-enterprise-restaurant-bandarawela,Community-run traditional lunch experience,0.99
+SRC012,Official hotel site,Bandarawela Hotel,https://bandarawelahotel.com/,Tea-country regional identity,0.99

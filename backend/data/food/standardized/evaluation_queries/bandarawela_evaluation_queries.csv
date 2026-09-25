@@ -1,0 +1,11 @@
+query_id,city,sample_user_query,expected_filters_or_intent,relevant_place_ids,expected_result_text,notes
+BDR-Q001,Bandarawela,I want cheap authentic rice and curry in Bandarawela.,budget + authentic-local + rice-and-curry,"BAN-P001,BAN-P003,BAN-P004,BAN-P009",,Dude's Hut/Gemi Gedara/Resto/Rest House should rank strongly.
+BDR-Q002,Bandarawela,I am vegetarian and want a local lunch.,vegetarian + local + lunch,"BAN-P001,BAN-P003,BAN-P013",,Social-enterprise lunch is valuable if itinerary permits; exact menu should be verified.
+BDR-Q003,Bandarawela,Where can I get Sri Lankan rice and curry with a family?,family + rice-and-curry,"BAN-P002,BAN-P014,BAN-P003",,Family suitability should boost MistyVibe/Q Dine/Gemi Gedara.
+BDR-Q004,Bandarawela,I want tea and a relaxed hill-country stop.,tea + hill-country + quiet,"BAN-P015,BAN-P012,BAN-P010",,Tea Centre/Bandarawela Hotel/Train View are strong experience fits.
+BDR-Q005,Bandarawela,"I prefer non-touristy, home-style food.",home-style + authentic-local + quiet-town,"BAN-P009,BAN-P003,BAN-P013,BAN-P001",,Review count should not overpower authenticity/value.
+BDR-Q006,Bandarawela,I want devilled fish or Sri Lankan-style fried rice.,devilled-fish + fried-rice,BAN-P004,,Resto has direct dish evidence.
+BDR-Q007,Bandarawela,I need a vegan-friendly option.,vegan-friendly,"BAN-P001,BAN-P018",,Dude's Hut appears in current vegan listings; strict menu verification needed.
+BDR-Q008,Bandarawela,Where can I eat after a tea-country hike?,hill-country + local + lunch,"BAN-P013,BAN-P010,BAN-P012",,Social-enterprise lunch is directly designed for walking itineraries.
+BDR-Q009,Bandarawela,"I want a scenic local dinner, not fast food.",scenic + local-food + dinner,"BAN-P010,BAN-P006,BAN-P012",,Train View/The Deck/Bandarawela Hotel should be considered.
+BDR-Q010,Bandarawela,I want a cheap drink and local meal.,budget + local-food + drink,"BAN-P001,BAN-P003,BAN-P004",,Mango juice at Dude's Hut is an evidence-backed drink signal.

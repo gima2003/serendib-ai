@@ -1,0 +1,11 @@
+﻿query_id,sample_user_query,expected_filters_or_intent,relevant_place_ids,notes
+Q001,I want cheap authentic Sri Lankan rice and curry near Sigiriya.,budget + authentic-local + curry,"SIG-P002,SIG-P003,SIG-P004,SIG-P007,SIG-P008",Top curry/village-food venues should dominate over hotel dining.
+Q002,I am vegan and want Sri Lankan food.,vegan-friendly + Sri Lankan,"SIG-P002,SIG-P005,SIG-P009,SIG-P013",Kenoli/Wew Thawulla/Lion Face have explicit vegan signals; Eco Kitchen is a strong experience option.
+Q003,I want a village cooking class with local ingredients.,cooking-class + village-food + organic,"SIG-P013,SIG-P012,SIG-P011,SIG-P001",Eco Kitchen should rank highest due to official organic/homegrown evidence.
+Q004,Where can I get coconut roti with curry?,roti + curry + authentic,"SIG-P013,SIG-P005,SIG-P003",Eco Kitchen has direct official course evidence; Wew Thawulla has strong review evidence.
+Q005,We are a family and want a cheap local dinner.,family + budget + local,"SIG-P004,SIG-P006,SIG-P005,SIG-P002",Little Hut/Wijesiri/Wew Thawulla/Kenoli are strong structured matches.
+Q006,"I want vegetable curries, not meat.",vegetarian + curry + authentic-local,"SIG-P005,SIG-P002,SIG-P007,SIG-P013",Vegetable curry and vegan/vegetarian evidence should boost these.
+Q007,I want a scenic dinner near the lake after climbing Sigiriya.,scenic + post-hike + dinner,"SIG-P005,SIG-P014",Wew Thawulla has direct lake/rock-view evidence.
+Q008,I want healthy local food rather than Western food.,healthy + Sri Lankan + authentic,"SIG-P002,SIG-P003,SIG-P004,SIG-P007",Avoid mixed/international options unless necessary.
+Q009,"I prefer stronger, more authentic spice levels.",authentic-local + spice preference,"SIG-P003,SIG-P007,SIG-P010,SIG-P013",Preference model should down-rank tourist-adapted mild food when stronger spice is requested.
+Q010,I want breakfast before visiting Lion Rock.,breakfast + local + early,"SIG-P005,SIG-P014,SIG-P004",Live opening hours should be checked before final recommendation.

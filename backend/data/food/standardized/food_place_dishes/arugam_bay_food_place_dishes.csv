@@ -1,0 +1,25 @@
+link_id,place_id,food_id,dish_match_type,evidence_strength,source_url,notes
+ABY-L001,ABY-P001,ABY-F014,Core specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d15073393-Reviews-The_Sketch-Arugam_Bay_Eastern_Province.html,Current reviews strongly highlight very fresh grilled fish.
+ABY-L002,ABY-P002,ABY-F014,Core specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d12640957-Reviews-LEAF_VINE-Arugam_Bay_Eastern_Province.html,Recent reviews especially praise fish.
+ABY-L003,ABY-P003,ABY-F012,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d20975135-Reviews-Neptune_s_Best_Restaurant_Arugambay-Arugam_Bay_Eastern_Province.html,Prawns explicitly praised.
+ABY-L004,ABY-P003,ABY-F016,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d20975135-Reviews-Neptune_s_Best_Restaurant_Arugambay-Arugam_Bay_Eastern_Province.html,Calamari explicitly praised.
+ABY-L005,ABY-P003,ABY-F015,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d20975135-Reviews-Neptune_s_Best_Restaurant_Arugambay-Arugam_Bay_Eastern_Province.html,White snapper explicitly praised.
+ABY-L006,ABY-P004,ABY-F014,Core specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d10520610-Reviews-Mr_Fisherman-Arugam_Bay_Eastern_Province.html,Whole fresh fish is a dominant recommendation.
+ABY-L007,ABY-P004,ABY-F012,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d10520610-Reviews-Mr_Fisherman-Arugam_Bay_Eastern_Province.html,Prawn curry specifically described.
+ABY-L008,ABY-P004,ABY-F017,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d10520610-Reviews-Mr_Fisherman-Arugam_Bay_Eastern_Province.html,Crab explicitly praised.
+ABY-L009,ABY-P004,ABY-F018,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d10520610-Reviews-Mr_Fisherman-Arugam_Bay_Eastern_Province.html,Lobster explicitly praised.
+ABY-L010,ABY-P006,ABY-F001,Core recommendation,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d1733566-Reviews-The_Green_Room-Arugam_Bay_Eastern_Province.html,Public reviews describe strong authentic rice and curry.
+ABY-L011,ABY-P006,ABY-F012,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d1733566-Reviews-The_Green_Room-Arugam_Bay_Eastern_Province.html,Prawn curry highlighted.
+ABY-L012,ABY-P006,ABY-F013,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d1733566-Reviews-The_Green_Room-Arugam_Bay_Eastern_Province.html,Garlic prawns highlighted.
+ABY-L013,ABY-P006,ABY-F024,Review-supported drink,Medium,https://www.tripadvisor.com/Restaurant_Review-g3348959-d1733566-Reviews-The_Green_Room-Arugam_Bay_Eastern_Province.html,Avocado juice explicitly recommended.
+ABY-L014,ABY-P007,ABY-F022,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d17439700-Reviews-Curry_Leaves-Arugam_Bay_Eastern_Province.html,Mango curry explicitly praised.
+ABY-L015,ABY-P008,ABY-F021,Core cuisine match,High,https://www.google.com/maps/search/?api=1&query=Dosa+Station+Arugam+Bay+Sri+Lanka,Restaurant identity is dosa-focused.
+ABY-L016,ABY-P009,ABY-F019,Official specialty,High,https://dewasrilanka.com/,Official website highlights fresh seafood platters.
+ABY-L017,ABY-P010,ABY-F014,Core cuisine match,High,https://www.google.com/maps/search/?api=1&query=Catch+of+the+Day+Arugam+Bay+Arugam+Bay+Sri+Lanka,Fresh-catch positioning implied directly by venue concept and seafood listing.
+ABY-L018,ABY-P011,ABY-F014,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d33095308-Reviews-Haliaeetus_Seafood_Restaurant_Arugambay-Arugam_Bay_Eastern_Province.html,Current review summary strongly praises very fresh fish/seafood.
+ABY-L019,ABY-P013,ABY-F019,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g3348959-d23910391-Reviews-Serendib_Arugam_Bay-Arugam_Bay_Eastern_Province.html,Seafood platter with prawns/calamari appears in current reviews.
+ABY-L020,ABY-P019,ABY-F020,Guide-supported specialty,High,https://www.thecoastalcampaign.com/arugam-bay-things-to-do/,Travel guide explicitly describes cheap fish barbecue dinner.
+ABY-L021,ABY-P020,ABY-F001,Official class focus,High,https://cookwithmonaarugambay.wordpress.com/,Official site centers the class on rice and curry.
+ABY-L022,ABY-P020,ABY-F003,Official class item,High,https://www.instagram.com/cookwithmona_arugambay/,Coconut roti appears in public cooking-class content.
+ABY-L023,ABY-P020,ABY-F007,Official class item,High,https://www.instagram.com/cookwithmona_arugambay/,Coconut sambol appears in public cooking-class content.
+ABY-L024,ABY-P020,ABY-F008,Official/review class item,High,https://www.tripadvisor.com/Attractions-g3348959-Activities-c36-t203-Arugam_Bay_Eastern_Province.html,Bean curry explicitly mentioned in cooking-class reviews.

@@ -1,0 +1,11 @@
+﻿food_id,food_name,category,meal,spice,description
+JAF-F001,Jaffna Crab Curry,Seafood,Lunch/Dinner,High,Signature Northern Sri Lankan crab curry
+JAF-F002,Odiyal Kool,Soup,Lunch,High,Traditional seafood soup
+JAF-F003,Jaffna Mutton Curry,Main,Lunch/Dinner,High,Spicy roasted mutton curry
+JAF-F004,Fried Fish Pittu,Main,Lunch/Dinner,Medium,Pittu served with fried fish
+JAF-F005,String Hoppers,Breakfast,Breakfast,Mild,Rice noodle nests
+JAF-F006,Milk Hoppers,Breakfast,Breakfast/Dinner,Mild,Soft hoppers with coconut milk
+JAF-F007,Palmyrah Jaggery,Dessert,Dessert,Sweet,Northern specialty
+JAF-F008,Kool Seafood Curry,Main,Lunch,High,Seafood delicacy
+JAF-F009,Jaffna Kool Prawn,Seafood,Lunch/Dinner,High,Prawn-based northern dish
+JAF-F010,Dry Fish Curry,Main,Lunch/Dinner,High,Traditional dry fish curry

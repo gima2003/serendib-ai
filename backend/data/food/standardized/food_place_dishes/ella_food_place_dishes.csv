@@ -1,0 +1,25 @@
+link_id,place_id,food_id,dish_match_type,evidence_strength,source_url,notes
+ELL-L001,ELA-P001,ELA-F001,Core recommendation,High,https://www.tripadvisor.com/Restaurant_Review-g616035-d9813968-Reviews-Matey_Hut-Ella_Uva_Province.html,Matey Hut widely described as authentic Sri Lankan home-style food.
+ELL-L002,ELA-P001,ELA-F008,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g616035-d9813968-Reviews-Matey_Hut-Ella_Uva_Province.html,Jackfruit curry specifically praised in current public review summaries.
+ELL-L003,ELA-P001,ELA-F009,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g616035-d9813968-Reviews-Matey_Hut-Ella_Uva_Province.html,Banana flower curry specifically praised in current public review summaries.
+ELL-L004,ELA-P001,ELA-F025,Review-supported,Medium,https://www.tripadvisor.com/Restaurant_Review-g616035-d9813968-Reviews-Matey_Hut-Ella_Uva_Province.html,Fresh juices are frequently praised.
+ELL-L005,ELA-P002,ELA-F001,Core recommendation,High,https://www.tripadvisor.com/Restaurant_Review-g616035-d14905865-Reviews-The_Kitchen_Garden-Ella_Uva_Province.html,The Kitchen Garden is positioned around traditional multi-course Sri Lankan cuisine.
+ELL-L006,ELA-P004,ELA-F004,Official menu item,High,https://www.cafechill.lk/cafe-chill-ella-menu.html,Cafe Chill menu explicitly lists string hoppers.
+ELL-L007,ELA-P004,ELA-F005,Official menu item,High,https://www.cafechill.lk/cafe-chill-ella-menu.html,Cafe Chill menu explicitly lists coconut roti.
+ELL-L008,ELA-P004,ELA-F015,Official menu item,High,https://www.cafechill.lk/cafe-chill-ella-menu.html,Cafe Chill menu offers fish curry with Sri Lankan staples.
+ELL-L009,ELA-P004,ELA-F016,Official menu item,High,https://www.cafechill.lk/cafe-chill-ella-menu.html,Cafe Chill menu offers chicken curry with Sri Lankan staples.
+ELL-L010,ELA-P004,ELA-F017,Official menu item,High,https://www.cafechill.lk/cafe-chill-ella-menu.html,Cafe Chill menu offers egg curry with Sri Lankan staples.
+ELL-L011,ELA-P015,ELA-F022,Core cuisine match,High,https://www.google.com/maps/search/?api=1&query=Dosa+Cafe+Ella+Ella+Sri+Lanka,Restaurant concept is explicitly dosa-focused.
+ELL-L012,ELA-P020,ELA-F001,Experience match,High,https://ellaspicegarden.com/,Official site advertises Sri Lankan dinner/cooking experience.
+ELL-L013,ELA-P021,ELA-F001,Official cuisine match,High,https://www.ellaflowergardenresort.com/restaurant,Official restaurant page states Sri Lankan cuisine is served.
+ELL-L014,ELA-P022,ELA-F023,Core specialty,High,https://www.tripadvisor.com/Restaurant_Review-g616035-d8407507-Reviews-Ceylon_Tea_Center_Ella-Ella_Uva_Province.html,Tea-center identity and Sri Lankan meal listing.
+ELL-L015,ELA-P023,ELA-F006,Guide-supported vegan option,Medium,https://www.thewanderfulme.com/best-vegan-food-in-ella-sri-lanka/,Little Folly guide describes dhal among vegetarian/vegan offerings.
+ELL-L016,ELA-P023,ELA-F005,Guide-supported vegan option,Medium,https://www.thewanderfulme.com/best-vegan-food-in-ella-sri-lanka/,Roti included among reported vegetarian dishes.
+ELL-L017,ELA-P003,ELA-F003,Likely breakfast fit,Medium,https://www.baconismagic.ca/sri-lanka/ella-food-restaurants/,Wimala is recommended as a practical local breakfast stop.
+ELL-L018,ELA-P005,ELA-F001,Cuisine-category match,Medium,https://www.google.com/maps/search/?api=1&query=Cafe+C+Ella+Ella+Sri+Lanka,Current business category is Sri Lankan restaurant.
+ELL-L019,ELA-P007,ELA-F001,Cuisine-category match,High,https://www.google.com/maps/search/?api=1&query=Raha+Ella+Sri+Lanka+Ella+Sri+Lanka,Current business category is Sri Lankan restaurant.
+ELL-L020,ELA-P008,ELA-F001,Cuisine-category match,High,https://www.google.com/maps/search/?api=1&query=Dream+Cafe+Ella+Ella+Sri+Lanka,Current business category is Sri Lankan restaurant.
+ELL-L021,ELA-P009,ELA-F001,Cuisine-category match,High,https://www.google.com/maps/search/?api=1&query=Cafe+UFO+Ella+Ella+Sri+Lanka,Current business category is Sri Lankan restaurant.
+ELL-L022,ELA-P011,ELA-F001,Local cuisine fit,Medium,https://www.google.com/maps/search/?api=1&query=The+Clay+Pot+Ella+Ella+Sri+Lanka,Local-style restaurant positioning supports rice-and-curry retrieval.
+ELL-L023,ELA-P018,ELA-F003,Breakfast fit,Medium,https://www.google.com/maps/search/?api=1&query=Little+Restaurant+Ella+Ella+Sri+Lanka,Early opening hours make it useful for breakfast recommendations.
+ELL-L024,ELA-P022,ELA-F003,Meal-type fit,Medium,https://www.tripadvisor.com/Restaurant_Review-g616035-d8407507-Reviews-Ceylon_Tea_Center_Ella-Ella_Uva_Province.html,Listing identifies breakfast and Sri Lankan cuisine.
