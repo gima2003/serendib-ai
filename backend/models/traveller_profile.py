@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Optional, List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 # --------------------------------------------------
@@ -195,6 +195,23 @@ class LLMTravellerProfile(BaseModel):
     additional_requests: List[str] = Field(
         default_factory=list
     )
+
+    @field_validator(
+        'interests',
+        'dietary_requirements',
+        'food_preferences',
+        'preferred_destinations',
+        'must_visit_destinations',
+        'avoidances',
+        'accessibility_requirements',
+        'additional_requests',
+        mode='before'
+    )
+    @classmethod
+    def coerce_none_to_list(cls, v):
+        if v is None:
+            return []
+        return v
 
 class TravellerTextRequest(BaseModel):
     text: str = Field(min_length=1)

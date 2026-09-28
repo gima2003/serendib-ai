@@ -34,7 +34,7 @@ async def budget_plan(
     taxi_df = load_taxi_rates()
     
     # 2. Calculate Non-Transport Costs
-    acc_lkr, food_lkr, attr_lkr = calculate_trip_costs(profile, destinations, food_acc)
+    acc_lkr, food_lkr, attr_lkr, warnings = calculate_trip_costs(profile, destinations, food_acc)
     
     base_non_transport = acc_lkr + food_lkr + attr_lkr
     
@@ -51,6 +51,9 @@ async def budget_plan(
     
     # 4. Determine Recommended Transport
     available_budget = profile.budget.amount
+    if profile.budget.currency == "USD":
+        available_budget *= 300.0  # minimum required fix for conversion
+        
     remaining_budget_for_transport = available_budget - base_non_transport
     
     recommendation = recommend_transport(
@@ -59,8 +62,11 @@ async def budget_plan(
         remaining_budget_for_transport=remaining_budget_for_transport
     )
     
-    # 5. Finalize Costs
-    estimated_total_cost = base_non_transport + recommendation.estimated_cost_lkr
+    # 5. Finalize Costs with Contingency
+    subtotal = base_non_transport + recommendation.estimated_cost_lkr
+    contingency_cost = subtotal * 0.10
+    estimated_total_cost = subtotal + contingency_cost
+    
     remaining_budget = available_budget - estimated_total_cost
     
     if available_budget > 0:
@@ -70,15 +76,23 @@ async def budget_plan(
         
     within_budget = remaining_budget >= 0
     
+    if not within_budget:
+        warnings.append("Trip exceeds available budget. Consider savings opportunities.")
+    if recommendation.recommended_mode == "unknown":
+        warnings.append("The complete trip cost cannot be calculated because transport pricing is incomplete.")
+    
     # 6. Savings Opportunities
-    # If a valid recommendation exists, we can pass it to find savings
     selected_opt = next((opt for opt in transport_options if opt.mode == recommendation.recommended_mode), None)
     
-    savings = find_savings_opportunities(
+    savings, over_budget_amount, highest_cat, highest_pct = find_savings_opportunities(
         selected_transport=selected_opt,
         transport_options=transport_options,
         estimated_total_cost_lkr=estimated_total_cost,
-        available_budget_lkr=available_budget
+        available_budget_lkr=available_budget,
+        acc_lkr=acc_lkr,
+        food_lkr=food_lkr,
+        attr_lkr=attr_lkr,
+        food_acc=food_acc
     )
     
     # 7. Build Response
@@ -87,23 +101,21 @@ async def budget_plan(
         accommodation_lkr=acc_lkr,
         food_lkr=food_lkr,
         attractions_lkr=attr_lkr,
-        contingency_lkr=0.0  # Kept 0 per project V1 rules
+        contingency_lkr=contingency_cost
     )
     
-    warnings = []
-    if not within_budget:
-        warnings.append("Trip exceeds available budget. Consider savings opportunities.")
-    if recommendation.recommended_mode == "unknown":
-        warnings.append("The complete trip cost cannot be calculated because transport pricing is incomplete.")
-        
     response = BudgetResponse(
         trip_id=profile.trip_id,
         available_budget_lkr=available_budget,
         cost_breakdown=cost_breakdown,
+        subtotal_cost_lkr=subtotal,
         estimated_total_cost_lkr=estimated_total_cost,
         remaining_budget_lkr=remaining_budget,
         budget_utilization_percent=utilization,
         within_budget=within_budget,
+        over_budget_amount=over_budget_amount,
+        highest_expense_category=highest_cat,
+        highest_expense_percentage=highest_pct,
         transport_comparison=transport_options,
         recommended_transport=recommendation,
         savings_opportunities=savings,

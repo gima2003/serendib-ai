@@ -170,9 +170,9 @@ export const PLAN_ITEMS = [
 ];
 
 export const MY_TRIPS_ITEMS = [
-  { title: "Upcoming", desc: "Trips you're about to take", icon: CalendarDays, to: "/my-trips/upcoming" },
-  { title: "Saved", desc: "Ideas and itineraries you've bookmarked", icon: Heart, to: "/my-trips/saved" },
-  { title: "Completed", desc: "Journeys you've already finished", icon: CheckCircle2, to: "/my-trips/completed" },
+  { title: "Upcoming", desc: "Trips you're about to take", icon: CalendarDays, to: "/my-trips?tab=UPCOMING" },
+  { title: "Saved", desc: "Ideas and itineraries you've bookmarked", icon: Heart, to: "/my-trips?tab=SAVED" },
+  { title: "Completed", desc: "Journeys you've already finished", icon: CheckCircle2, to: "/my-trips?tab=COMPLETED" },
 ];
 
 export const QUICK_CITIES = ["Colombo", "Hill Country", "South Coast", "Jaffna"];
@@ -183,17 +183,17 @@ export const QUICK_CITIES = ["Colombo", "Hill Country", "South Coast", "Jaffna"]
 
 /* Placeholder link. Swap the <a> for react-router's <Link to={to}> once routes exist. */
 export function NavAnchor({ to = "#", className = "", children, ...rest }) {
-  if (to === "/plan-trip") {
+  if (to.startsWith("http")) {
     return (
-      <Link to={to} className={className} {...rest}>
+      <a href={to} target="_blank" rel="noopener noreferrer" className={className} {...rest}>
         {children}
-      </Link>
+      </a>
     );
   }
   return (
-    <a href={to} onClick={(e) => e.preventDefault()} className={className} {...rest}>
+    <Link to={to} className={className} {...rest}>
       {children}
-    </a>
+    </Link>
   );
 }
 

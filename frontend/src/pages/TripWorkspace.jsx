@@ -1,6 +1,6 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ChevronLeft, Calendar, Map, Info, Wallet, Home, Navigation, AlertTriangle, Edit2, Share } from 'lucide-react';
+import { ChevronLeft, Calendar, Map, Info, Wallet, Home, Navigation, AlertTriangle, Cloud, MapPin, DollarSign, Check, Activity, Sun, Utensils } from 'lucide-react';
 import { tripService } from '../services/tripService';
 
 export default function TripWorkspace() {
@@ -14,17 +14,17 @@ export default function TripWorkspace() {
     const fetchTrip = async () => {
       try {
         setIsLoading(true);
-        // Will call backend when ready
         const data = await tripService.getTrip(tripId);
-        if (data) {
+        if (data && data.trip_id) {
           setTrip(data);
+        } else if (data && data.data) {
+          setTrip(data.data);
         } else {
-          // Temporarily mock an empty shell state when API returns null (development)
-          // We don't hardcode fake logic, just a clean empty state structure.
-          setTrip(null);
+          setError("Trip not found");
         }
       } catch (e) {
-        setError("Failed to load trip data.");
+        console.error("Failed to fetch trip", e);
+        setError("Trip unavailable");
       } finally {
         setIsLoading(false);
       }
@@ -56,7 +56,7 @@ export default function TripWorkspace() {
           <Map size={32} />
         </div>
         <h2 className="text-2xl font-bold text-[#1C1917] mb-2 font-serif">Trip Not Found</h2>
-        <p className="text-[#78716C] mb-8 text-center max-w-md">We couldn't load the details for this trip. It may not be ready yet or the service is unavailable.</p>
+        <p className="text-[#78716C] mb-8 text-center max-w-md">We couldn't load the details for this trip.</p>
         <Link to="/dashboard" className="bg-orange-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-orange-600 transition-colors">
           Return to Dashboard
         </Link>
@@ -64,44 +64,370 @@ export default function TripWorkspace() {
     );
   }
 
+  // Derived data — handle both new (_plan suffix) and legacy field names
+  const profile = trip.profile || {};
+  const dests = trip.destinations || [];
+  
+  // Schedule: try schedule_plan first, then schedule (legacy)
+  const schedulePlan = trip.schedule_plan || trip.schedule || {};
+  const schedule = schedulePlan?.itinerary || [];
+  
+  // Budget
+  const budget = trip.budget_plan || trip.budget || {};
+  
+  // Safety
+  const safety = trip.safety_plan || trip.safety || {};
+  
+  // Context (weather/crowd)
+  const context = trip.context_plan || trip.context || {};
+  
+  // Accommodation — support both new and old structures
+  const accPlan = trip.accommodation_plan || trip.accommodation || {};
+  const accommodations = (
+    // New structure: accommodation_plan.accommodation_plan[].hotel_options[] where is_selected
+    accPlan?.accommodation_plan?.flatMap?.(da =>
+      (da.hotel_options || []).filter(h => h.is_selected)
+    ) ||
+    // Fallback: any hotel with is_selected from any hotel_options
+    accPlan?.accommodation_plan?.flatMap?.(da =>
+      da.hotel_options || []
+    ) ||
+    []
+  );
+  
+  // Food options
+  const foodOptions = trip.food_options || trip.food || [];
+  
+  // Route
+  const route = trip.route_plan || trip.route || {};
+  
+  // Build ordered route stops from route_summary or fallback
+  const routeDestinations = (() => {
+    if (route?.route_summary?.start_location || route?.route_summary?.destinations?.length) {
+      const stops = [];
+      if (route.route_summary.start_location) stops.push(route.route_summary.start_location);
+      if (route.route_summary.destinations) stops.push(...route.route_summary.destinations);
+      return stops.filter(Boolean);
+    }
+    if (profile.starting_location || profile.must_visit_destinations?.length) {
+      const stops = [];
+      if (profile.starting_location) stops.push(profile.starting_location);
+      if (profile.must_visit_destinations) stops.push(...profile.must_visit_destinations);
+      return stops.filter(Boolean);
+    }
+    return dests.map(d => d.city || d.destination).filter(Boolean);
+  })();
+  
+  const routeSummary = routeDestinations.join(' → ') || 'Sri Lanka';
+  const duration = profile.duration_days || schedule.length || 0;
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'overview':
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-2xl p-6 border border-stone-200">
+              <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><MapPin className="text-orange-500"/> Route Summary</h3>
+              <div className="space-y-4">
+                {routeDestinations.map((destName, i) => {
+                  const destObj = dests.find(d => (d.city === destName || d.destination === destName));
+                  return (
+                    <div key={i} className="flex gap-4 items-start">
+                      <div className="mt-1 w-3 h-3 rounded-full bg-orange-400"></div>
+                      <div>
+                        <p className="font-bold text-[#1C1917]">{destName}</p>
+                        <p className="text-sm text-[#78716C] capitalize">{destObj?.attractions?.length || 0} Attractions</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="bg-white rounded-2xl p-6 border border-stone-200">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><DollarSign className="text-green-600"/> Budget Status</h3>
+                <p className="text-3xl font-bold">{budget.estimated_total_cost_lkr?.toLocaleString() || 0} LKR</p>
+                <p className={`text-sm mt-2 font-medium ${budget.within_budget ? 'text-green-600' : 'text-red-500'}`}>
+                  {budget.within_budget ? 'Within your budget constraints' : 'Exceeds budget constraints'}
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-2xl p-6 border border-stone-200">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><Cloud className="text-blue-500"/> Weather</h3>
+                <div className="space-y-4">
+                  {context.weather_predictions?.map((w, i) => (
+                    <div key={i} className="flex flex-col text-sm border-b border-stone-100 pb-3 last:border-0 last:pb-0">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="font-bold text-[#1C1917]">{w.location}</span>
+                        <span className="text-[#78716C] font-medium">{w.weather_condition} • {w.temperature}°C</span>
+                      </div>
+                      {w.recommendations && w.recommendations.length > 0 && (
+                        <p className="text-[#78716C] text-xs mt-1">Tip: {w.recommendations[0]}</p>
+                      )}
+                    </div>
+                  ))}
+                  {(!context.weather_predictions || context.weather_predictions.length === 0) && (
+                    <p className="text-sm text-[#78716C] italic">Weather predictions unavailable.</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case 'itinerary':
+        return (
+          <div className="space-y-6">
+            {schedule.map((day, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 border border-stone-200">
+                <div className="border-b border-stone-100 pb-4 mb-4 flex justify-between items-center">
+                  <h3 className="text-xl font-bold font-serif text-[#1C1917]">Day {day.day}</h3>
+                  <span className="text-orange-600 font-medium bg-orange-50 px-3 py-1 rounded-full text-sm">
+                    {day.city}
+                  </span>
+                </div>
+                <div className="space-y-4">
+                  {day.activities?.map((act, j) => (
+                    <div key={j} className="grid grid-cols-[100px_1fr] gap-4">
+                      <span className="text-sm font-bold text-[#78716C]">{act.time}</span>
+                      <div>
+                        <p className="text-[#1C1917] font-medium flex items-center gap-2">
+                          {act.name}
+                          <span className="text-xs font-normal px-2 py-0.5 rounded-full bg-stone-100 text-stone-500 capitalize">{act.type}</span>
+                        </p>
+                        {act.description && <p className="text-sm text-[#78716C] mt-1">{act.description}</p>}
+                      </div>
+                    </div>
+                  ))}
+                  {day.accommodation?.name && (
+                    <div className="grid grid-cols-[100px_1fr] gap-4 pt-4 border-t border-stone-50">
+                      <span className="text-sm font-bold text-[#78716C]">Stay</span>
+                      <p className="text-orange-600 font-medium">{day.accommodation.name}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      case 'route':
+        return (
+          <div className="bg-white rounded-2xl p-6 border border-stone-200">
+            <h3 className="font-bold text-lg mb-6">Generated Route Map</h3>
+            {route.route_summary && (
+              <div className="mb-6 p-4 bg-orange-50 rounded-xl border border-orange-100">
+                <p className="font-bold text-orange-900 mb-1">Trip Totals</p>
+                <p className="text-sm text-orange-800">
+                  Total Distance: {Math.round(route.route_summary.total_distance_km)} km • 
+                  Estimated Travel Time: {Math.floor(route.route_summary.total_estimated_duration_minutes / 60)}h {Math.round(route.route_summary.total_estimated_duration_minutes % 60)}m
+                </p>
+              </div>
+            )}
+
+            <div className="space-y-4">
+              {route.legs?.map((leg, i) => (
+                <div key={i} className="flex gap-4 p-4 border border-stone-100 rounded-xl bg-stone-50">
+                  <Navigation className="text-orange-500 mt-1" size={20} />
+                  <div>
+                    <p className="font-bold">{leg.from_location} to {leg.to_location}</p>
+                    {leg.road_route && (
+                      <p className="text-sm text-[#78716C] capitalize">
+                        {leg.road_route.mode || 'Drive'} • {Math.round(leg.road_route.distance_km)} km • 
+                        {Math.floor(leg.road_route.estimated_duration_minutes / 60)} hrs {Math.round(leg.road_route.estimated_duration_minutes % 60)} mins
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case 'budget':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white rounded-2xl p-6 border border-stone-200 flex justify-between items-center">
+              <div>
+                <p className="text-[#78716C] mb-1">Total Estimated Cost</p>
+                <p className="text-4xl font-bold text-[#1C1917]">{budget.estimated_total_cost_lkr?.toLocaleString() || 0} LKR</p>
+              </div>
+              <div className="text-right">
+                <p className="text-[#78716C] mb-1">Within Profile Budget</p>
+                <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-bold ${budget.within_budget ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                  {budget.within_budget ? <Check size={16}/> : <AlertTriangle size={16}/>}
+                  {budget.within_budget ? 'Yes' : 'No'}
+                </span>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-2xl p-6 border border-stone-200">
+              <h3 className="font-bold text-lg mb-4">Cost Breakdown</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center p-3 hover:bg-stone-50 rounded-lg">
+                  <span className="font-medium">Accommodation</span>
+                  <span className="font-bold">{budget.cost_breakdown?.accommodation_lkr?.toLocaleString() || 0} LKR</span>
+                </div>
+                <div className="flex justify-between items-center p-3 hover:bg-stone-50 rounded-lg">
+                  <span className="font-medium">Transport</span>
+                  <span className="font-bold">{budget.cost_breakdown?.transport_lkr?.toLocaleString() || 0} LKR</span>
+                </div>
+                <div className="flex justify-between items-center p-3 hover:bg-stone-50 rounded-lg">
+                  <span className="font-medium">Food</span>
+                  <span className="font-bold">{budget.cost_breakdown?.food_lkr?.toLocaleString() || 0} LKR</span>
+                </div>
+                <div className="flex justify-between items-center p-3 hover:bg-stone-50 rounded-lg">
+                  <span className="font-medium">Attractions</span>
+                  <span className="font-bold">{budget.cost_breakdown?.attractions_lkr?.toLocaleString() || 0} LKR</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case 'stay_food':
+        return (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-xl font-bold mb-4 font-serif flex items-center gap-2"><Home size={24} className="text-orange-500" /> Accommodation</h3>
+              <div className="space-y-4">
+                {accommodations.map((acc, i) => (
+                  <div key={i} className="bg-white rounded-2xl p-5 border border-orange-200 shadow-sm relative overflow-hidden">
+                    <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">SELECTED</div>
+                    <p className="text-sm font-bold text-orange-600 mb-1">{acc.city}</p>
+                    <h4 className="font-bold text-lg">{acc.name}</h4>
+                    {acc.recommendation_reasons && acc.recommendation_reasons.length > 0 && (
+                      <p className="text-sm text-[#78716C] mt-2 mb-3">{acc.recommendation_reasons[0]}</p>
+                    )}
+                    <p className="font-bold">{acc.price_information?.estimated_cost_per_night_lkr?.toLocaleString() || 0} LKR <span className="font-normal text-sm text-[#78716C]">/ night</span></p>
+                  </div>
+                ))}
+                {accommodations.length === 0 && (
+                  <p className="text-sm text-[#78716C] italic">No accommodations selected.</p>
+                )}
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-bold mb-4 font-serif flex items-center gap-2"><Utensils size={24} className="text-orange-500" /> Dining Options</h3>
+              <div className="space-y-4">
+                {foodOptions.map((food, i) => (
+                  <div key={i} className="bg-white rounded-2xl p-5 border border-stone-200">
+                    <p className="text-sm font-bold text-orange-600 mb-1">{food.city}</p>
+                    <h4 className="font-bold text-lg">{food.place_name || food.restaurant_name}</h4>
+                    {food.estimated_cost_per_person_lkr && (
+                      <p className="text-sm text-[#78716C] mt-1 capitalize">Est. {food.estimated_cost_per_person_lkr.toLocaleString()} LKR / person</p>
+                    )}
+                    {food.reasoning && (
+                      <p className="text-sm text-[#78716C] mt-2 italic">"{food.reasoning}"</p>
+                    )}
+                  </div>
+                ))}
+                {foodOptions.length === 0 && (
+                  <p className="text-sm text-[#78716C] italic">No dining options found.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      case 'info':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white rounded-2xl p-6 border border-stone-200">
+              <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><AlertTriangle className="text-orange-500"/> Regional Safety Risk</h3>
+              <div className="flex items-center justify-between mb-4 pb-4 border-b border-stone-100">
+                <span className="font-bold text-[#1C1917]">Overall Risk Level</span>
+                <span className={`px-4 py-1 rounded-full text-xs font-bold capitalize ${
+                  safety.risk_level === 'low' ? 'bg-green-100 text-green-700' :
+                  safety.risk_level === 'medium' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700'
+                }`}>{safety.risk_level || 'Unknown'}</span>
+              </div>
+              {safety.recommendations?.length > 0 && (
+                <div className="mt-4">
+                  <p className="font-bold text-sm mb-2 text-[#1C1917]">Safety Recommendations:</p>
+                  <ul className="list-disc pl-5 space-y-2 text-sm text-[#78716C]">
+                    {safety.recommendations.map((rec, i) => (
+                      <li key={i}>{rec}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            
+            {context.context_alerts?.length > 0 && (
+              <div className="bg-orange-50 rounded-2xl p-6 border border-orange-200 text-orange-900">
+                <h3 className="font-bold text-lg mb-3 flex items-center gap-2"><Info /> Travel Context Alerts</h3>
+                <ul className="list-disc pl-5 space-y-2">
+                  {context.context_alerts.map((alert, i) => (
+                    <li key={i}>{alert.message || alert}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {context.crowd_predictions?.length > 0 && (
+              <div className="bg-white rounded-2xl p-6 border border-stone-200">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><Info className="text-blue-500"/> Crowd Predictions</h3>
+                <div className="space-y-3">
+                  {context.crowd_predictions.map((cp, i) => (
+                    <div key={i} className="flex justify-between items-center text-sm border-b border-stone-100 pb-2 last:border-0 last:pb-0">
+                      <span className="font-medium text-[#1C1917]">{cp.location}</span>
+                      <span className="text-[#78716C] capitalize">{cp.crowd_level} Crowd</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#FFFCF8] text-[#1C1917] font-sans selection:bg-orange-100 pb-20">
       
       {/* Workspace Header */}
-      <header className="relative w-full h-[40vh] min-h-[300px] max-h-[500px] bg-[#0E1512] flex flex-col justify-between pt-6 px-4 md:px-8">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?q=80&w=2071&auto=format&fit=crop')] bg-cover bg-center opacity-40 mix-blend-overlay"></div>
+      <header className="relative w-full h-[35vh] min-h-[300px] bg-[#0E1512] flex flex-col justify-between pt-6 px-4 md:px-8">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?q=80&w=2071&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0E1512] via-transparent to-transparent"></div>
         
         <div className="relative z-10 flex justify-between items-center w-full max-w-7xl mx-auto">
           <Link to="/dashboard" className="text-white/80 hover:text-white flex items-center gap-2 transition-colors font-medium backdrop-blur-sm bg-black/20 px-4 py-2 rounded-full border border-white/10">
-            <ChevronLeft size={18} />
-            Dashboard
+            <ChevronLeft size={18} /> Dashboard
           </Link>
-          <div className="flex gap-3">
-            <button className="text-white/80 hover:text-white bg-black/20 p-2.5 rounded-full border border-white/10 transition-colors">
-              <Share size={18} />
-            </button>
-            <button className="text-white/80 hover:text-white bg-black/20 p-2.5 rounded-full border border-white/10 transition-colors">
-              <Edit2 size={18} />
-            </button>
-          </div>
+          <span className="bg-orange-500/20 text-orange-400 text-sm font-bold px-3 py-1 rounded-full border border-orange-500/20 backdrop-blur-md">
+            {trip.status}
+          </span>
         </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto pb-8">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="bg-orange-500/20 text-orange-400 text-sm font-bold px-3 py-1 rounded-full border border-orange-500/20 backdrop-blur-md">
-              {trip?.duration || 'Duration'}
-            </span>
-            <span className="text-stone-300 font-medium flex items-center gap-1">
-              <Calendar size={14} /> {trip?.dates || 'Dates'}
-            </span>
+          <div className="flex flex-wrap items-center gap-3 mb-3 text-stone-300 text-sm font-medium">
+            <span className="flex items-center gap-1"><Calendar size={14} /> {trip.start_date || profile.start_date ? new Date(trip.start_date || profile.start_date).toLocaleDateString() : 'Dates TBD'}</span>
+            <span>•</span>
+            <span>{duration} Days</span>
+            <span>•</span>
+            <span className="capitalize">{profile.travel_type || 'Couple'}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 font-serif tracking-tight">
-            {trip?.title || 'Your Sri Lankan Journey'}
-          </h1>
-          <p className="text-lg text-stone-300 font-light max-w-2xl">
-            {trip?.routeSummary || 'Route details will appear here once generated.'}
-          </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 font-serif tracking-tight">
+                {trip.trip_name || 'Sri Lanka Escape'}
+              </h1>
+              <p className="text-lg text-stone-300 font-light max-w-2xl flex items-center gap-2">
+                <MapPin size={16} className="text-orange-500" /> {routeSummary}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link to="/plan-trip" className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-sm font-semibold transition-all">
+                Edit Plan
+              </Link>
+              <button className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-sm font-semibold transition-all">
+                Replan Trip
+              </button>
+              <button className="px-5 py-2.5 rounded-full bg-red-500/20 hover:bg-red-500/40 text-red-100 backdrop-blur-md border border-red-500/30 text-sm font-semibold transition-all">
+                Cancel Trip
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -128,15 +454,8 @@ export default function TripWorkspace() {
       </div>
 
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
-        {/* Placeholder rendering since we have no real data yet */}
-        <div className="bg-white border border-[#EAE2D6] rounded-3xl p-12 flex flex-col items-center justify-center text-center shadow-sm">
-          <Info size={40} className="text-[#A8A29E] mb-4" />
-          <h3 className="text-xl font-bold text-[#1C1917] mb-2">No {tabs.find(t=>t.id === activeTab)?.label} Data Available</h3>
-          <p className="text-[#78716C] max-w-md">
-            This section will display real {tabs.find(t=>t.id === activeTab)?.label.toLowerCase()} content once the backend integration is complete.
-          </p>
-        </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        {renderTabContent()}
       </main>
     </div>
   );

@@ -1,4 +1,4 @@
-﻿import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, Edit2, Sparkles } from 'lucide-react';
 
 const Section = ({ title, onEdit, children }) => (
@@ -16,9 +16,16 @@ const Section = ({ title, onEdit, children }) => (
 export default function UnifiedReview() {
   const location = useLocation();
   const navigate = useNavigate();
-  const profileState = location.state?.profileState;
+  
+  // Support both old profileState and new standardized location.state
+  const profile = location.state?.traveller_profile || location.state?.profileState?.traveller_profile;
+  const source = location.state?.source || 'unknown';
+  const raw_user_request = location.state?.raw_user_request || '';
+  
+  // From old guided flow if it still exists
+  const planningPreferences = location.state?.profileState?.planning_preferences || {};
 
-  if (!profileState) {
+  if (!profile) {
     return (
       <div className="min-h-screen bg-[#FFFCF8] flex items-center justify-center flex-col gap-4">
         <p className="text-[#57534E]">No trip profile found.</p>
@@ -33,20 +40,15 @@ export default function UnifiedReview() {
     );
   }
 
-  const profile = profileState.traveller_profile;
-  const planningPreferences = profileState.planning_preferences;
-
-  if (!planningPreferences) {
-    return (
-      <div className="min-h-screen bg-[#FFFCF8] flex items-center justify-center flex-col gap-4">
-        <p className="text-[#57534E]">No trip plan found.</p>
-        <Link to="/plan-trip" className="text-orange-500 font-medium">Start Planning</Link>
-      </div>
-    );
-  }
-
   const handleGenerate = async () => {
-    navigate('/plan-trip/generating', { state: { profileState } });
+    // Send the standardized payload expected by TripGeneration
+    navigate('/plan-trip/generating', { 
+      state: { 
+        traveller_profile: profile,
+        raw_user_request: raw_user_request,
+        source: source
+      } 
+    });
   };
 
   return (

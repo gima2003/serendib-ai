@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { tripService } from '../services/tripService';
@@ -180,7 +180,10 @@ export default function GuidedPlanner() {
 
       navigate('/plan-trip/review', {
         state: {
-          profileState: response
+          traveller_profile: response.traveller_profile,
+          raw_user_request: "",
+          source: "guided",
+          profileState: response // Keep for any legacy dependency
         }
       });
 

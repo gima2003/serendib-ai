@@ -18,23 +18,34 @@ def test_trip_cost_calculation():
     
     destinations = Member2Destinations(
         destinations=[
-            {"city": "Kandy", "attractions": [{"name": "A1", "estimated_entry_cost_lkr": 500}]}
+            {"city": "Kandy", "attractions": [
+                {"name": "A1", "estimated_entry_cost_lkr": 500, "cost_type": "per_person"},
+                {"name": "A2", "estimated_entry_cost_lkr": 1000, "cost_type": "flat_rate"},
+                {"name": "A3", "estimated_entry_cost_lkr": 200, "cost_type": "unknown"}
+            ]}
         ]
     )
     
     food_acc = Member3FoodAcc(
         food_recommendations=[{"estimated_cost_per_person_lkr": 1000}],
-        accommodation_recommendations=[{"estimated_cost_per_night_lkr": 5000, "recommended_nights": 2}]
+        accommodation_recommendations=[
+            {"estimated_cost_per_night_lkr": 5000, "recommended_nights": 2, "required_rooms": 2},
+            {"estimated_cost_per_night_lkr": 2000, "recommended_nights": 1} # no required_rooms
+        ]
     )
     
-    acc_lkr, food_lkr, attr_lkr = calculate_trip_costs(profile, destinations, food_acc)
+    acc_lkr, food_lkr, attr_lkr, warnings = calculate_trip_costs(profile, destinations, food_acc)
     
     # Food: 1000 * 3 = 3000
     assert food_lkr == 3000.0
-    # Acc: 5000 * 2 = 10000
-    assert acc_lkr == 10000.0
-    # Attr: 500 (not multiplied)
-    assert attr_lkr == 500.0
+    # Acc: (5000 * 2 rooms * 2 nights) + (2000 * 1 night) = 20000 + 2000 = 22000
+    assert acc_lkr == 22000.0
+    # Attr: A1 (500 * 3) + A2 (1000) + A3 (200) = 1500 + 1000 + 200 = 2700
+    assert attr_lkr == 2700.0
+    
+    assert len(warnings) == 2
+    assert "Room requirement not provided for accommodation unknown. Cost assumed as complete group accommodation price." in warnings
+    assert "Attraction cost type unknown for 'A3'. Cost assumed as flat rate." in warnings
 
 def test_bus_calculation_valid():
     # Setup route response mock
@@ -149,13 +160,21 @@ def test_recommend_transport_and_savings():
     assert rec_low_budget.recommended_mode == "bus"
     
     # Test savings opportunity: Currently selected is train (2000), budget 1500.
-    savings = find_savings_opportunities(
+    savings, over_budget_amount, highest_cat, highest_pct = find_savings_opportunities(
         selected_transport=options[0], # train
         transport_options=options,
         estimated_total_cost_lkr=10000, # over a total budget of 5000
-        available_budget_lkr=5000
+        available_budget_lkr=5000,
+        acc_lkr=6000,
+        food_lkr=1000,
+        attr_lkr=1000
     )
     
-    assert len(savings) == 1
-    assert savings[0].alternative_option == "bus"
-    assert savings[0].potential_saving_lkr == 1000
+    assert over_budget_amount == 5000.0
+    assert highest_cat == "Accommodation"
+    assert highest_pct == 60.0
+    
+    # We should have at least 2 savings: one for accommodation (generic), one for transport
+    assert len(savings) >= 2
+    assert any(s.category == "Transport" and s.alternative_option == "bus" for s in savings)
+    assert any(s.category == "Accommodation" for s in savings)

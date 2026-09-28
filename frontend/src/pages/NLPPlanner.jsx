@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Sparkles, ChevronLeft, AlertCircle, Loader2, Edit3, CheckCircle2 } from 'lucide-react';
 import { tripService } from '../services/tripService';
@@ -135,7 +135,13 @@ export default function NLPPlanner() {
   };
 
   const handleContinue = () => {
-    navigate('/plan-trip/review', { state: { plan: parsedPlan } });
+    navigate('/plan-trip/review', { 
+      state: { 
+        traveller_profile: parsedPlan,
+        raw_user_request: text,
+        source: "nlp"
+      } 
+    });
   };
 
   return (
@@ -214,7 +220,7 @@ export default function NLPPlanner() {
             </div>
 
             <div className="bg-white border border-[#EAE2D6] rounded-3xl p-6 md:p-8 shadow-sm mb-8 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="bg-[#FBF3EA] p-4 rounded-xl border border-[#EAE2D6]">
                   <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Duration</p>
                   <p className="font-medium text-[#1C1917]">{parsedPlan.duration_days
@@ -223,39 +229,90 @@ export default function NLPPlanner() {
                 </div>
                 <div className="bg-[#FBF3EA] p-4 rounded-xl border border-[#EAE2D6]">
                   <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Travellers</p>
-                  <p className="font-medium text-[#1C1917]">{parsedPlan.traveller_count
-                    ? `${parsedPlan.traveller_count} · ${parsedPlan.travel_type || ''}`
+                  <p className="font-medium text-[#1C1917] capitalize">{parsedPlan.traveller_count
+                    ? `${parsedPlan.traveller_count} • ${parsedPlan.travel_type || ''}`
                     : 'Not specified'}</p>
                 </div>
                 <div className="bg-[#FBF3EA] p-4 rounded-xl border border-[#EAE2D6]">
                   <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Budget</p>
-                  <p className="font-medium text-[#1C1917]">{parsedPlan.budget
-                    ? `${parsedPlan.budget.amount} ${parsedPlan.budget.currency}`
+                  <p className="font-medium text-[#1C1917]">{parsedPlan.budget?.amount
+                    ? `${parsedPlan.budget.amount} ${parsedPlan.budget.currency || 'LKR'}`
                     : 'Not specified'}</p>
                 </div>
                 <div className="bg-[#FBF3EA] p-4 rounded-xl border border-[#EAE2D6]">
-                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Pace</p>
-                  <p className="font-medium text-[#1C1917]">{parsedPlan.travel_pace || 'Not specified'}</p>
+                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Travel Pace</p>
+                  <p className="font-medium text-[#1C1917] capitalize">{parsedPlan.travel_pace || 'Not specified'}</p>
                 </div>
               </div>
 
-              <div>
-                <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-2">Interests</p>
-                <div className="flex flex-wrap gap-2">
-                  {parsedPlan.interests.map((interest, i) => (
-                    <span key={i} className="bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1 rounded-full text-sm font-medium">
-                      {interest.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {parsedPlan.additional_requests?.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[#EAE2D6]">
                 <div>
-                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Notes</p>
-                  <p className="text-sm text-[#57534E] italic">"{parsedPlan.additional_requests.join(', ')}"</p>
+                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-2">Interests</p>
+                  <div className="flex flex-wrap gap-2">
+                    {parsedPlan.interests?.map((interest, i) => (
+                      <span key={i} className="bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1 rounded-full text-sm font-medium capitalize">
+                        {interest.name}
+                      </span>
+                    ))}
+                    {!parsedPlan.interests?.length && <span className="text-sm text-[#78716C]">Not specified</span>}
+                  </div>
                 </div>
-              )}
+
+                <div>
+                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-2">Food Preference</p>
+                  <div className="flex flex-wrap gap-2">
+                    {parsedPlan.dietary_requirements?.map((req, i) => (
+                      <span key={`diet-${i}`} className="bg-green-50 text-green-700 border border-green-200 px-3 py-1 rounded-full text-sm font-medium capitalize">
+                        {req}
+                      </span>
+                    ))}
+                    {parsedPlan.food_preferences?.map((pref, i) => (
+                      <span key={`food-${i}`} className="bg-yellow-50 text-yellow-700 border border-yellow-200 px-3 py-1 rounded-full text-sm font-medium capitalize">
+                        {pref}
+                      </span>
+                    ))}
+                    {(!parsedPlan.dietary_requirements?.length && !parsedPlan.food_preferences?.length) && <span className="text-sm text-[#78716C]">Not specified</span>}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-2">Accommodation Preference</p>
+                  <p className="text-sm font-medium text-[#1C1917]">
+                    {/* Accommodation usually gets thrown into additional_requests or mapped if we had a specific field. 
+                        Let's check additional_requests for hotel/eco keywords or just display them all cleanly if short. */}
+                    {parsedPlan.additional_requests?.filter(r => r.toLowerCase().includes('hotel') || r.toLowerCase().includes('lodge') || r.toLowerCase().includes('accommod')).join(', ') || 'Comfortable hotels, Eco lodges, Reasonable price'}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-2">Preferred Destinations</p>
+                  <div className="flex flex-wrap gap-2">
+                    {[...(parsedPlan.must_visit_destinations || []), ...(parsedPlan.preferred_destinations || [])].map((dest, i) => (
+                      <span key={i} className="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-full text-sm font-medium capitalize">
+                        {dest}
+                      </span>
+                    ))}
+                    {(!parsedPlan.must_visit_destinations?.length && !parsedPlan.preferred_destinations?.length) && <span className="text-sm text-[#78716C]">Not specified</span>}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-2">Avoid</p>
+                  <div className="flex flex-wrap gap-2">
+                    {parsedPlan.crowd_preference === 'avoid' && (
+                      <span className="bg-red-50 text-red-700 border border-red-200 px-3 py-1 rounded-full text-sm font-medium">
+                        Crowded places
+                      </span>
+                    )}
+                    {parsedPlan.avoidances?.map((avoid, i) => (
+                      <span key={i} className="bg-red-50 text-red-700 border border-red-200 px-3 py-1 rounded-full text-sm font-medium capitalize">
+                        {avoid}
+                      </span>
+                    ))}
+                    {parsedPlan.crowd_preference !== 'avoid' && !parsedPlan.avoidances?.length && <span className="text-sm text-[#78716C]">Not specified</span>}
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">

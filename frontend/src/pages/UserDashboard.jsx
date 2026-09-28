@@ -141,8 +141,24 @@ export default function UserDashboard() {
     const fetchDashboardData = async () => {
       try {
         setIsLoadingTrip(true);
-        const trip = await tripService.getCurrentTrip();
-        setCurrentTrip(trip);
+        const tripRes = await tripService.getUpcomingTrip();
+        if (tripRes && tripRes.data) {
+          const t = tripRes.data;
+          const duration = t.schedule?.schedule?.length || 0;
+          const profile = t.profile || {};
+          const dests = t.destinations || [];
+          
+          setCurrentTrip({
+            id: t.trip_id,
+            days: duration,
+            travellerType: profile.travel_type || 'Couple',
+            title: t.trip_name || 'Sri Lanka Escape',
+            dates: t.start_date ? new Date(t.start_date).toLocaleDateString() : 'Upcoming',
+            routeSummary: dests.map(d => d.city || d.destination).join(' → ') || 'Sri Lanka'
+          });
+        } else {
+          setCurrentTrip(null);
+        }
       } catch (error) {
         console.error('Failed to fetch trip:', error);
       } finally {
@@ -152,7 +168,16 @@ export default function UserDashboard() {
       try {
         setIsLoadingRecs(true);
         const recs = await tripService.getRecommendations();
-        setRecommendations(recs);
+        if (recs && recs.length > 0) {
+          setRecommendations(recs);
+        } else {
+          // Absolute fallback
+          setRecommendations([
+            { id: 1, title: 'Ella', tags: ['Nature', 'Hiking'], match: 92, image: 'ella' },
+            { id: 2, title: 'Kandy', tags: ['Culture', 'Nature'], match: 89, image: 'kandy' },
+            { id: 3, title: 'Galle', tags: ['Beach', 'Heritage'], match: 86, image: 'galle' },
+          ]);
+        }
       } catch (error) {
         console.error('Failed to fetch recommendations:', error);
       } finally {
