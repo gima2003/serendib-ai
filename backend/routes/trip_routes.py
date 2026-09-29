@@ -148,6 +148,32 @@ async def get_trip(trip_id: str, current_user: dict = Depends(get_current_user))
         raise HTTPException(status_code=404, detail="Trip not found")
     return serialize_mongo(trip)
 
+@router.patch("/{trip_id}/cancel")
+async def cancel_trip(trip_id: str, current_user: dict = Depends(get_current_user)):
+    """Cancel a specific trip if it is UPCOMING."""
+    user_id_str = str(current_user["_id"])
+    trip = await db.trips.find_one({"trip_id": trip_id, "user_id": user_id_str})
+    
+    if not trip:
+        raise HTTPException(status_code=404, detail="Trip not found")
+        
+    if trip.get("status") != "UPCOMING":
+        raise HTTPException(status_code=400, detail="Only UPCOMING trips can be cancelled")
+        
+    update_result = await db.trips.update_one(
+        {"trip_id": trip_id, "user_id": user_id_str},
+        {"$set": {
+            "status": "CANCELLED",
+            "cancelled_at": datetime.utcnow()
+        }}
+    )
+    
+    if update_result.modified_count == 1:
+        updated_trip = await db.trips.find_one({"trip_id": trip_id, "user_id": user_id_str})
+        return serialize_mongo(updated_trip)
+    else:
+        raise HTTPException(status_code=500, detail="Failed to cancel trip")
+
 @router.post("/generate")
 async def generate_trip_langgraph(request: GenerateTripRequest):
     """

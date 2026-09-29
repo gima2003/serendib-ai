@@ -25,6 +25,10 @@ export const tripService = {
     return apiClient.post('/api/trips', { trip_data: tripData });
   },
 
+  async cancelTrip(tripId) {
+    return apiClient.patch(`/api/trips/${tripId}/cancel`);
+  },
+
   // eslint-disable-next-line no-unused-vars
   async getCurrentBudget(tripId) {
     // return apiClient.get(`/api/trips/${tripId}/budget`);

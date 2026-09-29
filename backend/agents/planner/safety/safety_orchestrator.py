@@ -31,7 +31,12 @@ async def safety_plan(profile: Dict[str, Any], destinations: List[Dict[str, Any]
         dest_lat = destinations[-1].get("latitude", 0.0)
         dest_lon = destinations[-1].get("longitude", 0.0)
         
-    travel_date = profile.get("travel_date", "2024-01-01")
+    travel_date = (
+        profile.get("start_date")
+        or profile.get("travel_date")
+        or profile.get("travel_date_str")
+        or __import__("datetime").datetime.utcnow().strftime("%Y-%m-%d")
+    )
     activities = profile.get("activities", [])
     
     dest_hazard_info = check_hazard_level(dest_lat, dest_lon)

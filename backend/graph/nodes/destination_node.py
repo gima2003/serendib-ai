@@ -31,10 +31,11 @@ async def process_destination(state: TripState) -> Dict[str, Any]:
         logger.info(f"Profile preferred_destinations: {preferred}")
         
         # Call existing interest-based recommender
+        # Request more attractions per city so multi-day stays have enough content
         dest_result = recommend_from_traveller_profile(
             profile_dict,
-            top_destinations=5,   # Get more candidates to fill gaps
-            top_attractions=3,
+            top_destinations=5,
+            top_attractions=8,   # Increased from 3 to ensure rich itineraries
             debug=False
         )
         

@@ -117,6 +117,37 @@ EXTRACTION RULES:
 10. Preserve information that does not fit another field
     inside additional_requests when it is relevant to
     travel planning.
+
+11. DATE EXTRACTION RULES:
+
+    Extract start_date and end_date whenever the traveller
+    mentions a travel date, departure date, or starting date.
+
+    Return dates in ISO format: YYYY-MM-DD.
+
+    Assume the current year is 2026 unless a different year
+    is explicitly stated.
+
+    Examples:
+
+    "starting November 3rd" -> start_date: "2026-11-03"
+
+    "from November 3" -> start_date: "2026-11-03"
+
+    "I leave on the 3rd of November" -> start_date: "2026-11-03"
+
+    "arriving December 15" -> start_date: "2026-12-15"
+
+    "trip from March 10 to March 17" ->
+        start_date: "2026-03-10", end_date: "2026-03-17"
+
+    If only start_date is mentioned and duration_days is known,
+    do NOT compute end_date — leave it as null. The system will
+    compute it.
+
+    If end_date is explicitly stated, extract it.
+
+    If no date information is present, return null for both.
 """
 
 

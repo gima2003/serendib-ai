@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Calendar, MapPin, ChevronRight, Plane, Loader2 } from 'lucide-react';
+import { Calendar, MapPin, ChevronRight, ChevronLeft, Plane, Loader2 } from 'lucide-react';
 import { tripService } from '../services/tripService';
 import { authService } from '../services/authService';
 import { SerendibNavbar } from '../components/navigation/SerendibNavbar';
@@ -52,10 +52,13 @@ export default function MyTrips() {
       <SerendibNavbar isAuth={authService.isAuthenticated()} userName={authService.getCurrentUser()?.full_name || 'Traveller'} />
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-24">
+        <Link to="/dashboard" className="inline-flex items-center gap-2 text-[#78716C] hover:text-[#1C1917] transition-colors mb-6 font-medium">
+          <ChevronLeft size={18} /> Back to Dashboard
+        </Link>
         <h1 className="text-4xl font-serif font-bold text-[#1C1917] mb-8">My Trips</h1>
 
         <div className="flex gap-4 border-b border-stone-200 mb-8 pb-4 overflow-x-auto">
-          {['ALL', 'UPCOMING', 'SAVED', 'COMPLETED'].map(f => (
+          {['ALL', 'UPCOMING', 'SAVED', 'COMPLETED', 'CANCELLED'].map(f => (
             <button
               key={f}
               onClick={() => setFilter(f)}
@@ -86,7 +89,10 @@ export default function MyTrips() {
             {filteredTrips.map(trip => {
               const profile = trip.profile || {};
               const dests = trip.destinations || [];
-              const routeSummary = dests.map(d => d.city || d.destination).join(' → ');
+              const routePlan = trip.route_plan || trip.route || {};
+              const routeSummary = routePlan.route_summary 
+                ? [routePlan.route_summary.start_location, ...routePlan.route_summary.destinations].filter(Boolean).join(' → ')
+                : dests.map(d => d.city || d.destination).join(' → ');
               const duration = profile.duration_days || trip.schedule?.schedule?.length || trip.schedule?.days?.length || 0;
               
               const formatShortDate = (dateStr) => {
@@ -95,6 +101,15 @@ export default function MyTrips() {
                   const d = new Date(dateStr);
                   if (isNaN(d)) return null;
                   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                } catch { return null; }
+              };
+              
+              const formatLongDate = (dateStr) => {
+                if (!dateStr) return null;
+                try {
+                  const d = new Date(dateStr);
+                  if (isNaN(d)) return null;
+                  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                 } catch { return null; }
               };
               
@@ -107,28 +122,36 @@ export default function MyTrips() {
                 dateDisplay = sDate;
               }
 
+              const isCancelled = trip.status === 'CANCELLED';
+
               return (
-                <div key={trip.trip_id} className="bg-white border border-[#EAE2D6] rounded-3xl overflow-hidden hover:shadow-lg transition-shadow group">
+                <div key={trip.trip_id} className={`bg-white border border-[#EAE2D6] rounded-3xl overflow-hidden transition-shadow group ${isCancelled ? 'opacity-80' : 'hover:shadow-lg'}`}>
                   <div className="h-40 bg-stone-100 relative">
                     <img 
                       src={`https://source.unsplash.com/800x600/?srilanka,${dests[0]?.city || 'nature'}`}
                       alt="Trip Cover"
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full object-cover ${isCancelled ? 'grayscale opacity-60' : ''}`}
                       onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=2070&auto=format&fit=crop'; }}
                     />
-                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-orange-600">
+                    <div className={`absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold ${isCancelled ? 'text-red-600' : 'text-orange-600'}`}>
                       {trip.status}
                     </div>
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-[#1C1917] mb-2 truncate">{trip.trip_name || 'Sri Lanka Escape'}</h3>
                     
-                    <div className="flex items-center gap-2 text-sm text-[#78716C] mb-4">
-                      <Calendar size={16} />
-                      {dateDisplay}
-                      <span>•</span>
-                      {duration} Days
-                    </div>
+                    {isCancelled && trip.cancelled_at ? (
+                      <div className="text-sm text-red-600 font-medium mb-4">
+                        Cancelled on {formatLongDate(trip.cancelled_at)}
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 text-sm text-[#78716C] mb-4">
+                        <Calendar size={16} />
+                        {dateDisplay}
+                        <span>•</span>
+                        {duration} Days
+                      </div>
+                    )}
                     
                     <div className="flex items-start gap-2 text-sm text-[#78716C] mb-6">
                       <MapPin size={16} className="mt-1 flex-shrink-0" />
@@ -142,12 +165,14 @@ export default function MyTrips() {
                       >
                         View Trip
                       </Link>
-                      <Link 
-                        to={`/plan-trip/${trip.trip_id}`}
-                        className="p-2.5 bg-stone-100 hover:bg-stone-200 text-[#57534E] rounded-xl transition-colors"
-                      >
-                        <ChevronRight size={20} />
-                      </Link>
+                      {!isCancelled && (
+                        <Link 
+                          to={`/plan-trip/${trip.trip_id}`}
+                          className="p-2.5 bg-stone-100 hover:bg-stone-200 text-[#57534E] rounded-xl transition-colors"
+                        >
+                          <ChevronRight size={20} />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

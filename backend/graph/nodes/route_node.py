@@ -51,9 +51,9 @@ async def process_route(state: TripState) -> Dict[str, Any]:
         
         # Determine transport preferences
         from models.traveller_profile import TravelType
-        transport_prefs = ["car"]  # Default for comfort
-        if profile.travel_type == TravelType.family:
-            transport_prefs = ["car"]  # Family always prefers car for flexibility
+        transport_prefs = profile.transport_preferences if getattr(profile, "transport_preferences", None) else ["car"]
+        if profile.travel_type == TravelType.family and "car" not in transport_prefs:
+            transport_prefs.append("car")  # Family always prefers car for flexibility
         
         route_req = RouteRequest(
             trip_id=state.get("trip_id", "default_trip"),

@@ -14,8 +14,15 @@ import {
   Check,
   Calendar,
   CalendarDays,
+  User,
+  Settings,
+  CreditCard,
+  HelpCircle,
+  LogOut,
 } from "lucide-react";
 import { NavAnchor, BASE_MENUS, TRIPS_MENU, QUICK_CITIES, LANGUAGES, upcomingEvents, fmtDateLong } from "../common/Shared";
+import { authService } from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 /* ================================================================== */
 /*  SerendibNavbar — the one navigation bar used across the whole site. */
@@ -302,6 +309,129 @@ function SearchModal({ open, onClose }) {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Profile Menu (ChatGPT Style)                                      */
+/* ------------------------------------------------------------------ */
+
+function ProfileMenu({ onOpenProfile, userName, initial, isMobile }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const navigate = useNavigate();
+
+  const currentUser = authService.getCurrentUser() || {};
+  const email = currentUser.email || "traveller@example.com";
+  const fullName = userName || currentUser.full_name || currentUser.name || "Traveller";
+
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDoc);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const handleLogout = () => {
+    authService.logout();
+    navigate('/');
+  };
+
+  return (
+    <div ref={ref} className="relative">
+      {isMobile ? (
+        <button type="button" aria-label="Open profile" onClick={() => setOpen(!open)} className="grid h-10 w-10 place-items-center rounded-full hover:bg-black/5 transition-colors">
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-[11px] font-bold text-white">
+            {initial}
+          </span>
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          aria-label="Open profile"
+          className="group flex items-center gap-2.5 rounded-full border border-stone-200 py-1.5 pl-1.5 pr-4 text-sm font-semibold text-stone-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50 hover:shadow-[0_10px_25px_-12px_rgba(249,115,22,0.5)]"
+        >
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-[13px] font-bold text-white shadow-sm">
+            {initial}
+          </span>
+          <span className="max-w-[110px] truncate">{userName}</span>
+        </button>
+      )}
+
+      {open && (
+        <div className={`absolute z-50 ${isMobile ? '-right-2' : 'right-0'} top-full mt-2 w-72 rounded-2xl bg-white p-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-stone-100 ring-1 ring-black/5 menu-in`}>
+          <div className="flex items-center gap-3 px-3 py-3">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-[14px] font-bold text-white shadow-sm">
+              {initial}
+            </span>
+            <div className="flex min-w-0 flex-col text-left">
+              <span className="truncate text-[15px] font-bold text-stone-900">{fullName}</span>
+              <span className="truncate text-[13px] text-stone-500">{email}</span>
+            </div>
+          </div>
+          
+          <div className="my-1 h-px bg-stone-100" />
+          
+          <div className="px-3 py-2 space-y-1">
+            <button className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-[14px] font-medium text-stone-700 transition-colors hover:bg-stone-50">
+              <div className="flex items-center gap-2.5">
+                <CreditCard size={17} className="text-stone-400" />
+                <span>My Plan</span>
+              </div>
+              <span className="rounded-md bg-orange-100 px-2 py-0.5 text-[11px] font-bold text-orange-700">Plus</span>
+            </button>
+            <button className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-[14px] font-medium text-stone-700 transition-colors hover:bg-stone-50">
+              <Sparkles size={17} className="text-stone-400" />
+              Personalization
+            </button>
+          </div>
+          
+          <div className="my-1 h-px bg-stone-100" />
+          
+          <div className="px-3 py-2 space-y-1">
+            <button 
+              onClick={() => {
+                setOpen(false);
+                if (onOpenProfile) {
+                  onOpenProfile();
+                } else {
+                  navigate('/dashboard', { state: { openProfile: true } });
+                }
+              }}
+              className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-[14px] font-medium text-stone-700 transition-colors hover:bg-stone-50"
+            >
+              <User size={17} className="text-stone-400" />
+              Profile
+            </button>
+            <button className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-[14px] font-medium text-stone-700 transition-colors hover:bg-stone-50">
+              <Settings size={17} className="text-stone-400" />
+              Settings
+            </button>
+          </div>
+          
+          <div className="my-1 h-px bg-stone-100" />
+          
+          <div className="px-3 py-2 space-y-1">
+            <button className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-[14px] font-medium text-stone-700 transition-colors hover:bg-stone-50">
+              <HelpCircle size={17} className="text-stone-400" />
+              Help
+            </button>
+            <button onClick={handleLogout} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-[14px] font-medium text-red-600 transition-colors hover:bg-red-50">
+              <LogOut size={17} className="text-red-500" />
+              Log out
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Navbar                                                              */
 /* ------------------------------------------------------------------ */
 
@@ -491,17 +621,7 @@ export function SerendibNavbar({ isAuth = false, userName = "Traveller", onOpenP
             <span aria-hidden className={`mx-2 h-6 w-px ${solid ? "bg-stone-200" : "bg-white/25"}`} />
 
             {isAuth ? (
-              <button
-                type="button"
-                onClick={onOpenProfile}
-                aria-label="Open profile"
-                className="group flex items-center gap-2.5 rounded-full border border-stone-200 py-1.5 pl-1.5 pr-4 text-sm font-semibold text-stone-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50 hover:shadow-[0_10px_25px_-12px_rgba(249,115,22,0.5)]"
-              >
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-[13px] font-bold text-white shadow-sm">
-                  {initial}
-                </span>
-                <span className="max-w-[110px] truncate">{userName}</span>
-              </button>
+              <ProfileMenu onOpenProfile={onOpenProfile} userName={userName} initial={initial} isMobile={false} />
             ) : (
               <>
                 <Link
@@ -529,11 +649,7 @@ export function SerendibNavbar({ isAuth = false, userName = "Traveller", onOpenP
             </button>
             {isAuth && <CalendarQuickView solid={solid} onOpenFull={onOpenCalendar} />}
             {isAuth && (
-              <button type="button" aria-label="Open profile" onClick={onOpenProfile} className={iconBtn}>
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-[11px] font-bold text-white">
-                  {initial}
-                </span>
-              </button>
+              <ProfileMenu onOpenProfile={onOpenProfile} userName={userName} initial={initial} isMobile={true} />
             )}
             <button
               type="button"
@@ -623,7 +739,14 @@ export function SerendibNavbar({ isAuth = false, userName = "Traveller", onOpenP
             {isAuth ? (
               <button
                 type="button"
-                onClick={onOpenProfile}
+                onClick={() => {
+                  setMobileOpen(false);
+                  if (onOpenProfile) {
+                    onOpenProfile();
+                  } else {
+                    window.location.href = '/dashboard';
+                  }
+                }}
                 className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 py-3 text-[15px] font-semibold text-white"
               >
                 <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 text-[12px] font-bold">{initial}</span>

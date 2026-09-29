@@ -151,15 +151,13 @@ def build_itinerary(request: ScheduleAgentRequest) -> ScheduleResponse:
             daily_warnings: List[str] = []
             notes: List[str] = []
             
-            # --- MORNING: Travel (first day in city) or Activity ---
+            # --- MORNING: Travel or Activity ---
             if n == 0 and i > 0:
                 # Travel from previous city
                 prev_city = unique_ordered_cities[i - 1]
                 travel_duration = 120  # Default 2h
                 leg = next(
-                    (l for l in route_plan.legs
-                     if l.from_location == prev_city and l.to_location == city),
-                    None
+                    (l for l in route_plan.legs if l.from_location == prev_city and l.to_location == city), None
                 )
                 if leg and leg.road_route:
                     travel_duration = leg.road_route.estimated_duration_minutes
@@ -174,79 +172,97 @@ def build_itinerary(request: ScheduleAgentRequest) -> ScheduleResponse:
                 ))
                 notes.append(f"Travel to {city} occupies the morning.")
                 
-                # Afternoon attraction after travel
+                # Late Morning Attraction
                 if attr_index < len(attractions):
                     attr = attractions[attr_index]
                     daily_activities.append(ScheduledActivity(
                         activity_id=str(uuid.uuid4()),
-                        time="Afternoon",
+                        time="Late Morning",
                         name=attr.get("name", "Local Attraction"),
                         type="attraction",
                         description=attr.get("sub_category", ""),
                     ))
                     attr_index += 1
             else:
-                # Morning Attraction
+                # Morning Attraction 1
                 if attr_index < len(attractions):
                     attr = attractions[attr_index]
-                    weather_note = []
-                    if city in weather_data:
-                        weather_note.append(f"Weather: {weather_data[city].weather_condition} {weather_data[city].temperature:.0f}°C")
-                    
+                    weather_note = [f"Weather: {weather_data[city].weather_condition} {weather_data[city].temperature:.0f}°C"] if city in weather_data else []
                     daily_activities.append(ScheduledActivity(
                         activity_id=str(uuid.uuid4()),
-                        time="09:00",
+                        time="Morning",
                         name=attr.get("name", "Local Attraction"),
                         type="attraction",
                         description=attr.get("sub_category", ""),
                         warnings=safety_warnings.get(city, []) + weather_note
                     ))
                     attr_index += 1
-                else:
-                    # Generic free morning if we've exhausted attractions
+                
+                # Late Morning Attraction 2
+                if attr_index < len(attractions):
+                    attr = attractions[attr_index]
                     daily_activities.append(ScheduledActivity(
                         activity_id=str(uuid.uuid4()),
-                        time="09:00",
-                        name=f"Explore {city}",
-                        type="leisure",
-                        description=f"Free time to explore the local area of {city}.",
+                        time="Late Morning",
+                        name=attr.get("name", "Local Attraction"),
+                        type="attraction",
+                        description=attr.get("sub_category", ""),
                     ))
+                    attr_index += 1
+
+            if attr_index >= len(attractions) and not any(a.type == "attraction" for a in daily_activities):
+                daily_activities.append(ScheduledActivity(
+                    activity_id=str(uuid.uuid4()),
+                    time="Morning",
+                    name=f"Explore {city}",
+                    type="leisure",
+                    description=f"Free time to explore the local area of {city}.",
+                ))
             
             # --- LUNCH ---
             if rest_index < len(restaurants):
                 rest = restaurants[rest_index]
                 daily_activities.append(ScheduledActivity(
                     activity_id=str(uuid.uuid4()),
-                    time="12:30",
+                    time="Lunch",
                     name=rest.get("place_name", "Local Restaurant"),
                     type="meal",
                     description=rest.get("reasoning", f"Lunch at {rest.get('place_name', 'a local restaurant')}")
                 ))
                 rest_index += 1
-            else:
-                daily_activities.append(ScheduledActivity(
-                    activity_id=str(uuid.uuid4()),
-                    time="12:30",
-                    name=f"Lunch in {city}",
-                    type="meal",
-                    description="Explore local dining options."
-                ))
             
             # --- AFTERNOON ---
+            afternoon_added = False
+            # Afternoon Attraction 1
             if attr_index < len(attractions):
                 attr = attractions[attr_index]
                 daily_activities.append(ScheduledActivity(
                     activity_id=str(uuid.uuid4()),
-                    time="14:00",
+                    time="Afternoon",
                     name=attr.get("name", "Local Attraction"),
                     type="attraction",
                     description=attr.get("sub_category", ""),
                 ))
                 attr_index += 1
-            else:
+                afternoon_added = True
+                
+            # Late Afternoon / Evening Attraction 2
+            if attr_index < len(attractions):
+                attr = attractions[attr_index]
                 daily_activities.append(ScheduledActivity(
                     activity_id=str(uuid.uuid4()),
-                    time="14:00",
+                    time="Evening",
+                    name=attr.get("name", "Local Attraction"),
+                    type="attraction",
+                    description=attr.get("sub_category", ""),
+                ))
+                attr_index += 1
+                afternoon_added = True
+                
+            if not afternoon_added:
+                daily_activities.append(ScheduledActivity(
+                    activity_id=str(uuid.uuid4()),
+                    time="Afternoon",
                     name=f"Leisure time in {city}",
                     type="leisure",
                     description="Relax or explore at your own pace.",

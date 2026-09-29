@@ -165,23 +165,30 @@ def _calculate_train(route_response: RouteResponse, train_df: pd.DataFrame, tota
 
 def _calculate_taxi(route_response: RouteResponse, taxi_df: pd.DataFrame) -> List[TransportOption]:
     """
-    Evaluates taxi/rental options.
-    Returns price_available=False because "included km" semantics are unverified,
-    preserving the available data.
+    Evaluates taxi/rental options using base_fare + per_km * distance when pricing is valid.
+    If pricing semantics are unclear, falls back to per_km estimate only.
     """
     options = []
     
     if taxi_df.empty:
         return options
         
-    distance_km = route_response.route_summary.total_distance_km
+    distance_km = route_response.route_summary.total_distance_km if route_response.route_summary else 0.0
+    if not distance_km or distance_km <= 0:
+        # Estimate from legs if summary is missing
+        distance_km = sum(
+            (leg.road_route.distance_km if leg.road_route else 0)
+            for leg in route_response.legs
+        )
+    
+    seen_modes = set()
     
     for _, row in taxi_df.iterrows():
         provider = row.get('provider', 'Unknown')
         mode = row.get('mode', 'rental')
         
-        # If the mode is rental, we do not invent a base_fare * duration formula.
-        # We preserve the values but mark as unavailable for exact computation.
+        if mode in seen_modes:
+            continue  # Deduplicate by mode
         
         base_fare = row.get('base_fare')
         per_km = row.get('per_km')
@@ -195,13 +202,44 @@ def _calculate_taxi(route_response: RouteResponse, taxi_df: pd.DataFrame) -> Lis
                 reason=["Pricing is 'on_request' or invalid in dataset."]
             ))
             continue
-            
-        options.append(TransportOption(
-            mode="taxi",
-            provider=provider,
-            price_available=False, # As requested: do not compute unless semantics verified
-            reason=["Base fare and per_km semantics (e.g. daily included mileage) are unverified. Cannot compute exact trip price."],
-            breakdown={"raw_base_fare": base_fare, "raw_per_km": per_km, "route_distance_km": distance_km}
-        ))
+        
+        # Calculate estimated cost using distance
+        estimated_cost = 0.0
+        computed = False
+        
+        try:
+            if per_km and float(per_km) > 0 and distance_km > 0:
+                km_cost = float(per_km) * float(distance_km)
+                base = float(base_fare) if base_fare and float(base_fare) > 0 else 0.0
+                estimated_cost = base + km_cost
+                computed = True
+        except (TypeError, ValueError):
+            pass
+        
+        if computed and estimated_cost > 0:
+            seen_modes.add(mode)
+            options.append(TransportOption(
+                mode="taxi",
+                provider=provider,
+                estimated_cost_lkr=estimated_cost,
+                price_available=True,
+                coverage="complete",
+                reason=[f"Estimated using {distance_km:.0f} km × {per_km} LKR/km + base fare."],
+                breakdown={
+                    "base_fare": float(base_fare) if base_fare else 0.0,
+                    "per_km": float(per_km),
+                    "route_distance_km": distance_km,
+                    "calculated_cost": estimated_cost
+                }
+            ))
+        else:
+            options.append(TransportOption(
+                mode="taxi",
+                provider=provider,
+                price_available=False,
+                reason=["Could not compute cost: missing per_km or distance data."],
+                breakdown={"raw_base_fare": base_fare, "raw_per_km": per_km, "route_distance_km": distance_km}
+            ))
         
     return options
+

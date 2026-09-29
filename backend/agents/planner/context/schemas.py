@@ -11,6 +11,7 @@ class CrowdPrediction(BaseModel):
 
 class WeatherPrediction(BaseModel):
     location: str
+    date: str
     temperature: float
     rain_probability: int
     weather_condition: str

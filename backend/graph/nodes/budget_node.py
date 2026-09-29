@@ -49,7 +49,6 @@ async def process_budget(state: TripState) -> Dict[str, Any]:
             budget_amount = profile.budget.amount or 0.0
             raw_currency = (profile.budget.currency or "LKR").upper()
             if raw_currency in ("USD", "US$"):
-                # Convert to LKR (approx rate 300)
                 budget_amount = budget_amount * 300.0
                 budget_currency = "LKR"
             elif raw_currency in ("EUR", "GBP"):
@@ -63,7 +62,25 @@ async def process_budget(state: TripState) -> Dict[str, Any]:
         profile_dict["travellers"] = {"adults": adults, "children": children}
         profile_dict["budget"] = {"amount": budget_amount, "currency": budget_currency}
         profile_dict["travel_style"] = profile.travel_pace.value if profile.travel_pace else "moderate"
-        profile_dict["transport_preferences"] = ["car"]
+        
+        # Use real transport preferences from profile; default to mixed options if unspecified
+        transport_prefs = getattr(profile, "transport_preferences", [])
+        if not transport_prefs:
+            raw_transport_prefs = getattr(profile, "additional_requests", [])
+            for req in (raw_transport_prefs or []):
+                req_lower = req.lower()
+                if "car" in req_lower or "taxi" in req_lower or "private" in req_lower:
+                    transport_prefs.append("car")
+                elif "train" in req_lower:
+                    transport_prefs.append("train")
+                elif "bus" in req_lower:
+                    transport_prefs.append("bus")
+        
+        # Default: evaluate all modes if no specific preference stated
+        if not transport_prefs:
+            transport_prefs = ["bus", "train", "car"]
+            
+        profile_dict["transport_preferences"] = list(set(transport_prefs))
         
         member1_profile = Member1Profile(**profile_dict)
         
@@ -95,13 +112,42 @@ async def process_budget(state: TripState) -> Dict[str, Any]:
             mapped_destinations.append({"city": city_name, "attractions": mapped_attrs})
         member2_destinations = Member2Destinations(destinations=mapped_destinations)
         
-        # 3. Map Food — build FoodRecommendation objects with per-person cost estimate
+        # 3. Map Food — use actual per-person cost from food agent
+        # Food cost should be meals_per_day * days * travellers
+        # We estimate 2 restaurant meals/day (lunch + dinner), breakfast at accommodation
         food_recs = []
-        per_meal_estimate_lkr = 800.0  # Reasonable default per person per meal LKR
+        duration_days = profile.duration_days or 1
+        meals_per_day = 2  # lunch + dinner; breakfast assumed included with accommodation
+        
+        # Group food by city and create meal-count-aware estimates
+        from collections import defaultdict
+        city_foods = defaultdict(list)
         for fo in food_options:
             if isinstance(fo, dict):
-                cost = fo.get("estimated_cost_per_person_lkr") or per_meal_estimate_lkr
-                food_recs.append(FoodRecommendation(estimated_cost_per_person_lkr=float(cost)))
+                city = fo.get("city", "")
+                if city:
+                    city_foods[city].append(fo)
+        
+        # Distribute meals across days: each city gets proportional days
+        num_cities = len(set(d.get("city") or d.get("destination") for d in destinations)) or 1
+        days_per_city = max(1, duration_days // num_cities)
+        
+        for city, restaurants in city_foods.items():
+            if not restaurants:
+                continue
+            # Estimate meals for this city
+            city_meals = days_per_city * meals_per_day
+            for meal_idx in range(city_meals):
+                # Rotate through available restaurants
+                rest = restaurants[meal_idx % len(restaurants)]
+                cost = float(rest.get("estimated_cost_per_person_lkr") or 1500.0)
+                food_recs.append(FoodRecommendation(estimated_cost_per_person_lkr=cost))
+        
+        # If no food options at all, create a reasonable estimate
+        if not food_recs:
+            avg_meal_cost = 1500.0 if budget_amount > 50000 else 900.0
+            for _ in range(duration_days * meals_per_day):
+                food_recs.append(FoodRecommendation(estimated_cost_per_person_lkr=avg_meal_cost))
         
         # 4. Map Accommodation
         acc_recs = []

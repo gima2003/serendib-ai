@@ -24,6 +24,12 @@ export default function TripPreview() {
   const {
     profile,
     destinations,
+    route_plan,
+    budget_plan,
+    safety_plan,
+    context_plan,
+    schedule_plan,
+    // Legacy key support
     route,
     budget,
     safety,
@@ -31,15 +37,46 @@ export default function TripPreview() {
     schedule
   } = tripData;
 
-  const duration = profile?.duration_days || schedule?.schedule?.length || schedule?.days?.length || 0;
-  const firstCity = destinations?.[0]?.city || destinations?.[0]?.destination || 'Sri Lanka';
-  const lastCity = destinations?.[destinations.length - 1]?.city || destinations?.[destinations.length - 1]?.destination || '';
+  // Normalize: prefer _plan suffix (new), fall back to legacy keys
+  const routeData = route_plan || route || {};
+  const budgetData = budget_plan || budget || {};
+  const safetyData = safety_plan || safety || {};
+  const contextData = context_plan || context || {};
+  const scheduleData = schedule_plan || schedule || {};
 
-  const totalCost = budget?.estimated_total_cost || budget?.total_estimated_cost_lkr || budget?.total_cost || budget?.estimated_total_cost_lkr || 0;
-  const isWithinBudget = budget?.within_budget !== undefined ? budget.within_budget : true;
+  const duration = profile?.duration_days
+    || scheduleData?.itinerary?.length
+    || scheduleData?.schedule?.length
+    || scheduleData?.days?.length
+    || 0;
 
-  const weatherAlerts = context?.context_alerts || context?.alerts || [];
-  const crowdPredictions = context?.crowd_predictions || [];
+  const routeDestinations = (() => {
+    if (routeData?.route_summary?.start_location || routeData?.route_summary?.destinations?.length) {
+      const stops = [];
+      if (routeData.route_summary.start_location) stops.push(routeData.route_summary.start_location);
+      if (routeData.route_summary.destinations) stops.push(...routeData.route_summary.destinations);
+      return stops.filter(Boolean);
+    }
+    if (destinations?.length) {
+      return destinations.map(d => d.city || d.destination).filter(Boolean);
+    }
+    return [];
+  })();
+
+  const displayDestinations = routeDestinations.length > 0 ? routeDestinations : (destinations || []).map(d => ({ city: d.city || d.destination }));
+
+  const totalCost = budgetData?.estimated_total_cost_lkr
+    || budgetData?.estimated_total_cost
+    || budgetData?.total_estimated_cost_lkr
+    || budgetData?.total_cost
+    || 0;
+  const isWithinBudget = budgetData?.within_budget !== undefined ? budgetData.within_budget : true;
+
+  const weatherAlerts = contextData?.context_alerts || contextData?.alerts || [];
+  const weatherPredictions = contextData?.weather_predictions || [];
+
+  // Build safety route segments from both new and old field names
+  const safetySegments = safetyData?.route_segments || safetyData?.regional_assessments || [];
 
   const handleSaveTrip = async () => {
     setIsSaving(true);
@@ -85,15 +122,15 @@ export default function TripPreview() {
 
       <div className="max-w-4xl mx-auto px-6 -mt-8 relative z-20 space-y-8">
         
-        {/* Route Preview */}
+        {/* Route Preview — use routeDestinations for correct ordered stops */}
         <div className="bg-white rounded-2xl p-6 shadow-sm border border-orange-100 flex items-center gap-4 overflow-x-auto whitespace-nowrap">
-          {destinations?.map((dest, i) => (
+          {(routeDestinations.length > 0 ? routeDestinations : (destinations || []).map(d => d.city || d.destination)).filter(Boolean).map((cityName, i, arr) => (
             <div key={i} className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-orange-900 font-medium">
                 <MapPin size={18} className="text-orange-500" />
-                {dest.city || dest.destination}
+                {cityName}
               </div>
-              {i < destinations.length - 1 && (
+              {i < arr.length - 1 && (
                 <div className="w-8 h-[2px] bg-orange-200"></div>
               )}
             </div>
@@ -134,13 +171,15 @@ export default function TripPreview() {
               <h2 className="font-bold text-lg text-[#1C1917]">Weather Context</h2>
             </div>
             <div className="mt-auto">
-              <p className="text-[#57534E]">
-                {context?.weather_forecast?.map(w => `${w.location}: ${w.condition} (${w.temperature})`).join(', ') || 'Expect tropical weather.'}
+              <p className="text-[#57534E] text-sm">
+                {weatherPredictions.length > 0
+                  ? weatherPredictions.slice(0, 3).map(w => `${w.location}: ${w.weather_condition} ${Math.round(w.temperature)}°C`).join(' · ')
+                  : 'Expect tropical weather across Sri Lanka.'}
               </p>
               {weatherAlerts.length > 0 && (
                 <div className="mt-3 flex items-start gap-2 text-orange-700 bg-orange-50 p-3 rounded-lg text-sm">
                   <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
-                  <span>{weatherAlerts[0]}</span>
+                  <span>{typeof weatherAlerts[0] === 'string' ? weatherAlerts[0] : weatherAlerts[0]?.message || ''}</span>
                 </div>
               )}
             </div>
@@ -155,14 +194,23 @@ export default function TripPreview() {
               <h2 className="font-bold text-lg text-[#1C1917]">Safety Overview</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {safety?.regional_assessments?.slice(0, 3).map((r, i) => (
-                <div key={i} className="border border-stone-100 p-4 rounded-xl">
-                  <p className="font-bold text-[#1C1917] mb-1">{r.region}</p>
-                  <p className="text-sm text-[#78716C] capitalize">{r.risk_level} Risk</p>
-                </div>
-              )) || (
-                <p className="text-[#57534E]">No regional alerts.</p>
-              )}
+              {safetySegments.length > 0
+                ? safetySegments.slice(0, 3).map((r, i) => (
+                    <div key={i} className="border border-stone-100 p-4 rounded-xl">
+                      <p className="font-bold text-[#1C1917] mb-1">{r.from || r.to || r.region || 'Route Segment'}</p>
+                      <p className="text-sm text-[#78716C] capitalize">{r.risk_level || r.safety_score || 'Low'} Risk</p>
+                    </div>
+                  ))
+                : (
+                    <div className="md:col-span-3">
+                      <p className="text-[#57534E]">
+                        {safetyData?.risk_level
+                          ? `Overall risk level: ${safetyData.risk_level}. ${safetyData?.safety_explanation || ''}`
+                          : 'No regional alerts. Travel conditions are generally safe.'}
+                      </p>
+                    </div>
+                  )
+              }
             </div>
           </div>
         </div>

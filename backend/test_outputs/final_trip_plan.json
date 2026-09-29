@@ -10,7 +10,7 @@
       "city": "Colombo",
       "activities": [
         {
-          "activity_id": "30fe3f72-90d3-4aec-97c4-6084d53fbdea",
+          "activity_id": "f9d4b407-6879-44a4-8699-a6dc887b9bc0",
           "time": "09:00",
           "name": "Viharamahadevi Park",
           "type": "attraction",
@@ -23,7 +23,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "7369f5f8-21a0-456f-af4f-3927b3e584a5",
+          "activity_id": "4cf3e97e-cf76-4837-bf74-fa94c60f7cc9",
           "time": "12:30",
           "name": "Lunch in Colombo",
           "type": "meal",
@@ -34,7 +34,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "f5e0fc7a-022e-491e-99ba-c6693fd2fd94",
+          "activity_id": "0e083252-9aef-4c15-acd4-4fd270adc9e0",
           "time": "14:00",
           "name": "Colombo Lotus Tower",
           "type": "attraction",
@@ -45,7 +45,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "3041d44d-6f1b-4eb0-9b89-e84501c12bd8",
+          "activity_id": "14bfdba8-590f-456e-bbeb-333988598456",
           "time": "16:00",
           "name": "Check-in at Bliss Hotel",
           "type": "accommodation",
@@ -56,7 +56,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "254a3238-4761-4d48-8ba9-0871b121448b",
+          "activity_id": "74b70a36-1825-4ef3-aed4-5fcbd129dc89",
           "time": "19:00",
           "name": "Dinner in Colombo",
           "type": "meal",
@@ -68,7 +68,7 @@
         }
       ],
       "accommodation": {
-        "accommodation_id": "GEO_92947920",
+        "accommodation_id": "GEO_fa1156fc",
         "name": "Bliss Hotel",
         "city": "Colombo",
         "address": "Bliss Hotel, R. A. de Mel Mawatha, Bambalapitiya, Colombo 00300, Sri Lanka",
@@ -115,7 +115,7 @@
       "city": "Colombo",
       "activities": [
         {
-          "activity_id": "a02c04da-347e-4710-96a0-7ce02a9512ce",
+          "activity_id": "4f24f875-962b-45fb-959a-048620e0d382",
           "time": "09:00",
           "name": "Galle Face Green",
           "type": "attraction",
@@ -128,7 +128,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "cbcf6f67-37c7-45dd-99d2-a9e91ec479cb",
+          "activity_id": "b7042e86-a3da-4426-9962-9da16c135940",
           "time": "12:30",
           "name": "Lunch in Colombo",
           "type": "meal",
@@ -139,7 +139,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "ab0be00e-a4df-441c-aae4-7ffec29391f1",
+          "activity_id": "df725a49-9492-4292-bb87-576a356f4955",
           "time": "14:00",
           "name": "Leisure time in Colombo",
           "type": "leisure",
@@ -150,7 +150,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "6a18d49f-e35f-4ed2-9256-bc2d968e4e9a",
+          "activity_id": "0c190352-c0ae-46ca-97fd-e37e9f9c0a8c",
           "time": "19:00",
           "name": "Dinner in Colombo",
           "type": "meal",
@@ -161,7 +161,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "494bef56-9f8c-4b4d-bd16-b840b8743a40",
+          "activity_id": "62099caf-8401-406a-a1b5-665bbc9dbb81",
           "time": "Next Morning",
           "name": "Check-out and prepare for next destination",
           "type": "accommodation",
@@ -173,7 +173,7 @@
         }
       ],
       "accommodation": {
-        "accommodation_id": "GEO_92947920",
+        "accommodation_id": "GEO_fa1156fc",
         "name": "Bliss Hotel",
         "city": "Colombo",
         "address": "Bliss Hotel, R. A. de Mel Mawatha, Bambalapitiya, Colombo 00300, Sri Lanka",
@@ -220,7 +220,7 @@
       "city": "Nuwara Eliya",
       "activities": [
         {
-          "activity_id": "b891ee32-a4c3-4170-b616-345a782dbd44",
+          "activity_id": "174eb50f-b8d1-46ca-ab54-7cb36afbb5d2",
           "time": "Morning",
           "name": "Travel from Colombo to Nuwara Eliya",
           "type": "travel",
@@ -231,7 +231,7 @@
           "duration_minutes": 120
         },
         {
-          "activity_id": "ed6f1fe1-68f0-4de7-b119-ee446350ed11",
+          "activity_id": "4ba7726a-119f-4e27-b8c0-fc2baee8d3eb",
           "time": "Afternoon",
           "name": "Pedro Tea Estate",
           "type": "attraction",
@@ -242,7 +242,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "3421a6df-8053-4939-beec-70ce793b6d07",
+          "activity_id": "d52dd5ba-b0d0-4280-bb36-a5fff0e6d789",
           "time": "12:30",
           "name": "Lunch in Nuwara Eliya",
           "type": "meal",
@@ -253,7 +253,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "d065771e-73ae-4272-b6a4-672e9b708ada",
+          "activity_id": "b3292bfc-430c-4afd-8ebb-3e033a4bdbf7",
           "time": "14:00",
           "name": "World's End",
           "type": "attraction",
@@ -264,7 +264,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "07d9d946-ebf6-46ad-9aa1-46fa6faecf47",
+          "activity_id": "d570077a-6789-4ae3-aa6d-63c9be19d705",
           "time": "16:00",
           "name": "Check-in at Lochside",
           "type": "accommodation",
@@ -275,7 +275,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "4c1ad536-b46a-4dbf-bbd6-4d67c352dd1e",
+          "activity_id": "f6058d24-0c70-4f35-b36e-08a82cd18e5a",
           "time": "19:00",
           "name": "Dinner in Nuwara Eliya",
           "type": "meal",
@@ -287,7 +287,7 @@
         }
       ],
       "accommodation": {
-        "accommodation_id": "GEO_455ce09b",
+        "accommodation_id": "GEO_e865db95",
         "name": "Lochside",
         "city": "Nuwara Eliya",
         "address": "Lochside, Badulla Road, Nuwara Eliya 10000, Sri Lanka",
@@ -335,7 +335,7 @@
       "city": "Nuwara Eliya",
       "activities": [
         {
-          "activity_id": "319045a6-4745-4388-8b68-da02f0afb91c",
+          "activity_id": "e1873474-60c3-4b35-b476-c313c301ca42",
           "time": "09:00",
           "name": "Baker's Falls",
           "type": "attraction",
@@ -348,7 +348,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "3e24c420-5477-4582-a7a5-ea62af5d85d5",
+          "activity_id": "25a0d947-5d37-4190-9042-2f3a2eacf5c8",
           "time": "12:30",
           "name": "Lunch in Nuwara Eliya",
           "type": "meal",
@@ -359,7 +359,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "99d07bd9-e764-428c-ab74-0f15e21bb1be",
+          "activity_id": "f31ca500-06bf-4161-ba5f-af5456b44e3d",
           "time": "14:00",
           "name": "Leisure time in Nuwara Eliya",
           "type": "leisure",
@@ -370,7 +370,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "544ad71e-8a2a-4f73-8952-2f90ca0cc114",
+          "activity_id": "ab58a587-41c6-4f38-bf14-3079c1e63f60",
           "time": "19:00",
           "name": "Dinner in Nuwara Eliya",
           "type": "meal",
@@ -381,7 +381,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "fe482340-7791-4cf4-8493-9229310e8a69",
+          "activity_id": "bfa3039e-8f58-465e-9ed7-1a123d7a7933",
           "time": "Next Morning",
           "name": "Check-out and prepare for next destination",
           "type": "accommodation",
@@ -393,7 +393,7 @@
         }
       ],
       "accommodation": {
-        "accommodation_id": "GEO_455ce09b",
+        "accommodation_id": "GEO_e865db95",
         "name": "Lochside",
         "city": "Nuwara Eliya",
         "address": "Lochside, Badulla Road, Nuwara Eliya 10000, Sri Lanka",
@@ -440,7 +440,7 @@
       "city": "Galle",
       "activities": [
         {
-          "activity_id": "507feaa4-c400-4a75-ab08-f30cb0177d09",
+          "activity_id": "8379ccee-73fd-421e-9635-ba32a71e1822",
           "time": "Morning",
           "name": "Travel from Nuwara Eliya to Galle",
           "type": "travel",
@@ -451,7 +451,7 @@
           "duration_minutes": 120
         },
         {
-          "activity_id": "822f74f5-3e45-4e61-958c-dd2bcc9d5904",
+          "activity_id": "e41b51de-f45a-456d-9781-453a971be175",
           "time": "Afternoon",
           "name": "Galle Fort",
           "type": "attraction",
@@ -462,7 +462,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "00bcf47f-3e1b-45e4-a954-e0f62d71d72d",
+          "activity_id": "cd9f4317-d6fe-4b2f-b6cc-26986c2b0bed",
           "time": "12:30",
           "name": "Lunch in Galle",
           "type": "meal",
@@ -473,7 +473,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "29a89e02-e832-40f1-b42d-ed27f09b5316",
+          "activity_id": "17843617-91ae-4403-949d-e40598f5e148",
           "time": "14:00",
           "name": "Galle Fort Ramparts",
           "type": "attraction",
@@ -484,7 +484,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "2693dc6e-2ece-447e-b1e5-190125245002",
+          "activity_id": "40dac08b-c82e-457d-8e99-b50357ea7342",
           "time": "16:00",
           "name": "Check-in at Jamrock Villa",
           "type": "accommodation",
@@ -495,7 +495,7 @@
           "duration_minutes": null
         },
         {
-          "activity_id": "83f2998d-5e4b-4b57-967b-ffbc8579d362",
+          "activity_id": "974952aa-e186-4c1e-b3da-cf44aafe10a0",
           "time": "19:00",
           "name": "Dinner in Galle",
           "type": "meal",
@@ -507,7 +507,7 @@
         }
       ],
       "accommodation": {
-        "accommodation_id": "GEO_e7e68a79",
+        "accommodation_id": "GEO_b43ae587",
         "name": "Jamrock Villa",
         "city": "Galle",
         "address": "Jamrock Villa, Dolikanda Road, Gintota, Owakanda 80270, Sri Lanka",
@@ -552,13 +552,11 @@
   ],
   "budget_summary": {
     "available": 100000.0,
-    "estimated_cost": 37950.0,
-    "utilization_percent": 37.95,
+    "estimated_cost": 77000.0,
+    "utilization_percent": 77.0,
     "within_budget": true
   },
-  "overall_warnings": [
-    "The complete trip cost cannot be calculated because transport pricing is incomplete."
-  ],
+  "overall_warnings": [],
   "planning_notes": [
     "Itinerary covers 5 days across 3 destinations.",
     "Generated from specialist agent outputs."
