@@ -66,6 +66,10 @@ class Budget(BaseModel):
 
     flexibility: Optional[BudgetFlexibility] = None
 
+    # Indicates whether the traveller provided budget information.
+    # False means the traveller was asked but preferred not to disclose.
+    disclosed: bool = True
+
 
 class Interest(BaseModel):
     name: str = Field(
@@ -143,6 +147,7 @@ class LLMBudget(BaseModel):
     currency: Optional[str] = None
     scope: Optional[BudgetScope] = None
     flexibility: Optional[BudgetFlexibility] = None
+    disclosed: bool = True
 
 
 class LLMInterest(BaseModel):

@@ -33,3 +33,39 @@ def extract_traveller_profile(
         raise LLMServiceError(
             "All configured LLM providers failed."
         )
+
+def update_traveller_profile(
+        existing_profile_json: str,
+        missing_context: str,
+        user_answer: str,
+) -> TravellerProfile:
+
+    prompt = build_profile_update_prompt(
+        existing_profile_json,
+        missing_context,
+        user_answer,
+    )
+
+    try:
+        profile = extract_with_gemini(prompt)
+
+        return normalize_traveller_profile(profile)
+
+    except Exception as gemini_error:
+        print(
+            f"Gemini profile update failed: {gemini_error}"
+        )
+
+    try:
+        profile = extract_with_groq(prompt)
+
+        return normalize_traveller_profile(profile)
+
+    except Exception as groq_error:
+        print(
+            f"Groq profile update failed: {groq_error}"
+        )
+
+        raise LLMServiceError(
+            "All configured LLM providers failed."
+        )

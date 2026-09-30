@@ -1,3 +1,5 @@
+import profile
+
 from models.traveller_profile import TravellerProfile  
 from models.profile_readiness import profileReadiness
 
@@ -17,11 +19,16 @@ def check_profile_readiness(profile: TravellerProfile) -> TravellerProfile:
         missing_context.append("traveller_count")
 
 
-    destination_ready = len(profile.interests) > 0
+    destination_ready = (
+        len(profile.interests) > 0
+        or
+        len(profile.preferred_destinations) > 0
+        or
+        len(profile.must_visit_destinations) > 0
+    )
 
     if not destination_ready:
         missing_context.append("interests")
-
 
     food_ready = (
         len(profile.dietary_requirements) > 0
@@ -32,15 +39,30 @@ def check_profile_readiness(profile: TravellerProfile) -> TravellerProfile:
         missing_context.append("food_preferences")
 
 
-    planner_ready = any([
-        profile.budget is not None,
-        profile.travel_pace is not None,
-        profile.crowd_preference is not None,
-        len(profile.avoidances) > 0,
-        len(profile.must_visit_destinations) > 0,
-    ])
+    budget_ready = (
+        profile.budget is not None
+    )
 
-    if not planner_ready:
+    planning_preferences_ready = (
+        profile.crowd_preference is not None
+        or
+        len(profile.avoidances) > 0
+        or
+        len(profile.must_visit_destinations) > 0
+    )
+
+
+    planner_ready = (
+        budget_ready
+        and planning_preferences_ready
+    )
+
+
+    if profile.budget is None:
+        missing_context.append("budget")
+
+
+    if not planning_preferences_ready:
         missing_context.append("planning_preferences")
 
 
@@ -60,19 +82,38 @@ def check_profile_readiness(profile: TravellerProfile) -> TravellerProfile:
         missing_context=missing_context
     )
 
-CLARIFICATION_PRIORITY = [
-    "duration_days",
-    "traveller_count",
-    "destination_prefrences",
-    "food_preferences",
-    "planning_preferences"
+CLARIFICATION_GROUP_PRIORITY = [
+    [
+        "duration_days",
+        "traveller_count",
+    ],
+    [
+        "interests",
+    ],
+    [
+        "food_preferences",
+    ],
+    [
+        "budget",
+    ],
+    [
+        "planning_preferences",
+    ],
 ]
 
 def get_next_missing_context(
         missing_context: list[str]
-) -> str | None:
+) -> list[str]:
 
-    for context_name in CLARIFICATION_PRIORITY:
-        if context_name in missing_context:
-            return context_name
-    return None
+    for group in CLARIFICATION_GROUP_PRIORITY:
+
+        pending_group = [
+            context
+            for context in group
+            if context in missing_context
+        ]
+
+        if pending_group:
+            return pending_group
+
+    return []

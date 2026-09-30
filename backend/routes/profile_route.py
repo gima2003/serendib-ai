@@ -98,10 +98,10 @@ async def extract_profile(
             assistant=assistant,
         )
 
-    except LLMServiceError as error:
+    except Exception as e:
         raise HTTPException(
             status_code=503,
-            detail=str(error)
+            detail="All configured LLM providers failed."
         )
 
 @router.post(
@@ -179,11 +179,11 @@ async def handle_clarification_permission(
         )
 
     except Exception as error:
+        print("CLARIFICATION PERMISSION ERROR:", repr(error))
         raise HTTPException(
             status_code=500,
             detail=str(error),
         )
-
 @router.post(
     "/clarification/answer",
     response_model=ProfileConversationResponse,
@@ -201,6 +201,10 @@ async def handle_clarification_answer(
             current_context=request.current_context,
             user_answer=request.user_answer,
         )
+
+        print("\n🚀 FINAL PROFILE RESPONSE SENT TO FRONTEND")
+        print(updated_profile.model_dump_json(indent=2))
+        print(readiness.model_dump_json(indent=2))
 
         # Profile is now ready.
         if readiness.ready:
@@ -239,6 +243,7 @@ async def handle_clarification_answer(
         )
 
     except Exception as error:
+        print("CLARIFICATION PERMISSION ERROR:", repr(error))
         raise HTTPException(
             status_code=500,
             detail=str(error),

@@ -1,7 +1,22 @@
 ﻿import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sparkles, ChevronLeft, AlertCircle, Loader2, Edit3, CheckCircle2 } from 'lucide-react';
+import {
+  CheckCircle2,
+  Edit3,
+  Sparkles,
+  MapPin,
+  Users,
+  Wallet,
+  Clock3,
+  Camera,
+  Utensils,
+  Heart,
+  Compass,
+  ChevronLeft,
+  Loader2,
+} from "lucide-react";
 import { tripService } from '../services/tripService';
+
 
 export default function NLPPlanner() {
   const navigate = useNavigate();
@@ -17,6 +32,18 @@ export default function NLPPlanner() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [permissionGiven, setPermissionGiven] = useState(null);
   const [chatInput, setChatInput] = useState('');
+  const interestImages = {
+  beach:
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+  nature:
+    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
+  photography:
+    "https://images.unsplash.com/photo-1452587925148-ce544e77e70d",
+  culture:
+    "https://images.unsplash.com/photo-1564507592333-c60657eea523",
+  wildlife:
+    "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+};
 
   const handleUnderstandTrip = async () => {
     if (!text.trim()) return;
@@ -135,7 +162,11 @@ export default function NLPPlanner() {
   };
 
   const handleContinue = () => {
-    navigate('/plan-trip/review', { state: { plan: parsedPlan } });
+      navigate('/plan-trip/generating', {
+          state: {
+              profileState
+          }
+      });
   };
 
   return (
@@ -161,7 +192,7 @@ export default function NLPPlanner() {
         </div>
       </header>
 
-      <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-12 flex flex-col">
+      <main className="flex-1 max-w-6xl mx-auto w-full px-6 py-12">
         {!parsedPlan || !profileReady ? (
           <>
             <h1 className="text-3xl md:text-4xl font-bold text-[#1C1917] mb-3 font-serif text-center">
@@ -206,72 +237,273 @@ export default function NLPPlanner() {
           </>
         ) : (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="flex flex-col items-center justify-center mb-8">
-              <div className="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center mb-4 shadow-sm">
-                <CheckCircle2 size={32} />
+
+            {/* Header */}
+            <div className="flex flex-col items-center justify-center mb-10">
+
+              <div className="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center mb-5 shadow-sm">
+                <CheckCircle2 size={34} />
               </div>
-              <h2 className="text-2xl font-bold text-[#1C1917] font-serif text-center">We understood your trip as</h2>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1C1917] font-serif text-center">
+                Your journey is understood
+              </h2>
+
+              <p className="text-[#78716C] mt-3 text-center max-w-xl">
+                Serendib AI has captured your travel style and preferences.
+                Review the details before creating your personalized itinerary.
+              </p>
+
             </div>
 
-            <div className="bg-white border border-[#EAE2D6] rounded-3xl p-6 md:p-8 shadow-sm mb-8 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-[#FBF3EA] p-4 rounded-xl border border-[#EAE2D6]">
-                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Duration</p>
-                  <p className="font-medium text-[#1C1917]">{parsedPlan.duration_days
-                    ? `${parsedPlan.duration_days} days`
-                    : 'Not specified'}</p>
+
+            {/* Hero Card */}
+            <div className="relative overflow-hidden rounded-3xl shadow-lg mb-8 h-[280px]">
+
+              <img
+                src="https://images.unsplash.com/photo-1548013146-72479768bada"
+                alt="Sri Lanka travel"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+
+              <div className="absolute inset-0 bg-black/40" />
+
+
+              <div className="relative z-10 h-full flex flex-col justify-end p-8 text-white">
+
+                <h3 className="text-3xl font-bold font-serif">
+                  Sri Lanka Adventure
+                </h3>
+
+                <p className="mt-2 text-white/90">
+                  {parsedPlan.duration_days || "Flexible"} days ·{" "}
+                  {parsedPlan.traveller_count || "Unknown"} travellers
+                  {parsedPlan.travel_type &&
+                    ` · ${parsedPlan.travel_type}`}
+                </p>
+
+
+                <div className="flex flex-wrap gap-3 mt-5">
+
+                  <span className="bg-white/20 backdrop-blur px-4 py-2 rounded-full text-sm">
+                    🕒 {parsedPlan.travel_pace || "Flexible"} pace
+                  </span>
+
+
+                  <span className="bg-white/20 backdrop-blur px-4 py-2 rounded-full text-sm">
+                    💰{" "}
+                    {parsedPlan.budget
+                      ? `${parsedPlan.budget.amount} ${parsedPlan.budget.currency}`
+                      : "Flexible budget"}
+                  </span>
+
                 </div>
-                <div className="bg-[#FBF3EA] p-4 rounded-xl border border-[#EAE2D6]">
-                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Travellers</p>
-                  <p className="font-medium text-[#1C1917]">{parsedPlan.traveller_count
-                    ? `${parsedPlan.traveller_count} · ${parsedPlan.travel_type || ''}`
-                    : 'Not specified'}</p>
-                </div>
-                <div className="bg-[#FBF3EA] p-4 rounded-xl border border-[#EAE2D6]">
-                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Budget</p>
-                  <p className="font-medium text-[#1C1917]">{parsedPlan.budget
+
+              </div>
+
+            </div>
+
+
+
+            {/* Overview Cards */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+
+
+              <div className="bg-white border border-[#EAE2D6] rounded-2xl p-5">
+
+                <Clock3 className="text-orange-500 mb-3" size={22}/>
+
+                <p className="text-xs uppercase text-[#78716C]">
+                  Duration
+                </p>
+
+                <p className="font-semibold mt-1">
+                  {parsedPlan.duration_days || "Not specified"} days
+                </p>
+
+              </div>
+
+
+
+              <div className="bg-white border border-[#EAE2D6] rounded-2xl p-5">
+
+                <Users className="text-orange-500 mb-3" size={22}/>
+
+                <p className="text-xs uppercase text-[#78716C]">
+                  Travellers
+                </p>
+
+                <p className="font-semibold mt-1">
+                  {parsedPlan.traveller_count || "-"}
+                </p>
+
+              </div>
+
+
+
+              <div className="bg-white border border-[#EAE2D6] rounded-2xl p-5">
+
+                <Wallet className="text-orange-500 mb-3" size={22}/>
+
+                <p className="text-xs uppercase text-[#78716C]">
+                  Budget
+                </p>
+
+                <p className="font-semibold mt-1">
+
+                  {parsedPlan.budget
                     ? `${parsedPlan.budget.amount} ${parsedPlan.budget.currency}`
-                    : 'Not specified'}</p>
-                </div>
-                <div className="bg-[#FBF3EA] p-4 rounded-xl border border-[#EAE2D6]">
-                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Pace</p>
-                  <p className="font-medium text-[#1C1917]">{parsedPlan.travel_pace || 'Not specified'}</p>
-                </div>
+                    : "Not shared"}
+
+                </p>
+
               </div>
 
-              <div>
-                <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-2">Interests</p>
-                <div className="flex flex-wrap gap-2">
-                  {parsedPlan.interests.map((interest, i) => (
-                    <span key={i} className="bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1 rounded-full text-sm font-medium">
-                      {interest.name}
-                    </span>
-                  ))}
-                </div>
+
+
+              <div className="bg-white border border-[#EAE2D6] rounded-2xl p-5">
+
+                <Compass className="text-orange-500 mb-3" size={22}/>
+
+                <p className="text-xs uppercase text-[#78716C]">
+                  Style
+                </p>
+
+                <p className="font-semibold mt-1 capitalize">
+                  {parsedPlan.travel_pace || "Flexible"}
+                </p>
+
               </div>
 
-              {parsedPlan.additional_requests?.length > 0 && (
-                <div>
-                  <p className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">Notes</p>
-                  <p className="text-sm text-[#57534E] italic">"{parsedPlan.additional_requests.join(', ')}"</p>
-                </div>
-              )}
+
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button 
+
+
+
+            {/* Interests */}
+            <div className="bg-white border border-[#EAE2D6] rounded-3xl p-6 mb-8">
+
+
+              <div className="flex items-center gap-2 mb-5">
+
+                <Heart className="text-orange-500" size={22}/>
+
+                <h3 className="font-bold text-xl">
+                  Your travel personality
+                </h3>
+
+              </div>
+
+
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+
+                {parsedPlan.interests?.map((interest,index)=>(
+                  
+                  <div
+                    key={index}
+                    className="rounded-2xl overflow-hidden border border-[#EAE2D6] bg-[#FFFCF8]"
+                  >
+
+                    <img
+                      src={
+                        interestImages[interest.name]
+                        ||
+                        interestImages.nature
+                      }
+                      className="h-32 w-full object-cover"
+                    />
+
+
+                    <div className="p-4">
+
+                      <p className="font-semibold capitalize">
+                        {interest.name}
+                      </p>
+
+
+                      {interest.preference && (
+                        <p className="text-sm text-[#78716C] mt-1 capitalize">
+                          {interest.preference} preference
+                        </p>
+                      )}
+
+                    </div>
+
+                  </div>
+
+                ))}
+
+
+              </div>
+
+
+            </div>
+
+
+
+
+            {/* Notes */}
+            {parsedPlan.additional_requests?.length > 0 && (
+
+              <div className="bg-[#FBF3EA] border border-[#EAE2D6] rounded-3xl p-6 mb-8">
+
+                <p className="text-sm uppercase text-[#78716C] mb-2">
+                  Special requests
+                </p>
+
+
+                <p className="italic text-[#57534E]">
+                  "{parsedPlan.additional_requests.join(", ")}"
+                </p>
+
+              </div>
+
+            )}
+
+
+
+
+
+            {/* Actions */}
+            <div className="flex flex-col sm:flex-row gap-3 max-w-3xl mx-auto">
+
+
+              <button
                 onClick={() => setParsedPlan(null)}
-                className="flex-1 bg-white border border-[#EAE2D6] text-[#1C1917] py-3.5 rounded-xl font-semibold hover:border-orange-300 hover:bg-orange-50 transition-colors shadow-sm flex items-center justify-center gap-2"
+                className="flex-1 bg-white border border-[#EAE2D6]
+                py-3 rounded-xl font-medium text-sm
+                hover:bg-orange-50 transition 
+                flex items-center justify-center gap-2"
               >
-                <Edit3 size={18} /> Edit Details
+
+                <Edit3 size={16}/>
+                Edit Details
+
               </button>
-              <button 
+
+
+
+              <button
                 onClick={handleContinue}
-                className="flex-1 bg-orange-500 text-white py-3.5 rounded-xl font-semibold hover:bg-orange-600 transition-colors shadow-sm flex items-center justify-center gap-2"
+                className="flex-1 bg-orange-500 text-white
+                py-3 rounded-xl font-medium text-sm
+                hover:bg-orange-600 transition
+                shadow-lg flex items-center justify-center gap-2"
               >
-                Looks Good — Continue
+
+                <Sparkles size={18}/>
+                Create My Personalized Journey
+
               </button>
+
+
             </div>
+
+
           </div>
         )}
       </main>

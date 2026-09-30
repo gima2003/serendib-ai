@@ -26,10 +26,23 @@ def create_profile_state(
 
     # Build the state that can later be stored
     # inside the LangGraph shared state.
-    return ProfileState(
-        traveller_profile=profile,
-        profile_readiness=readiness,
-        profile_status=profile_status,
-        current_clarification_context=None,
-        clarification_permission_granted=None,
+    state = ProfileState(
+    traveller_profile=profile,
+    profile_readiness=readiness,
+    profile_status=profile_status,
+    current_clarification_context=None,
+    clarification_permission_granted=None,
     )
+
+    print("\n" + "=" * 60)
+    print("🧳 FINAL TRAVELLER PROFILE STATE")
+    print("=" * 60)
+
+    print(state.model_dump_json(indent=2))
+
+    print("=" * 60)
+    print("PROFILE STATUS:", state.profile_status)
+    print("READY:", state.profile_readiness.ready)
+    print("=" * 60 + "\n")
+
+    return state
