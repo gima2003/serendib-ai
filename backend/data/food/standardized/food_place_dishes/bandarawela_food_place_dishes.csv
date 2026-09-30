@@ -1,0 +1,21 @@
+link_id,place_id,food_id,dish_match_type,evidence_strength,source_url,notes
+BDR-L001,BAN-P001,BAN-F001,Review-supported specialty,High,https://www.tripadvisor.com/Restaurants-g1051532-zfp16-Bandarawela_Uva_Province.html,Dude's Hut review summary explicitly praises Sri Lankan rice and curry.
+BDR-L002,BAN-P001,BAN-F018,Review-supported specialty,High,https://www.tripadvisor.com/Restaurants-g1051532-zfp16-Bandarawela_Uva_Province.html,Mango juice explicitly praised in current listing snippet.
+BDR-L003,BAN-P002,BAN-F001,Review-supported specialty,High,https://www.tripadvisor.com/Restaurants-g1051532-zfp58-Bandarawela_Uva_Province.html,MistyVibe dinner listing explicitly mentions Sri Lankan rice and curry.
+BDR-L004,BAN-P003,BAN-F001,Core cuisine fit,High,https://www.tripadvisor.com/Restaurant_Review-g1051532-d12966571-Reviews-Gemi_Gedara_Restaurant-Bandarawela_Uva_Province.html,Gemi Gedara is locally positioned and reviewed for tasty Asian/Sri Lankan food.
+BDR-L005,BAN-P004,BAN-F001,Core cuisine fit,High,https://www.tripadvisor.com/Restaurant_Review-g1051532-d13148339-Reviews-Resto-Bandarawela_Uva_Province.html,Resto is a Sri Lankan/Asian restaurant.
+BDR-L006,BAN-P004,BAN-F016,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g1051532-d13148339-Reviews-Resto-Bandarawela_Uva_Province.html,Devilled fish explicitly mentioned.
+BDR-L007,BAN-P004,BAN-F017,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g1051532-d13148339-Reviews-Resto-Bandarawela_Uva_Province.html,Nasi goreng explicitly mentioned.
+BDR-L008,BAN-P009,BAN-F001,Home-style fit,High,https://www.facebook.com/resthouse.bandarawela/,Public page advertises homestyle meals.
+BDR-L009,BAN-P010,BAN-F001,Official/social cuisine evidence,High,https://www.facebook.com/TrainViewChalet/posts/-enjoy-delicious-authentic-sri-lankan-dishes-in-our-fresh-restaurant-with-a-sere/1454833466489678/,Public restaurant post explicitly promotes authentic Sri Lankan dishes.
+BDR-L010,BAN-P011,BAN-F001,Brand signal,Medium,https://www.facebook.com/p/Liberty-Cafe-61574178884064/,Public page advertises Sri Lankan delights.
+BDR-L011,BAN-P012,BAN-F019,Regional fit,High,https://bandarawelahotel.com/,Bandarawela Hotel positions the town as a tea-country base.
+BDR-L012,BAN-P013,BAN-F001,Experience fit,High,https://www.experiencetravelgroup.com/destinations/sri-lanka/experiences/lunch-at-a-social-enterprise-restaurant-bandarawela,Traditional locally sourced lunch is the centre of the experience.
+BDR-L013,BAN-P013,BAN-F002,Experience fit,Medium,https://www.experiencetravelgroup.com/destinations/sri-lanka/experiences/lunch-at-a-social-enterprise-restaurant-bandarawela,Locally sourced hill-country lunch supports vegetable-forward meal retrieval.
+BDR-L014,BAN-P014,BAN-F001,Review/listing signal,Medium,https://www.tripadvisor.com/Restaurants-g1051532-Bandarawela_Uva_Province.html,Nearby listing snippet explicitly mentions rice and curry.
+BDR-L015,BAN-P014,BAN-F018,Review/listing signal,Medium,https://www.tripadvisor.com/Restaurants-g1051532-Bandarawela_Uva_Province.html,Nearby listing snippet mentions mango juice.
+BDR-L016,BAN-P015,BAN-F019,Core category match,High,https://www.tripadvisor.com/Restaurants-g1051532-Bandarawela_Uva_Province.html,Tea centre listing supports tea recommendation.
+BDR-L017,BAN-P003,BAN-F008,Cuisine fit,Medium,https://www.tripadvisor.com/Restaurant_Review-g1051532-d12966571-Reviews-Gemi_Gedara_Restaurant-Bandarawela_Uva_Province.html,Dhal is a standard component of Sri Lankan rice and curry.
+BDR-L018,BAN-P003,BAN-F009,Cuisine fit,Medium,https://www.tripadvisor.com/Restaurant_Review-g1051532-d12966571-Reviews-Gemi_Gedara_Restaurant-Bandarawela_Uva_Province.html,Vegetable curry is a likely local rice-and-curry component; exact menu should be verified.
+BDR-L019,BAN-P010,BAN-F019,Regional/scenic fit,Medium,https://www.facebook.com/TrainViewChalet/posts/-enjoy-delicious-authentic-sri-lankan-dishes-in-our-fresh-restaurant-with-a-sere/1454833466489678/,Hill-country restaurant setting makes tea pairing relevant.
+BDR-L020,BAN-P018,BAN-F024,Dietary fit,Medium,https://www.tripadvisor.com/Restaurants-g1051532-Bandarawela_Uva_Province.html,Mixed Indian/Sri Lankan menu makes vegetarian roti-type meals plausible; verify live menu before strict recommendation.

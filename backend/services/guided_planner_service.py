@@ -143,6 +143,8 @@ def build_traveller_profile(
 
     profile = TravellerProfile(
         duration_days=duration_days,
+        start_date=request.start_date,
+        end_date=request.end_date,
 
         traveller_count=request.traveller_count,
 
@@ -176,6 +178,12 @@ def build_traveller_profile(
             request.crowd_preference
         ),
 
+        must_visit_destinations=[
+            region.strip()
+            for region in request.preferred_regions
+            if region.strip()
+        ],
+        
         preferred_destinations=[
             region.strip()
             for region in request.preferred_regions
@@ -185,6 +193,20 @@ def build_traveller_profile(
         additional_requests=build_additional_requests(
             request.additional_notes
         ),
+        
+        travel_style=request.travel_style,
+        
+        accommodation_preferences=[
+            item.strip().lower()
+            for item in request.accommodation_preferences
+            if item.strip()
+        ],
+        
+        transport_preferences=[
+            item.strip().lower()
+            for item in request.transport_preferences
+            if item.strip()
+        ],
     )
 
     return profile

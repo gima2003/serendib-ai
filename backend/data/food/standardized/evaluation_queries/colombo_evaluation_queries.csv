@@ -1,0 +1,9 @@
+query_id,city,sample_user_query,expected_filters_or_intent,relevant_place_ids,expected_result_text,notes
+COL-Q001,Colombo,I want cheap authentic rice and curry in Colombo.,budget + authentic-local + rice-and-curry,"CMB-P008,CMB-P009,CMB-P012",,Useful for IR precision testing.
+COL-Q002,Colombo,Where can I try lamprais in Colombo?,lamprais + heritage,CMB-P025,,DBU should rank highly.
+COL-Q003,Colombo,I am vegan and want Sri Lankan food for lunch.,vegan + Sri Lankan + lunch,CMB-P007,,Ranbath is the strongest high-confidence match.
+COL-Q004,Colombo,Where can I try Jaffna crab curry in Colombo?,northern-sri-lankan + crab,"CMB-P005,CMB-P006,CMB-P012",,Palmyrah has strongest official dish evidence.
+COL-Q005,Colombo,Recommend a local kottu place that is not expensive.,kottu + budget + local,"CMB-P010,CMB-P011,CMB-P023",,Good recommendation-ranking test.
+COL-Q006,Colombo,I want a polished cultural Sri Lankan dinner experience.,tourist-experience + premium + Sri Lankan,"CMB-P004,CMB-P001,CMB-P002",,Nuga Gama should rank highly for cultural experience.
+COL-Q007,Colombo,I want vegetarian breakfast near central Colombo.,vegetarian + breakfast,"CMB-P015,CMB-P016,CMB-P017,CMB-P007",,Distance requires live routing later.
+COL-Q008,Colombo,I want Colombo street food by the sea.,street-food + Galle Face,AREA:GALLE_FACE,,Should surface isso wade and Galle Face area rather than invent a restaurant.

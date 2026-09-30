@@ -14,6 +14,9 @@ from agents.planner.safety.safety_orchestrator import safety_plan
 from agents.planner.context.schemas import ContextResponse
 from agents.planner.context.context_orchestrator import context_plan
 
+from agents.accommodation.schemas import AccommodationRequest, AccommodationResponse
+from agents.accommodation.accommodation_service import process_accommodation_request
+
 router = APIRouter(prefix="/api/planner", tags=["Planner"])
 
 class BudgetRequest(BaseModel):
@@ -97,7 +100,7 @@ async def generate_trip(request: GenerateTripRequest):
     """
     try:
         # 1. Route Agent
-        route_destinations = [d.get("city", d.get("location", "")) for d in request.destinations]
+        route_destinations = [d.get("city") or d.get("destination") or d.get("location") or "Unknown" for d in request.destinations]
         route_req = RouteRequest(
             trip_id=request.profile.get("trip_id", "TRIP-1"),
             destinations=route_destinations,
@@ -108,9 +111,35 @@ async def generate_trip(request: GenerateTripRequest):
         route_resp = await route_plan(route_req)
         
         # 2. Budget Agent
+        # Mapped destinations for Budget Agent (handles Agent 2 format)
+        mapped_destinations = []
+        for d in request.destinations:
+            city_name = d.get("city") or d.get("destination") or "Unknown"
+            mapped_attrs = []
+            for a in d.get("attractions", []):
+                # parse entry_costs
+                # simplified parser for integration test
+                cost_val = 0.0
+                for c_str in a.get("entry_costs", []):
+                    if "LKR" in c_str:
+                        try:
+                            cost_val = float(c_str.split(":")[-1].replace("LKR", "").replace(",", "").strip())
+                            break
+                        except:
+                            pass
+                mapped_attrs.append({
+                    "name": a.get("name", "Unknown"),
+                    "estimated_entry_cost_lkr": cost_val,
+                    "cost_type": "per_person"
+                })
+            mapped_destinations.append({
+                "city": city_name,
+                "attractions": mapped_attrs
+            })
+
         budget_resp = await budget_plan(
             Member1Profile(**request.profile),
-            Member2Destinations(destinations=request.destinations),
+            Member2Destinations(destinations=mapped_destinations),
             Member3FoodAcc(**request.food_acc),
             route_resp
         )
@@ -137,4 +166,31 @@ async def generate_trip(request: GenerateTripRequest):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error during trip generation: {str(e)}")
+
+
+@router.post("/accommodation", response_model=AccommodationResponse)
+async def generate_accommodation_plan(request: AccommodationRequest):
+    """
+    Generate an accommodation plan (Agent 3).
+    """
+    try:
+        response = process_accommodation_request(request)
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+from agents.planner.schedule.schemas import ScheduleAgentRequest, ScheduleResponse
+from agents.planner.schedule.schedule_service import generate_schedule
+
+@router.post("/schedule", response_model=ScheduleResponse)
+async def generate_schedule_plan(request: ScheduleAgentRequest):
+    """
+    Generate a chronological schedule (Agent 5).
+    """
+    try:
+        response = await generate_schedule(request)
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 

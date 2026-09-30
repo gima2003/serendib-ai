@@ -1,0 +1,11 @@
+food_id,food_name,alternate_names,city,category,meal_type,typical_spice_level,vegetarian_possible,vegan_possible,key_components,description,city_relevance,recommendation_tags,source_type,source_url,verified_date,confidence
+NEL-F001,Ceylon Tea,,Nuwara Eliya,Drink,Any,,,,,Fresh hill-country tea,,,,,,
+NEL-F002,Tea & Scones,,Nuwara Eliya,Breakfast,Breakfast,Mild,,,,Colonial-style tea snack,,,,,,
+NEL-F003,Vegetable Rice & Curry,,Nuwara Eliya,Main,Lunch,Medium,,,,Fresh highland vegetables,,,,,,
+NEL-F004,String Hoppers,,Nuwara Eliya,Breakfast,Breakfast,Mild,,,,Traditional breakfast,,,,,,
+NEL-F005,Hoppers,,Nuwara Eliya,Breakfast,Breakfast/Dinner,Mild,,,,Sri Lankan hoppers,,,,,,
+NEL-F006,Potato Curry,,Nuwara Eliya,Side,Any,Mild,,,,Hill-country potatoes,,,,,,
+NEL-F007,Carrot Curry,,Nuwara Eliya,Side,Any,Mild,,,,Fresh local carrots,,,,,,
+NEL-F008,Leek Curry,,Nuwara Eliya,Side,Any,Mild,,,,Highland leek curry,,,,,,
+NEL-F009,Strawberries & Cream,,Nuwara Eliya,Dessert,Dessert,Sweet,,,,Nuwara Eliya strawberries,,,,,,
+NEL-F010,Curd & Treacle,,Nuwara Eliya,Dessert,Dessert,Sweet,,,,Traditional dessert,,,,,,

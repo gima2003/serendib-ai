@@ -13,7 +13,9 @@ import NLPPlanner from "./pages/NLPPlanner";
 import GuidedPlanner from "./pages/GuidedPlanner";
 import UnifiedReview from "./pages/UnifiedReview";
 import TripGeneration from "./pages/TripGeneration";
+import TripPreview from "./pages/TripPreview";
 import TripWorkspace from "./pages/TripWorkspace";
+import MyTrips from "./pages/MyTrips";
 
 const ProtectedRoute = ({ children }) => {
   const user = authService.getCurrentUser();
@@ -40,6 +42,13 @@ function App() {
         <Route path="/admin/dashboard" element={
           <ProtectedRoute>
             <AdminDashboard />
+          </ProtectedRoute>
+        } />
+        
+        {/* My Trips */}
+        <Route path="/my-trips" element={
+          <ProtectedRoute>
+            <MyTrips />
           </ProtectedRoute>
         } />
         
@@ -74,6 +83,13 @@ function App() {
         <Route path="/trip/:tripId" element={
           <ProtectedRoute>
             <TripWorkspace />
+          </ProtectedRoute>
+        } />
+        
+        {/* Trip Preview */}
+        <Route path="/trips/:tripId/preview" element={
+          <ProtectedRoute>
+            <TripPreview />
           </ProtectedRoute>
         } />
       </Routes>

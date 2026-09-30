@@ -1,0 +1,15 @@
+﻿source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC001,Official tourism,Sri Lanka Tourism Culinary Tourism,https://www.srilanka.travel/culinary-tourism/,Dish definitions / Sri Lankan cuisine context,0.98
+SRC002,Review aggregation,Tripadvisor Arugam Bay restaurants,https://www.tripadvisor.com/Restaurants-g3348959-Arugam_Bay_Eastern_Province.html,Current restaurant coverage / rankings,0.9
+SRC003,Review aggregation,Tripadvisor Arugam Bay seafood,https://www.tripadvisor.com/Restaurants-g3348959-c33-Arugam_Bay_Eastern_Province.html,Seafood-specific discovery / ranking,0.92
+SRC004,Review aggregation,The Sketch Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g3348959-d15073393-Reviews-The_Sketch-Arugam_Bay_Eastern_Province.html,Fresh fish / authenticity signals,0.9
+SRC005,Review aggregation,Mr Fisherman Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g3348959-d10520610-Reviews-Mr_Fisherman-Arugam_Bay_Eastern_Province.html,"Fresh-catch, crab, lobster and value signals",0.92
+SRC006,Review aggregation,The Green Room Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g3348959-d1733566-Reviews-The_Green_Room-Arugam_Bay_Eastern_Province.html,"Authenticity, dietary and dish-level signals",0.92
+SRC007,Review aggregation,Curry Leaves Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g3348959-d17439700-Reviews-Curry_Leaves-Arugam_Bay_Eastern_Province.html,Traditional food / mango curry signal,0.9
+SRC008,Official restaurant website,Dewa Restaurant & Cafe,https://dewasrilanka.com/,"Address, hours and fresh-seafood positioning",0.99
+SRC009,Official cooking-class website,Cook with Mona,https://cookwithmonaarugambay.wordpress.com/,Cooking class / rice-and-curry focus,0.99
+SRC010,Public social media,Cook with Mona Instagram,https://www.instagram.com/cookwithmona_arugambay/,Coconut roti / coconut sambol evidence,0.96
+SRC011,Community forum,Reddit Arugam Bay best places to eat,https://www.reddit.com/r/srilanka/comments/1nim5ms/arugam_bay_best_places_to_eat/,Local food recommendation signals,0.78
+SRC012,Community forum,Reddit Arugam Bay Sri Lankan food,https://www.reddit.com/r/srilanka/comments/1kpbybo/arugam_bay_sri_lankan_food/,Spice/authenticity and Tamil-food signals,0.7
+SRC013,Travel guide,Coastal Campaign Arugam Bay guide,https://www.thecoastalcampaign.com/arugam-bay-things-to-do/,Beach Hut fish-BBQ / social dining signal,0.82
+SRC014,Travel food guide,Girl on a Zebra Arugam Bay restaurants,https://girlonazebra.com/restaurants-in-arugam-bay/,Recent fresh-fish qualitative recommendation signal,0.78

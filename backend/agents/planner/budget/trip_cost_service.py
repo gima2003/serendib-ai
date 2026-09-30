@@ -5,12 +5,13 @@ def calculate_trip_costs(
     profile: Member1Profile,
     destinations: Member2Destinations,
     food_acc: Member3FoodAcc
-) -> tuple[float, float, float]:
+) -> tuple[float, float, float, list[str]]:
     """
     Calculates the non-transport costs of the trip.
-    Returns: (accommodation_lkr, food_lkr, attractions_lkr)
+    Returns: (accommodation_lkr, food_lkr, attractions_lkr, warnings)
     """
     total_travellers = profile.travellers.adults + profile.travellers.children
+    warnings = []
     
     # 1. Food Cost
     # Schema defines estimated_cost_per_person_lkr for each meal
@@ -19,20 +20,25 @@ def calculate_trip_costs(
         food_lkr += meal.estimated_cost_per_person_lkr * total_travellers
         
     # 2. Accommodation Cost
-    # Schema defines estimated_cost_per_night_lkr and recommended_nights
-    # We do NOT multiply by total_travellers because accommodation pricing is typically per room/unit
-    # unless specified as per person.
     acc_lkr = 0.0
     for acc in food_acc.accommodation_recommendations:
-        acc_lkr += acc.estimated_cost_per_night_lkr * acc.recommended_nights
+        if acc.is_selected:
+            if acc.required_rooms is not None:
+                acc_lkr += acc.estimated_cost_per_night_lkr * acc.required_rooms * acc.recommended_nights
+            else:
+                acc_lkr += acc.estimated_cost_per_night_lkr * acc.recommended_nights
+                warnings.append(f"Room requirement not provided for accommodation {acc.name or 'unknown'}. Cost assumed as complete group accommodation price.")
         
     # 3. Attraction Cost
-    # Schema defines estimated_entry_cost_lkr. 
-    # It does not explicitly define it as 'per_person', so we adhere strictly to the schema 
-    # and treat it as the total cost to avoid inventing a multiplier not supported by the schema.
     attr_lkr = 0.0
     for dest in destinations.destinations:
         for attr in dest.attractions:
-            attr_lkr += attr.estimated_entry_cost_lkr
+            if attr.cost_type == "per_person":
+                attr_lkr += attr.estimated_entry_cost_lkr * total_travellers
+            elif attr.cost_type == "flat_rate":
+                attr_lkr += attr.estimated_entry_cost_lkr
+            else:
+                attr_lkr += attr.estimated_entry_cost_lkr
+                warnings.append(f"Attraction cost type unknown for '{attr.name}'. Cost assumed as flat rate.")
             
-    return acc_lkr, food_lkr, attr_lkr
+    return acc_lkr, food_lkr, attr_lkr, warnings

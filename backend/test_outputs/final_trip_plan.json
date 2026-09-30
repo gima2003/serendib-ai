@@ -1,0 +1,564 @@
+{
+  "trip_id": "TRIP-FINAL-VAL",
+  "status": "completed",
+  "start_date": null,
+  "end_date": null,
+  "itinerary": [
+    {
+      "day": 1,
+      "date": null,
+      "city": "Colombo",
+      "activities": [
+        {
+          "activity_id": "f9d4b407-6879-44a4-8699-a6dc887b9bc0",
+          "time": "09:00",
+          "name": "Viharamahadevi Park",
+          "type": "attraction",
+          "description": "Urban Park / Garden",
+          "cost_lkr": null,
+          "warnings": [
+            "Weather: Clear 30°C"
+          ],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "4cf3e97e-cf76-4837-bf74-fa94c60f7cc9",
+          "time": "12:30",
+          "name": "Lunch in Colombo",
+          "type": "meal",
+          "description": "Explore local dining options.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "0e083252-9aef-4c15-acd4-4fd270adc9e0",
+          "time": "14:00",
+          "name": "Colombo Lotus Tower",
+          "type": "attraction",
+          "description": "Landmark / Observation Tower",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "14bfdba8-590f-456e-bbeb-333988598456",
+          "time": "16:00",
+          "name": "Check-in at Bliss Hotel",
+          "type": "accommodation",
+          "description": "Accommodation in Colombo.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "74b70a36-1825-4ef3-aed4-5fcbd129dc89",
+          "time": "19:00",
+          "name": "Dinner in Colombo",
+          "type": "meal",
+          "description": "Enjoy local cuisine.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": {
+        "accommodation_id": "GEO_fa1156fc",
+        "name": "Bliss Hotel",
+        "city": "Colombo",
+        "address": "Bliss Hotel, R. A. de Mel Mawatha, Bambalapitiya, Colombo 00300, Sri Lanka",
+        "latitude": 6.9032493,
+        "longitude": 79.8546167,
+        "accommodation_type": "Accommodation",
+        "rating": null,
+        "review_count": null,
+        "amenities": [],
+        "source": "Geoapify",
+        "source_confidence": "high",
+        "price_information": {
+          "type": "estimated_range",
+          "price_per_night_lkr": null,
+          "min_per_night_lkr": 8000.0,
+          "max_per_night_lkr": 15000.0,
+          "estimated_price_per_night_lkr": 11500.0,
+          "price_basis": "room",
+          "source": "estimated_accommodation_reference",
+          "confidence": "medium"
+        },
+        "distance_information": null,
+        "capacity_status": "unknown",
+        "maximum_guests": null,
+        "limitations": [],
+        "recommendation_score": 40.0,
+        "recommendation_reasons": [
+          "Slightly above estimated budget"
+        ],
+        "is_selected": true
+      },
+      "warnings": [
+        "Crowd Level: LOW — Regular visiting hours are fine",
+        "Weather: Clear, 30°C, Rain: 10%"
+      ],
+      "notes": [
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    },
+    {
+      "day": 2,
+      "date": null,
+      "city": "Colombo",
+      "activities": [
+        {
+          "activity_id": "4f24f875-962b-45fb-959a-048620e0d382",
+          "time": "09:00",
+          "name": "Galle Face Green",
+          "type": "attraction",
+          "description": "Urban Park / Seafront",
+          "cost_lkr": null,
+          "warnings": [
+            "Weather: Clear 30°C"
+          ],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "b7042e86-a3da-4426-9962-9da16c135940",
+          "time": "12:30",
+          "name": "Lunch in Colombo",
+          "type": "meal",
+          "description": "Explore local dining options.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "df725a49-9492-4292-bb87-576a356f4955",
+          "time": "14:00",
+          "name": "Leisure time in Colombo",
+          "type": "leisure",
+          "description": "Relax or explore at your own pace.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "0c190352-c0ae-46ca-97fd-e37e9f9c0a8c",
+          "time": "19:00",
+          "name": "Dinner in Colombo",
+          "type": "meal",
+          "description": "Enjoy local cuisine.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "62099caf-8401-406a-a1b5-665bbc9dbb81",
+          "time": "Next Morning",
+          "name": "Check-out and prepare for next destination",
+          "type": "accommodation",
+          "description": null,
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": {
+        "accommodation_id": "GEO_fa1156fc",
+        "name": "Bliss Hotel",
+        "city": "Colombo",
+        "address": "Bliss Hotel, R. A. de Mel Mawatha, Bambalapitiya, Colombo 00300, Sri Lanka",
+        "latitude": 6.9032493,
+        "longitude": 79.8546167,
+        "accommodation_type": "Accommodation",
+        "rating": null,
+        "review_count": null,
+        "amenities": [],
+        "source": "Geoapify",
+        "source_confidence": "high",
+        "price_information": {
+          "type": "estimated_range",
+          "price_per_night_lkr": null,
+          "min_per_night_lkr": 8000.0,
+          "max_per_night_lkr": 15000.0,
+          "estimated_price_per_night_lkr": 11500.0,
+          "price_basis": "room",
+          "source": "estimated_accommodation_reference",
+          "confidence": "medium"
+        },
+        "distance_information": null,
+        "capacity_status": "unknown",
+        "maximum_guests": null,
+        "limitations": [],
+        "recommendation_score": 40.0,
+        "recommendation_reasons": [
+          "Slightly above estimated budget"
+        ],
+        "is_selected": true
+      },
+      "warnings": [
+        "Crowd Level: LOW — Regular visiting hours are fine",
+        "Weather: Clear, 30°C, Rain: 10%"
+      ],
+      "notes": [
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    },
+    {
+      "day": 3,
+      "date": null,
+      "city": "Nuwara Eliya",
+      "activities": [
+        {
+          "activity_id": "174eb50f-b8d1-46ca-ab54-7cb36afbb5d2",
+          "time": "Morning",
+          "name": "Travel from Colombo to Nuwara Eliya",
+          "type": "travel",
+          "description": "Estimated travel time: 120 minutes by car.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": 120
+        },
+        {
+          "activity_id": "4ba7726a-119f-4e27-b8c0-fc2baee8d3eb",
+          "time": "Afternoon",
+          "name": "Pedro Tea Estate",
+          "type": "attraction",
+          "description": "Tea Estate",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "d52dd5ba-b0d0-4280-bb36-a5fff0e6d789",
+          "time": "12:30",
+          "name": "Lunch in Nuwara Eliya",
+          "type": "meal",
+          "description": "Explore local dining options.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "b3292bfc-430c-4afd-8ebb-3e033a4bdbf7",
+          "time": "14:00",
+          "name": "World's End",
+          "type": "attraction",
+          "description": "Viewpoint",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "d570077a-6789-4ae3-aa6d-63c9be19d705",
+          "time": "16:00",
+          "name": "Check-in at Lochside",
+          "type": "accommodation",
+          "description": "Accommodation in Nuwara Eliya.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "f6058d24-0c70-4f35-b36e-08a82cd18e5a",
+          "time": "19:00",
+          "name": "Dinner in Nuwara Eliya",
+          "type": "meal",
+          "description": "Enjoy local cuisine.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": {
+        "accommodation_id": "GEO_e865db95",
+        "name": "Lochside",
+        "city": "Nuwara Eliya",
+        "address": "Lochside, Badulla Road, Nuwara Eliya 10000, Sri Lanka",
+        "latitude": 6.9547218,
+        "longitude": 80.7789217,
+        "accommodation_type": "Accommodation",
+        "rating": null,
+        "review_count": null,
+        "amenities": [],
+        "source": "Geoapify",
+        "source_confidence": "high",
+        "price_information": {
+          "type": "estimated_range",
+          "price_per_night_lkr": null,
+          "min_per_night_lkr": 8000.0,
+          "max_per_night_lkr": 15000.0,
+          "estimated_price_per_night_lkr": 11500.0,
+          "price_basis": "room",
+          "source": "estimated_accommodation_reference",
+          "confidence": "medium"
+        },
+        "distance_information": null,
+        "capacity_status": "unknown",
+        "maximum_guests": null,
+        "limitations": [],
+        "recommendation_score": 40.0,
+        "recommendation_reasons": [
+          "Slightly above estimated budget"
+        ],
+        "is_selected": true
+      },
+      "warnings": [
+        "Crowd Level: LOW — Regular visiting hours are fine",
+        "Weather: Rain, 16°C, Rain: 60%"
+      ],
+      "notes": [
+        "Travel to Nuwara Eliya occupies the morning.",
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    },
+    {
+      "day": 4,
+      "date": null,
+      "city": "Nuwara Eliya",
+      "activities": [
+        {
+          "activity_id": "e1873474-60c3-4b35-b476-c313c301ca42",
+          "time": "09:00",
+          "name": "Baker's Falls",
+          "type": "attraction",
+          "description": "Waterfall",
+          "cost_lkr": null,
+          "warnings": [
+            "Weather: Rain 16°C"
+          ],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "25a0d947-5d37-4190-9042-2f3a2eacf5c8",
+          "time": "12:30",
+          "name": "Lunch in Nuwara Eliya",
+          "type": "meal",
+          "description": "Explore local dining options.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "f31ca500-06bf-4161-ba5f-af5456b44e3d",
+          "time": "14:00",
+          "name": "Leisure time in Nuwara Eliya",
+          "type": "leisure",
+          "description": "Relax or explore at your own pace.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "ab58a587-41c6-4f38-bf14-3079c1e63f60",
+          "time": "19:00",
+          "name": "Dinner in Nuwara Eliya",
+          "type": "meal",
+          "description": "Enjoy local cuisine.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "bfa3039e-8f58-465e-9ed7-1a123d7a7933",
+          "time": "Next Morning",
+          "name": "Check-out and prepare for next destination",
+          "type": "accommodation",
+          "description": null,
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": {
+        "accommodation_id": "GEO_e865db95",
+        "name": "Lochside",
+        "city": "Nuwara Eliya",
+        "address": "Lochside, Badulla Road, Nuwara Eliya 10000, Sri Lanka",
+        "latitude": 6.9547218,
+        "longitude": 80.7789217,
+        "accommodation_type": "Accommodation",
+        "rating": null,
+        "review_count": null,
+        "amenities": [],
+        "source": "Geoapify",
+        "source_confidence": "high",
+        "price_information": {
+          "type": "estimated_range",
+          "price_per_night_lkr": null,
+          "min_per_night_lkr": 8000.0,
+          "max_per_night_lkr": 15000.0,
+          "estimated_price_per_night_lkr": 11500.0,
+          "price_basis": "room",
+          "source": "estimated_accommodation_reference",
+          "confidence": "medium"
+        },
+        "distance_information": null,
+        "capacity_status": "unknown",
+        "maximum_guests": null,
+        "limitations": [],
+        "recommendation_score": 40.0,
+        "recommendation_reasons": [
+          "Slightly above estimated budget"
+        ],
+        "is_selected": true
+      },
+      "warnings": [
+        "Crowd Level: LOW — Regular visiting hours are fine",
+        "Weather: Rain, 16°C, Rain: 60%"
+      ],
+      "notes": [
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    },
+    {
+      "day": 5,
+      "date": null,
+      "city": "Galle",
+      "activities": [
+        {
+          "activity_id": "8379ccee-73fd-421e-9635-ba32a71e1822",
+          "time": "Morning",
+          "name": "Travel from Nuwara Eliya to Galle",
+          "type": "travel",
+          "description": "Estimated travel time: 120 minutes by car.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": 120
+        },
+        {
+          "activity_id": "e41b51de-f45a-456d-9781-453a971be175",
+          "time": "Afternoon",
+          "name": "Galle Fort",
+          "type": "attraction",
+          "description": "Historic Site",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "cd9f4317-d6fe-4b2f-b6cc-26986c2b0bed",
+          "time": "12:30",
+          "name": "Lunch in Galle",
+          "type": "meal",
+          "description": "Explore local dining options.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "17843617-91ae-4403-949d-e40598f5e148",
+          "time": "14:00",
+          "name": "Galle Fort Ramparts",
+          "type": "attraction",
+          "description": "Historic / Scenic",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "40dac08b-c82e-457d-8e99-b50357ea7342",
+          "time": "16:00",
+          "name": "Check-in at Jamrock Villa",
+          "type": "accommodation",
+          "description": "Accommodation in Galle.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "974952aa-e186-4c1e-b3da-cf44aafe10a0",
+          "time": "19:00",
+          "name": "Dinner in Galle",
+          "type": "meal",
+          "description": "Enjoy local cuisine.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": {
+        "accommodation_id": "GEO_b43ae587",
+        "name": "Jamrock Villa",
+        "city": "Galle",
+        "address": "Jamrock Villa, Dolikanda Road, Gintota, Owakanda 80270, Sri Lanka",
+        "latitude": 6.0836121,
+        "longitude": 80.1553184,
+        "accommodation_type": "Accommodation",
+        "rating": null,
+        "review_count": null,
+        "amenities": [],
+        "source": "Geoapify",
+        "source_confidence": "high",
+        "price_information": {
+          "type": "estimated_range",
+          "price_per_night_lkr": null,
+          "min_per_night_lkr": 8000.0,
+          "max_per_night_lkr": 15000.0,
+          "estimated_price_per_night_lkr": 11500.0,
+          "price_basis": "room",
+          "source": "estimated_accommodation_reference",
+          "confidence": "medium"
+        },
+        "distance_information": null,
+        "capacity_status": "unknown",
+        "maximum_guests": null,
+        "limitations": [],
+        "recommendation_score": 40.0,
+        "recommendation_reasons": [
+          "Slightly above estimated budget"
+        ],
+        "is_selected": true
+      },
+      "warnings": [
+        "Crowd Level: LOW — Regular visiting hours are fine",
+        "Weather: Clear, 30°C, Rain: 10%"
+      ],
+      "notes": [
+        "Travel to Galle occupies the morning.",
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    }
+  ],
+  "budget_summary": {
+    "available": 100000.0,
+    "estimated_cost": 77000.0,
+    "utilization_percent": 77.0,
+    "within_budget": true
+  },
+  "overall_warnings": [],
+  "planning_notes": [
+    "Itinerary covers 5 days across 3 destinations.",
+    "Generated from specialist agent outputs."
+  ]
+}

@@ -1,0 +1,11 @@
+food_id,food_name,alternate_names,city,category,meal_type,typical_spice_level,vegetarian_possible,vegan_possible,key_components,description,city_relevance,recommendation_tags,source_type,source_url,verified_date,confidence
+GAL-F001,Seafood Rice & Curry,,Galle,Main,Lunch/Dinner,Medium,,,,Fresh coastal seafood with Sri Lankan curries,,,,,,
+GAL-F002,Fish Ambul Thiyal,,Galle,Main,Lunch/Dinner,Medium-High,,,,Sour dry fish curry,,,,,,
+GAL-F003,Isso Wade,,Galle,Street Food,Snack,Medium,,,,Prawn fritter popular on the southern coast,,,,,,
+GAL-F004,Hoppers,,Galle,Breakfast,Breakfast/Dinner,Mild,,,,Traditional hopper,,,,,,
+GAL-F005,String Hoppers,,Galle,Breakfast,Breakfast,Mild,,,,Served with dhal and sambol,,,,,,
+GAL-F006,Crab Curry,,Galle,Main,Lunch/Dinner,High,,,,Sri Lankan crab curry,,,,,,
+GAL-F007,Pol Sambol,,Galle,Side,Any,Hot,,,,Fresh coconut sambol,,,,,,
+GAL-F008,Kottu,,Galle,Street Food,Dinner,High,,,,Popular night food,,,,,,
+GAL-F009,Wattalappam,,Galle,Dessert,Dessert,Sweet,,,,Traditional dessert,,,,,,
+GAL-F010,Curd & Treacle,,Galle,Dessert,Dessert,Sweet,,,,Buffalo curd with kithul treacle,,,,,,

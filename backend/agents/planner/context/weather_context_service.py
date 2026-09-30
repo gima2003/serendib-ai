@@ -74,6 +74,7 @@ async def get_weather_prediction(
         
     return WeatherPrediction(
         location=location,
+        date=travel_date,
         temperature=temp,
         rain_probability=rain_prob,
         weather_condition=weather_condition,

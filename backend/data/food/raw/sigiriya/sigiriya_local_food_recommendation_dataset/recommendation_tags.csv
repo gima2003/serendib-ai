@@ -1,0 +1,16 @@
+﻿tag_id,tag,definition
+T001,budget,Lower-cost / casual local eating.
+T002,authentic-local,Strong Sri Lankan home-style or village-food orientation.
+T003,village-food,Explicit village/home-style meal positioning.
+T004,cooking-class,Includes hands-on Sri Lankan cooking experience.
+T005,vegetarian,Strong vegetarian suitability.
+T006,vegan-friendly,Public source reports vegan options.
+T007,breakfast,Suitable for breakfast recommendations.
+T008,roti,Roti is a core or signature item.
+T009,curry,Rice/curry or curry-focused restaurant.
+T010,family,Family-suitable dining.
+T011,scenic,View/setting is part of the experience.
+T012,organic,Organic/homegrown ingredient positioning.
+T013,post-hike,Convenient after Sigiriya/Pidurangala activities.
+T014,healthy,Healthy/vegetable-forward positioning.
+T015,mixed-group,Can satisfy both Sri Lankan and international food preferences.

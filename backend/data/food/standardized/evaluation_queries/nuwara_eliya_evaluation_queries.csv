@@ -1,0 +1,5 @@
+query_id,city,sample_user_query,expected_filters_or_intent,relevant_place_ids,expected_result_text,notes
+NEL-Q001,Nuwara Eliya,Best tea experience in Nuwara Eliya,,,Grand Hotel Tea Lounge; Tea Factory Hotel,
+NEL-Q002,Nuwara Eliya,Cheap rice and curry,,,Salmiya; De Silva Food Centre,
+NEL-Q003,Nuwara Eliya,Traditional Sri Lankan dinner,,,Themparadu; Royal Lake Restaurant,
+NEL-Q004,Nuwara Eliya,Where can I try tea and scones?,,,Grand Hotel Tea Lounge,

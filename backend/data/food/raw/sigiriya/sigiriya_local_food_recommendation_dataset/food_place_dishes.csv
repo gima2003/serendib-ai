@@ -1,0 +1,25 @@
+﻿link_id,place_id,food_id,dish_match_type,evidence_strength,source_url,notes
+L001,SIG-P001,SIG-F001,Core recommendation,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d24038580-Reviews-S_l_kafe_Restaurant_Cooking_Class-Sigiriya_Central_Province.html,Cooking-class restaurant strongly aligned with Sri Lankan curry meals.
+L002,SIG-P002,SIG-F001,Core recommendation,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d17796477-Reviews-Kenoli_Restaurant-Sigiriya_Central_Province.html,Kenoli is a top-rated cheap-eats curry restaurant.
+L003,SIG-P003,SIG-F001,Core recommendation,High,https://www.tripadvisor.com/Restaurants-g304141-zfd20181-Sigiriya_Central_Province-Curry.html,Sigiri Liya ranks among top curry choices in current Sigiriya listings.
+L004,SIG-P004,SIG-F001,Core recommendation,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d18840954-Reviews-Little_Hut-Sigiriya_Central_Province.html,Little Hut is strongly associated with curry and cheap eats.
+L005,SIG-P005,SIG-F019,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d17660325-Reviews-Sigiriya_wew_Thawulla_Restaurant-Sigiriya_Central_Province.html,Public review specifically praises a generous vegetable curry.
+L006,SIG-P005,SIG-F017,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d17660325-Reviews-Sigiriya_wew_Thawulla_Restaurant-Sigiriya_Central_Province.html,Devilled chicken explicitly highlighted.
+L007,SIG-P005,SIG-F018,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d17660325-Reviews-Sigiriya_wew_Thawulla_Restaurant-Sigiriya_Central_Province.html,Hot garlic fish explicitly highlighted.
+L008,SIG-P005,SIG-F021,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d17660325-Reviews-Sigiriya_wew_Thawulla_Restaurant-Sigiriya_Central_Province.html,Roti with pumpkin dhal/curry explicitly praised.
+L009,SIG-P005,SIG-F020,Review-supported,Medium,https://www.tripadvisor.com/Restaurant_Review-g304141-d17660325-Reviews-Sigiriya_wew_Thawulla_Restaurant-Sigiriya_Central_Province.html,Fresh juices repeatedly mentioned positively.
+L010,SIG-P007,SIG-F001,Core cuisine fit,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d8835373-Reviews-Gamagedara_village_food-Sigiriya_Central_Province.html,Village-food positioning supports rice-and-curry retrieval.
+L011,SIG-P008,SIG-F001,Core cuisine fit,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d15049114-Reviews-Mom_s_Kitchen-Sigiriya_Central_Province.html,Mom's Kitchen is positioned as home-style Sri Lankan food.
+L012,SIG-P009,SIG-F020,Review-supported,Medium,https://www.tripadvisor.com/Restaurant_Review-g304141-d23986485-Reviews-Sigiri_Lion_face_Restaurant-Sigiriya_Central_Province.html,Freshly squeezed juices highlighted.
+L013,SIG-P010,SIG-F013,Review-supported specialty,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d23998061-Reviews-Tharumila_Restaurant-Sigiriya_Central_Province.html,Okra dishes explicitly praised.
+L014,SIG-P011,SIG-F001,Experience fit,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d28121451-Reviews-Sigiri_Chef_Lady_Restaurant_Cookery_Class-Sigiriya_Central_Province.html,Cookery class + restaurant implies full Sri Lankan curry meal.
+L015,SIG-P012,SIG-F019,Experience fit,High,https://www.tripadvisor.com/Restaurant_Review-g304141-d28145014-Reviews-Nature_s_Nook_Village_Cookery_Class_Restaurant-Sigiriya_Central_Province.html,Village cookery class strongly maps to mixed vegetable curry platter.
+L016,SIG-P013,SIG-F003,Official course item,High,https://ecokitchen.lk/,Coconut roti explicitly included.
+L017,SIG-P013,SIG-F012,Official course item,High,https://ecokitchen.lk/,Banana curry explicitly included.
+L018,SIG-P013,SIG-F022,Official course item,High,https://ecokitchen.lk/,Herbal teas explicitly included.
+L019,SIG-P014,SIG-F001,Official cuisine fit,High,https://www.brownshotels.com/hotelsigiriya/dining/,Official hotel page highlights Sri Lankan delights.
+L020,SIG-P015,SIG-F001,Cuisine fit,Medium,https://travelinsighter.com/restaurants-in-sigiriya-sri-lanka/,Travel guide includes Alloro Chooti among local food options.
+L021,SIG-P018,SIG-F001,Cuisine fit,Medium,https://www.tripadvisor.com/Restaurants-g304141-Sigiriya_Central_Province.html,Pradeep appears in current Asian/Sri Lankan cheap-eats listings.
+L022,SIG-P019,SIG-F001,Cuisine fit,Medium,https://www.tripadvisor.com/Restaurant_Review-g304141-d15768959-Reviews-Maleesha_Restaurant-Sigiriya_Central_Province.html,Sri Lankan restaurant listing.
+L023,SIG-P020,SIG-F001,Cuisine fit,Medium,https://www.tripadvisor.com/Restaurant_Review-g304141-d10084279-Reviews-Ranithu_Restaurant-Sigiriya_Central_Province.html,Sri Lankan restaurant listing.
+L024,SIG-P006,SIG-F001,Core recommendation,Medium,https://www.tripadvisor.com/Restaurant_Review-g304141-d10635425-Reviews-Wijesiri_Family_Restaurant-Sigiriya_Central_Province.html,Family restaurant repeatedly surfaced among popular Sigiriya cheap eats.

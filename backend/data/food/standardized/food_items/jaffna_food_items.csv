@@ -1,0 +1,11 @@
+food_id,food_name,alternate_names,city,category,meal_type,typical_spice_level,vegetarian_possible,vegan_possible,key_components,description,city_relevance,recommendation_tags,source_type,source_url,verified_date,confidence
+JAF-F001,Jaffna Crab Curry,,Jaffna,Seafood,Lunch/Dinner,High,,,,Signature Northern Sri Lankan crab curry,,,,,,
+JAF-F002,Odiyal Kool,,Jaffna,Soup,Lunch,High,,,,Traditional seafood soup,,,,,,
+JAF-F003,Jaffna Mutton Curry,,Jaffna,Main,Lunch/Dinner,High,,,,Spicy roasted mutton curry,,,,,,
+JAF-F004,Fried Fish Pittu,,Jaffna,Main,Lunch/Dinner,Medium,,,,Pittu served with fried fish,,,,,,
+JAF-F005,String Hoppers,,Jaffna,Breakfast,Breakfast,Mild,,,,Rice noodle nests,,,,,,
+JAF-F006,Milk Hoppers,,Jaffna,Breakfast,Breakfast/Dinner,Mild,,,,Soft hoppers with coconut milk,,,,,,
+JAF-F007,Palmyrah Jaggery,,Jaffna,Dessert,Dessert,Sweet,,,,Northern specialty,,,,,,
+JAF-F008,Kool Seafood Curry,,Jaffna,Main,Lunch,High,,,,Seafood delicacy,,,,,,
+JAF-F009,Jaffna Kool Prawn,,Jaffna,Seafood,Lunch/Dinner,High,,,,Prawn-based northern dish,,,,,,
+JAF-F010,Dry Fish Curry,,Jaffna,Main,Lunch/Dinner,High,,,,Traditional dry fish curry,,,,,,

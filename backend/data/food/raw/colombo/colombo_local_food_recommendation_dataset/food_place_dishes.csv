@@ -1,0 +1,25 @@
+﻿link_id,place_id,food_id,dish_match_type,evidence_strength,source_url,notes
+L001,CMB-P008,CMB-F006,Core recommendation,High,https://www.reddit.com/r/srilanka/comments/1leagfb/looking_for_rice_and_curry_places/,Repeatedly recommended for rice and curry; broad vegetable curry selection.
+L002,CMB-P010,CMB-F001,Core recommendation,High,https://www.reddit.com/r/srilanka/comments/coz5q3/best_kottu_and_lamprais/,Repeated social recommendation for cheese/masala kottu.
+L003,CMB-P011,CMB-F001,Core recommendation,High,https://www.reddit.com/r/srilanka/comments/coz5q3/best_kottu_and_lamprais/,Pilawoos repeatedly mentioned for kottu.
+L004,CMB-P012,CMB-F006,Core recommendation,High,https://www.reddit.com/r/srilanka/comments/1gsvpte/looking_for_restaurant_suggestions_in_sri_lanka/,Mayura repeatedly recommended for local/Northern-style rice and curry.
+L005,CMB-P025,CMB-F011,Signature / heritage,High,https://www.reddit.com/r/srilanka/comments/1bcozyp/how_good_is_real_lamprais_is_the_stuff_at_green/,DBU repeatedly described as a key lamprais destination.
+L006,CMB-P005,CMB-F014,Official signature dish,High,https://www.renukacityhotel.com/dine-and-drink/palmyrah-restaurant/,Official page lists Jaffna whole crab curry.
+L007,CMB-P005,CMB-F017,Official signature dish,High,https://www.renukacityhotel.com/dine-and-drink/palmyrah-restaurant/,Official page lists mutton paal poriyal.
+L008,CMB-P005,CMB-F018,Official signature dish,High,https://www.renukacityhotel.com/dine-and-drink/palmyrah-restaurant/,Official page lists fried fish pittu.
+L009,CMB-P005,CMB-F019,Official signature dish,High,https://www.renukacityhotel.com/dine-and-drink/palmyrah-restaurant/,Official page lists odiyal kool.
+L010,CMB-P005,CMB-F020,Official signature dish,High,https://www.renukacityhotel.com/dine-and-drink/palmyrah-restaurant/,Official page lists milk hoppers.
+L011,CMB-P013,CMB-F002,Social recommendation,High,https://www.reddit.com/r/srilanka/comments/1lu1hpz/best_food_spots_in_and_around_colombo/,Cafe on the 5th recommended for hoppers.
+L012,CMB-P013,CMB-F001,Social recommendation,Medium,https://www.reddit.com/r/srilanka/comments/1lu1hpz/best_food_spots_in_and_around_colombo/,Cafe on the 5th also mentioned for kottu.
+L013,CMB-P014,CMB-F021,Social recommendation,High,https://www.reddit.com/r/srilanka/comments/12o21kg/help_me_with_must_visit_nontouristy_places_to/,Raheema specifically recommended for biryani.
+L014,CMB-P014,CMB-F002,Social recommendation,Medium,https://www.reddit.com/r/srilanka/comments/12o21kg/help_me_with_must_visit_nontouristy_places_to/,Raheema also mentioned for hoppers.
+L015,CMB-P007,CMB-F006,Restaurant positioning,High,https://www.instagram.com/ranbathorganic/,Plant-based organic Sri Lankan rice-and-curry style meals.
+L016,CMB-P001,CMB-F006,Core cuisine fit,High,https://upalis.com/,Official site positions Upali's as traditional Sri Lankan food.
+L017,CMB-P001,CMB-F001,Social recommendation,Medium,https://www.reddit.com/r/srilanka/comments/coz5q3/best_kottu_and_lamprais/,Upali's kottu receives social mention.
+L018,CMB-P002,CMB-F023,Official/site evidence,Medium,https://culturecolombo.lk/,Curd and treacle highlighted on Culture Colombo site.
+L019,CMB-P003,CMB-F015,Public social/menu signal,High,https://www.instagram.com/ceylon.curryclub/,Fish ambulthiyal appears in public Ceylon Curry Club content.
+L020,CMB-P006,CMB-F014,Cuisine-fit recommendation,High,https://www.instagram.com/yarleathouse/,Yarl is a Jaffna-food venue; crab is a core Northern seafood item.
+L021,CMB-P018,CMB-F014,Core specialty,High,https://www.reddit.com/r/srilanka/comments/1lu1hpz/best_food_spots_in_and_around_colombo/,Crab-focused premium seafood venue.
+L022,CMB-P024,CMB-F022,Social recommendation,Medium,https://www.reddit.com/r/srilanka/comments/1hjvx1a/where_to_find_the_best_mutton_rolls_in_western/,Rodrigo's mentioned positively for mutton rolls.
+L023,CMB-P009,CMB-F006,Social recommendation,Medium,https://www.reddit.com/r/srilanka/comments/1lu1hpz/best_food_spots_in_and_around_colombo/,Curry Pot included in Colombo Sri Lankan food recommendations.
+L024,CMB-P004,CMB-F006,Core cuisine fit,High,https://www.cinnamonhotels.com/cinnamon-grand-colombo/dine-with-us/nuga-gama,Nuga Gama is a traditional Sri Lankan village-style dining experience.

@@ -1,0 +1,48 @@
+tag_id,tag,definition
+TAG-001,authentic,Authentic Sri Lankan
+TAG-002,authentic-local,Strong orientation toward authentic Sri Lankan local food.
+TAG-003,beach-dining,Beachfront or beach-oriented dining experience.
+TAG-004,breakfast,Suitable for breakfast or morning meal recommendations.
+TAG-005,budget,Suitable for affordable or lower-cost casual dining.
+TAG-006,cafe,Cafe-oriented experience.
+TAG-007,cooking-class,Includes a hands-on food preparation or cooking experience.
+TAG-008,curry,Rice/curry or curry-focused restaurant.
+TAG-009,dosa,Dosa-focused or strong dosa availability.
+TAG-010,family,Suitable for family-friendly dining.
+TAG-011,fresh-catch,Strong indication of freshly caught fish or seafood.
+TAG-012,gluten-free-options,Public source reports gluten-free options; verify current menu.
+TAG-013,halal-style,Associated with Muslim/halal dining; certification should be verified for strict requirements.
+TAG-014,healthy,"Health-conscious, vegetable-forward, organic, or plant-based dining."
+TAG-015,heritage,Food/place linked to Sri Lankan cultural or community heritage.
+TAG-016,hill-country,Relevant to Sri Lanka's hill-country or highland food experience.
+TAG-017,home-style,Home-style or family-style Sri Lankan food experience.
+TAG-018,hotel,Dining available at or associated with a hotel.
+TAG-019,kottu,Kottu is a signature or core item.
+TAG-020,late-night,Suitable for later evening or late-night dining.
+TAG-021,local-vegetables,Vegetable-forward hill-country meal signal.
+TAG-022,mixed-group,Suitable for groups with both local and international food preferences.
+TAG-023,northern-sri-lankan,Jaffna / Northern Sri Lankan cuisine.
+TAG-024,organic,Organic/homegrown ingredient positioning.
+TAG-025,post-hike,Convenient after Sigiriya/Pidurangala activities.
+TAG-026,premium,Higher-cost / special-occasion dining.
+TAG-027,quiet-local-area,Outside the densest Main Street tourist core.
+TAG-028,quiet-town,Useful for travellers preferring non-touristy settings.
+TAG-029,rice-and-curry,Rice-and-curry is a core recommendation.
+TAG-030,roti,"Roti is a core, signature, or strongly recommended food item."
+TAG-031,safari,Safari dining
+TAG-032,scenic,The view or surrounding setting is an important part of the dining experience.
+TAG-033,seafood,Strong focus on seafood dishes or seafood dining.
+TAG-034,social,Atmosphere/live music/backpacker social value.
+TAG-035,social-impact,Dining supports a community/social enterprise.
+TAG-036,spice-authenticity,Useful when the user prioritizes strong local spice rather than tourist-adapted mild food.
+TAG-037,street-food,Street-food style item or area.
+TAG-038,sunset,Especially relevant for beach/sunset meals.
+TAG-039,surf-cafe,Cafe oriented toward surfers / daytime lifestyle.
+TAG-040,tamil-food,Tamil/South-Indian cuisine relevance.
+TAG-041,tea,Relevant to tea or tea-country food and drink experiences.
+TAG-042,tourist-experience,Ambience/cultural experience in addition to food.
+TAG-043,tourist-popular,Highly visible or frequently reviewed by travellers.
+TAG-044,vegan,Strong vegan/plant-based suitability.
+TAG-045,vegan-friendly,Offers or is reported to offer suitable vegan options.
+TAG-046,vegetarian,Suitable for vegetarian dining or filtering.
+TAG-047,village-food,Traditional village-style or home-style local food experience.

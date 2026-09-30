@@ -37,10 +37,14 @@ class BudgetResponse(BaseModel):
     trip_id: str
     available_budget_lkr: float
     cost_breakdown: CostBreakdown
+    subtotal_cost_lkr: float = 0.0
     estimated_total_cost_lkr: float
     remaining_budget_lkr: float
     budget_utilization_percent: float
     within_budget: bool
+    over_budget_amount: float = 0.0
+    highest_expense_category: Optional[str] = None
+    highest_expense_percentage: Optional[float] = None
     transport_comparison: List[TransportOption] = Field(default_factory=list)
     recommended_transport: RecommendedTransport
     savings_opportunities: List[SavingsOpportunity] = Field(default_factory=list)
@@ -67,6 +71,7 @@ class Member1Profile(BaseModel):
 class Attraction(BaseModel):
     name: str
     estimated_entry_cost_lkr: float = 0.0
+    cost_type: Optional[str] = None
 
 class Destination(BaseModel):
     city: str
@@ -79,8 +84,13 @@ class FoodRecommendation(BaseModel):
     estimated_cost_per_person_lkr: float = 0.0
 
 class AccommodationRecommendation(BaseModel):
+    accommodation_id: Optional[str] = None
+    name: Optional[str] = None
+    city: Optional[str] = None
     estimated_cost_per_night_lkr: float = 0.0
+    required_rooms: Optional[int] = None
     recommended_nights: int = 1
+    is_selected: bool = True
 
 class Member3FoodAcc(BaseModel):
     food_recommendations: List[FoodRecommendation] = Field(default_factory=list)

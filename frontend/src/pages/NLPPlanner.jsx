@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   CheckCircle2,
@@ -162,11 +162,13 @@ export default function NLPPlanner() {
   };
 
   const handleContinue = () => {
-      navigate('/plan-trip/generating', {
-          state: {
-              profileState
-          }
-      });
+    navigate('/plan-trip/review', { 
+      state: { 
+        traveller_profile: parsedPlan,
+        raw_user_request: text,
+        source: "nlp"
+      } 
+    });
   };
 
   return (

@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Optional, List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 # --------------------------------------------------
@@ -136,6 +136,38 @@ class TravellerProfile(BaseModel):
     additional_requests: List[str] = Field(
         default_factory=list
     )
+    
+    # Planning preferences (usually from guided planner or extracted)
+    travel_style: Optional[str] = None
+    
+    accommodation_preferences: List[str] = Field(
+        default_factory=list
+    )
+    
+    transport_preferences: List[str] = Field(
+        default_factory=list
+    )
+
+    # Date fields — extracted from natural language (e.g. "November 3rd")
+    start_date: Optional[str] = Field(
+        default=None,
+        description="ISO date string YYYY-MM-DD for trip start"
+    )
+
+    end_date: Optional[str] = Field(
+        default=None,
+        description="ISO date string YYYY-MM-DD for trip end (auto-calculated if not given)"
+    )
+
+    @field_validator("start_date", "end_date", mode="before")
+    @classmethod
+    def coerce_date_to_str(cls, v):
+        """Accept datetime.date/datetime.datetime objects and convert to ISO strings."""
+        if v is None:
+            return None
+        if hasattr(v, "strftime"):
+            return v.strftime("%Y-%m-%d")
+        return str(v)
 
 
 # --------------------------------------------------
@@ -200,6 +232,27 @@ class LLMTravellerProfile(BaseModel):
     additional_requests: List[str] = Field(
         default_factory=list
     )
+
+    # Date fields
+    start_date: Optional[str] = None  # ISO string YYYY-MM-DD
+    end_date: Optional[str] = None    # ISO string YYYY-MM-DD (auto-calculated if missing)
+
+    @field_validator(
+        'interests',
+        'dietary_requirements',
+        'food_preferences',
+        'preferred_destinations',
+        'must_visit_destinations',
+        'avoidances',
+        'accessibility_requirements',
+        'additional_requests',
+        mode='before'
+    )
+    @classmethod
+    def coerce_none_to_list(cls, v):
+        if v is None:
+            return []
+        return v
 
 class TravellerTextRequest(BaseModel):
     text: str = Field(min_length=1)

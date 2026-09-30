@@ -1,0 +1,11 @@
+link_id,place_id,food_id,dish_match_type,evidence_strength,source_url,notes
+YAL-L001,YAL-P001,YAL-F012,Signature,,,
+YAL-L002,YAL-P002,YAL-F001,Signature,,,
+YAL-L003,YAL-P003,YAL-F005,Popular,,,
+YAL-L004,YAL-P004,YAL-F005,Signature,,,
+YAL-L005,YAL-P004,YAL-F007,Popular,,,
+YAL-L006,YAL-P005,YAL-F001,Signature,,,
+YAL-L007,YAL-P006,YAL-F008,Popular,,,
+YAL-L008,YAL-P007,YAL-F006,Popular,,,
+YAL-L009,YAL-P008,YAL-F012,Signature,,,
+YAL-L010,YAL-P010,YAL-F003,Breakfast,,,

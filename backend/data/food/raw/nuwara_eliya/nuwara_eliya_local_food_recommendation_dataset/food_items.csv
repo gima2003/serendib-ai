@@ -1,0 +1,11 @@
+﻿food_id,food_name,category,meal,spice_level,description
+NEL-F001,Ceylon Tea,Drink,Any,None,Fresh hill-country tea
+NEL-F002,Tea & Scones,Breakfast,Breakfast,Mild,Colonial-style tea snack
+NEL-F003,Vegetable Rice & Curry,Main,Lunch,Medium,Fresh highland vegetables
+NEL-F004,String Hoppers,Breakfast,Breakfast,Mild,Traditional breakfast
+NEL-F005,Hoppers,Breakfast,Breakfast/Dinner,Mild,Sri Lankan hoppers
+NEL-F006,Potato Curry,Side,Any,Mild,Hill-country potatoes
+NEL-F007,Carrot Curry,Side,Any,Mild,Fresh local carrots
+NEL-F008,Leek Curry,Side,Any,Mild,Highland leek curry
+NEL-F009,Strawberries & Cream,Dessert,Dessert,Sweet,Nuwara Eliya strawberries
+NEL-F010,Curd & Treacle,Dessert,Dessert,Sweet,Traditional dessert

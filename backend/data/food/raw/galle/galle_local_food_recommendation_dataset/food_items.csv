@@ -1,0 +1,11 @@
+﻿food_id,food_name,category,meal,spice_level,description
+GAL-F001,Seafood Rice & Curry,Main,Lunch/Dinner,Medium,Fresh coastal seafood with Sri Lankan curries
+GAL-F002,Fish Ambul Thiyal,Main,Lunch/Dinner,Medium-High,Sour dry fish curry
+GAL-F003,Isso Wade,Street Food,Snack,Medium,Prawn fritter popular on the southern coast
+GAL-F004,Hoppers,Breakfast,Breakfast/Dinner,Mild,Traditional hopper
+GAL-F005,String Hoppers,Breakfast,Breakfast,Mild,Served with dhal and sambol
+GAL-F006,Crab Curry,Main,Lunch/Dinner,High,Sri Lankan crab curry
+GAL-F007,Pol Sambol,Side,Any,Hot,Fresh coconut sambol
+GAL-F008,Kottu,Street Food,Dinner,High,Popular night food
+GAL-F009,Wattalappam,Dessert,Dessert,Sweet,Traditional dessert
+GAL-F010,Curd & Treacle,Dessert,Dessert,Sweet,Buffalo curd with kithul treacle

@@ -1,0 +1,5 @@
+query_id,city,sample_user_query,expected_filters_or_intent,relevant_place_ids,expected_result_text,notes
+JAF-Q001,Jaffna,Best Jaffna crab curry,,,Jetwing Jaffna Restaurant; Valampuri,
+JAF-Q002,Jaffna,Cheap authentic Jaffna rice & curry,,,Cosy Restaurant; Rolex Restaurant,
+JAF-Q003,Jaffna,Vegetarian food in Jaffna,,,Mangos; Nallur Bhavan,
+JAF-Q004,Jaffna,Where can I try Odiyal Kool?,,,Jetwing Jaffna Restaurant,

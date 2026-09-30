@@ -1,0 +1,5 @@
+source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC001,Sri Lanka Tourism,,https://www.srilanka.travel/,Cuisine reference,
+SRC002,Tripadvisor,,https://www.tripadvisor.com/,Restaurant listings,
+SRC003,Travel Blogs,,https://www.lonelyplanet.com/,Travel recommendations,
+SRC004,Community,,https://www.reddit.com/r/srilanka/,Community insights,

@@ -1,0 +1,15 @@
+source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC001,Official tourism,Sri Lanka Tourism Culinary Tourism,https://www.srilanka.travel/culinary-tourism/,Dish definitions / Sri Lankan cuisine context,0.98
+SRC002,Official restaurant menu,Cafe Chill Ella,https://www.cafechill.lk/cafe-chill-ella-menu.html,Menu-level local dish and vegan-option evidence,0.99
+SRC003,Official restaurant website,Green Door Ella,https://thegreendoor.lk/,"Address, hours, brand positioning",0.99
+SRC004,Official experience website,Ella Spice Garden,https://ellaspicegarden.com/,Cooking-class/dinner information,0.99
+SRC005,Official hotel restaurant website,Ella Flower Garden Resort Restaurant,https://www.ellaflowergardenresort.com/restaurant,Cuisine and contact information,0.99
+SRC006,Public social media,The Kitchen Garden Facebook,https://www.facebook.com/kitchengardenella/,Home-style Sri Lankan positioning,0.91
+SRC007,Public social media,The Kitchen Garden Instagram,https://www.instagram.com/kitchengardenella/,Current social/brand signal,0.91
+SRC008,Community forum,Reddit: where locals eat in Ella,https://www.reddit.com/r/srilanka/comments/1h7dw3w/where_do_locals_eat_in_ella_looking_for_non/,Local-vs-tourist qualitative signal,0.78
+SRC009,Community forum,Reddit: Ella restaurant inclusivity allegation,https://www.reddit.com/r/srilanka/comments/1p190ig/racist_restaurants_of_ella/,Responsible-AI/fairness risk signal only; not factual adjudication,0.5
+SRC010,Travel guide,Bacon is Magic Ella Food Guide,https://www.baconismagic.ca/sri-lanka/ella-food-restaurants/,Restaurant discovery and qualitative recommendation signals,0.76
+SRC011,Travel guide,Vegan food in Ella guide,https://www.thewanderfulme.com/best-vegan-food-in-ella-sri-lanka/,Vegan/vegetarian discovery signals,0.76
+SRC012,Review aggregation,Matey Hut Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g616035-d9813968-Reviews-Matey_Hut-Ella_Uva_Province.html,Aggregate traveller sentiment and dish-aspect summaries,0.84
+SRC013,Review aggregation,The Kitchen Garden Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g616035-d14905865-Reviews-The_Kitchen_Garden-Ella_Uva_Province.html,Dietary/cuisine/listing information,0.86
+SRC014,Review aggregation,Ceylon Tea Center Ella Tripadvisor,https://www.tripadvisor.com/Restaurant_Review-g616035-d8407507-Reviews-Ceylon_Tea_Center_Ella-Ella_Uva_Province.html,"Cuisine, meal type, dietary and hours signals",0.86

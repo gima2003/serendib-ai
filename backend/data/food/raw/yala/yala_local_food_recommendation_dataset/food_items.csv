@@ -1,0 +1,13 @@
+﻿food_id,food_name,category,meal_type,spice_level,description
+YAL-F001,Rice & Curry,Main,Lunch/Dinner,Medium,Traditional Sri Lankan meal
+YAL-F002,Kottu Roti,Street Food,Dinner,Medium,Popular evening meal
+YAL-F003,Hoppers,Breakfast,Breakfast,Mild,Traditional hopper
+YAL-F004,String Hoppers,Breakfast,Breakfast,Mild,Rice noodle nests
+YAL-F005,Fish Curry,Seafood,Lunch/Dinner,High,Fresh coastal fish
+YAL-F006,Prawn Curry,Seafood,Lunch/Dinner,High,Local prawns
+YAL-F007,Crab Curry,Seafood,Lunch/Dinner,High,Lagoon crab
+YAL-F008,Pol Roti,Bread,Breakfast,Mild,Coconut flatbread
+YAL-F009,Dhal Curry,Curry,Any,Mild,Lentil curry
+YAL-F010,Curd & Treacle,Dessert,Dessert,Sweet,Traditional dessert
+YAL-F011,King Coconut,Drink,Any,None,Fresh coconut water
+YAL-F012,BBQ Seafood,Seafood,Dinner,Medium,Beach BBQ

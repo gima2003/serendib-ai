@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { tripService } from '../services/tripService';
@@ -112,66 +112,31 @@ export default function GuidedPlanner() {
       setIsLoading(true);
       setError(null);
 
-      const response = await tripService.submitGuidedPlanner({
-
-        origin: plan.origin || null,
-
+      const sanitizedPayload = {
+        origin: (plan.origin && plan.origin.trim().length > 0) ? plan.origin.trim() : null,
         start_date: plan.startDate || null,
-
         end_date: plan.endDate || null,
-
-        traveller_count: plan.travellerCount,
-
-        traveller_type:
-          plan.travellerType?.toLowerCase() || null,
-
-        interests: plan.interests,
-
-        travel_pace:
-          plan.travelPace?.toLowerCase() || null,
-
-        crowd_preference:
-          plan.crowdPreference === 'Peaceful'
-            ? 'avoid'
-            : plan.crowdPreference === 'Popular'
-              ? 'enjoy'
-              : 'neutral',
-
-        preferred_regions:
-          plan.preferredRegions,
-
-        additional_notes:
-          plan.additionalNotes || null,
-
+        traveller_count: typeof plan.travellerCount === 'number' && plan.travellerCount > 0 ? plan.travellerCount : 1,
+        traveller_type: plan.travellerType ? (plan.travellerType === 'Friends / Group' ? 'friends' : plan.travellerType.toLowerCase()) : null,
+        interests: Array.isArray(plan.interests) ? plan.interests : [],
+        travel_pace: plan.travelPace ? plan.travelPace.toLowerCase() : null,
+        crowd_preference: plan.crowdPreference === 'Peaceful' ? 'avoid' : plan.crowdPreference === 'Popular' ? 'enjoy' : 'neutral',
+        preferred_regions: Array.isArray(plan.preferredRegions) ? plan.preferredRegions : [],
+        additional_notes: plan.additionalNotes || null,
         budget: {
-          amount: plan.budget.amount
-            ? Number(plan.budget.amount)
-            : null,
-
-          currency: plan.budget.currency,
-
-          flexibility:
-            plan.budget.flexibility?.toLowerCase() || null
+          amount: (plan.budget && plan.budget.amount && Number(plan.budget.amount) > 0) ? Number(plan.budget.amount) : null,
+          currency: (plan.budget && plan.budget.currency) ? plan.budget.currency : 'USD',
+          flexibility: (plan.budget && plan.budget.flexibility) ? plan.budget.flexibility.toLowerCase() : 'moderate'
         },
+        travel_style: plan.travelStyle ? plan.travelStyle.toLowerCase() : null,
+        accommodation_preferences: Array.isArray(plan.accommodationPreferences) ? plan.accommodationPreferences : [],
+        transport_preferences: Array.isArray(plan.transportPreferences) ? plan.transportPreferences : [],
+        dietary_preference: plan.dietaryPreference || null,
+        food_preferences: Array.isArray(plan.foodPreferences) ? plan.foodPreferences : [],
+        selected_activities: Array.isArray(plan.selectedActivities) ? plan.selectedActivities : []
+      };
 
-        travel_style:
-          plan.travelStyle?.toLowerCase() || null,
-
-        accommodation_preferences:
-          plan.accommodationPreferences,
-
-        transport_preferences:
-          plan.transportPreferences,
-
-        dietary_preference:
-          plan.dietaryPreference,
-
-        food_preferences:
-          plan.foodPreferences,
-
-        selected_activities:
-          plan.selectedActivities
-      });
+      const response = await tripService.submitGuidedPlanner(sanitizedPayload);
 
       console.log(
         'GUIDED PLANNER PROFILE STATE:',
@@ -180,7 +145,10 @@ export default function GuidedPlanner() {
 
       navigate('/plan-trip/review', {
         state: {
-          profileState: response
+          traveller_profile: response.traveller_profile,
+          raw_user_request: "",
+          source: "guided",
+          profileState: response // Keep for any legacy dependency
         }
       });
 

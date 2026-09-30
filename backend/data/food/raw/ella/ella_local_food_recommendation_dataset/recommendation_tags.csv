@@ -1,0 +1,16 @@
+﻿tag_id,tag,definition
+T001,budget,Lower-cost / casual eating.
+T002,authentic-local,Strong home-style or Sri Lankan local-food orientation.
+T003,tourist-popular,Highly visible or heavily reviewed by travellers.
+T004,late-night,Useful for later-night dining.
+T005,vegetarian,Strong vegetarian suitability.
+T006,vegan,Strong vegan/plant-based suitability.
+T007,gluten-free-options,Public source reports gluten-free options; verify current menu.
+T008,home-style,Simple home-style Sri Lankan food experience.
+T009,cooking-class,Food experience includes learning/cooking participation.
+T010,tea,Tea-centered food/drink experience.
+T011,breakfast,Suitable for breakfast.
+T012,hill-country,Especially relevant to Ella's highland/tea context.
+T013,cafe,Cafe-oriented experience.
+T014,quiet-local-area,Outside the densest Main Street tourist core.
+T015,mixed-group,Useful when travellers have mixed local/international food preferences.

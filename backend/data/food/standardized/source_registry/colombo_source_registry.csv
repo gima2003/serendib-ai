@@ -1,0 +1,14 @@
+source_id,source_type,source_name,source_url,recommended_use,default_confidence
+SRC001,Official tourism,Sri Lanka Tourism Culinary Tourism,https://www.srilanka.travel/culinary-tourism/,Dish definitions / cuisine context,0.98
+SRC002,Official restaurant site,Upali's,https://upalis.com/,Restaurant identity/contact/cuisine positioning,0.99
+SRC003,Official restaurant site,Culture Colombo,https://culturecolombo.lk/,Cuisine positioning and dish evidence,0.99
+SRC004,Official hotel/restaurant site,Nuga Gama - Cinnamon Grand,https://www.cinnamonhotels.com/cinnamon-grand-colombo/dine-with-us/nuga-gama,Restaurant identity/experience/opening information,0.99
+SRC005,Official hotel/restaurant site,Palmyrah - Renuka City Hotel,https://www.renukacityhotel.com/dine-and-drink/palmyrah-restaurant/,Northern Sri Lankan signature dishes,0.99
+SRC006,Public social media,Yarl Eat House Instagram,https://www.instagram.com/yarleathouse/,Brand positioning / Jaffna cuisine confirmation,0.9
+SRC007,Public social media,Ranbath Organic Instagram,https://www.instagram.com/ranbathorganic/,Dietary/organic positioning,0.92
+SRC008,Public social media,Ceylon Curry Club Instagram,https://www.instagram.com/ceylon.curryclub/,Contemporary cuisine signal,0.9
+SRC009,Community forum,Reddit rice-and-curry discussion,https://www.reddit.com/r/srilanka/comments/1leagfb/looking_for_rice_and_curry_places/,Local recommendation signal; subjective,0.78
+SRC010,Community forum,Reddit Colombo restaurant favourites,https://www.reddit.com/r/srilanka/comments/1qblvlm/your_favourite_restaurant_what_you_order_in/,Local recommendation/aspect signals,0.76
+SRC011,Community forum,Reddit lamprais discussion,https://www.reddit.com/r/srilanka/comments/1bcozyp/how_good_is_real_lamprais_is_the_stuff_at_green/,Lamprais preference/authenticity signals,0.76
+SRC012,Community forum,Reddit kottu discussion,https://www.reddit.com/r/srilanka/comments/177px1i/best_place_to_get_kottu_from_around_colombo/,Kottu recommendation signals,0.75
+SRC013,Community forum,Reddit Colombo food recommendations,https://www.reddit.com/r/srilanka/comments/1f0shnz/colombo_food_recommendations/,Dish/venue recommendation signals,0.76

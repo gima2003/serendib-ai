@@ -1,0 +1,6 @@
+﻿source_id,source_name,source_type,url,usage_note
+SRC-SLTOURISM,Sri Lanka Tourism,Official tourism website,https://www.srilanka.travel/,Official tourism attraction/destination evidence
+SRC-SLTDA,Sri Lanka Tourism Development Authority,Government tourism authority,https://sltda.gov.lk/en/tourist-attractions,Official destination and attraction context
+SRC-CCF,Central Cultural Fund,Government heritage authority,https://ccf.gov.lk/,Heritage-site validation
+SRC-OFFICIAL,Relevant official attraction/government website,Official source,,Used where a dedicated official institution/site was checked
+SRC-REVIEWS,Mendeley Sri Lanka tourism Reviews.csv derivative,Research / visitor-review dataset,,Visitor-derived attraction presence and experience signals; not an official factual description
