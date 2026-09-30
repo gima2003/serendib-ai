@@ -10,29 +10,31 @@ def score_attractions(
     if not matched_experiences:
         return pd.DataFrame()
 
+
     experience_info = {
-        item[
-            "experience_id"
-        ]: item
+        item["experience_id"]: item
         for item in matched_experiences
     }
+
 
     requested_ids = set(
         experience_info.keys()
     )
 
+
     matched_relationships = (
         relationships[
-            relationships[
-                "experience_id"
-            ].isin(
+            relationships["experience_id"].isin(
                 requested_ids
             )
         ].copy()
     )
 
+
     if matched_relationships.empty:
         return pd.DataFrame()
+
+
 
     matched_relationships[
         "interest_strength"
@@ -47,6 +49,8 @@ def score_attractions(
             ]
     )
 
+
+
     matched_relationships[
         "weighted_score"
     ] = (
@@ -59,7 +63,10 @@ def score_attractions(
         ]
     )
 
+
+
     result_rows = []
+
 
     for (
         attraction_id,
@@ -68,26 +75,28 @@ def score_attractions(
         "attraction_id"
     ):
 
+
         matched_ids = set(
-            group[
-                "experience_id"
-            ]
+            group["experience_id"]
         )
+
 
         matched_count = len(
             matched_ids
         )
 
+
         requested_count = len(
             requested_ids
         )
 
+
         coverage_score = (
-            matched_count
-            / requested_count
+            matched_count / requested_count
             if requested_count > 0
             else 0
         )
+
 
         relevance_score = (
             group[
@@ -95,11 +104,13 @@ def score_attractions(
             ].mean()
         )
 
+
         full_coverage_bonus = (
             0.10
             if coverage_score == 1.0
             else 0.0
         )
+
 
         match_score = (
             coverage_score * 0.60
@@ -109,55 +120,50 @@ def score_attractions(
             full_coverage_bonus
         )
 
+
         match_score = min(
             match_score,
             1.0
         )
 
+
         matched_details = []
+
 
         for _, row in group.iterrows():
 
             experience_id = (
-                row[
-                    "experience_id"
-                ]
+                row["experience_id"]
             )
 
-            info = (
-                experience_info[
-                    experience_id
-                ]
-            )
+
+            info = experience_info[
+                experience_id
+            ]
+
 
             matched_details.append(
                 {
                     "user_interest":
-                        info[
-                            "interest"
-                        ],
+                        info["interest"],
 
                     "experience_id":
                         experience_id,
 
                     "experience_name":
-                        info[
-                            "experience_name"
-                        ],
+                        info["experience_name"],
 
                     "relationship_score":
                         float(
-                            row[
-                                "relevance_score"
-                            ]
+                            row["relevance_score"]
                         ),
 
                     "matched_activity":
-                        row[
-                            "matched_activity"
-                        ],
+                        row["matched_activity"],
                 }
             )
+
+
 
         result_rows.append(
             {
@@ -166,25 +172,19 @@ def score_attractions(
 
                 "match_score":
                     round(
-                        float(
-                            match_score
-                        ),
+                        float(match_score),
                         4
                     ),
 
                 "coverage_score":
                     round(
-                        float(
-                            coverage_score
-                        ),
+                        float(coverage_score),
                         4
                     ),
 
                 "relevance_score":
                     round(
-                        float(
-                            relevance_score
-                        ),
+                        float(relevance_score),
                         4
                     ),
 
@@ -196,15 +196,52 @@ def score_attractions(
             }
         )
 
+
+
     scores = pd.DataFrame(
         result_rows
     )
+
 
     results = scores.merge(
         attractions,
         on="attraction_id",
         how="left"
     )
+
+
+
+    # =====================================================
+    # Context-aware attraction adjustment
+    # =====================================================
+    # Example:
+    # Hiking should prioritize outdoor attractions
+    # and reduce indoor-only attractions.
+    #
+    # This prevents cases like:
+    # Hiking -> Sigiriya Museum
+    #
+    # but keeps museums available for:
+    # Culture / History interests.
+    # =====================================================
+
+
+    requested_interests = [
+        item["interest"].lower()
+        for item in matched_experiences
+    ]
+
+
+    if "hiking" in requested_interests:
+
+        if "indoor_outdoor" in results.columns:
+
+            results.loc[
+                results["indoor_outdoor"] == "indoor",
+                "match_score"
+            ] *= 0.5
+
+
 
     return results.sort_values(
         by=[
