@@ -24,10 +24,6 @@ def create_checkout_session(
 
         
 
-        payment_method_types=[
-            "card"
-        ],
-
         mode="subscription",
 
         customer_email=user_email,
