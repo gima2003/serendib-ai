@@ -28,6 +28,8 @@ def create_checkout_session(
 
         customer_email=user_email,
 
+        client_reference_id=user_id,
+
         metadata={
             "user_id": user_id
         },

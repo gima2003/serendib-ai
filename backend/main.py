@@ -43,15 +43,15 @@ async def lifespan(app: FastAPI):
         )
 
 
-        print("🚀 Serendib AI Backend Running")
-        print("✅ MongoDB Atlas Connected Successfully")
-        print("🌐 API: http://127.0.0.1:8000")
-        print("📚 Docs: http://127.0.0.1:8000/docs")
+        print("Serendib AI Backend Running")
+        print("MongoDB Atlas Connected Successfully")
+        print("API: http://127.0.0.1:8000")
+        print("Docs: http://127.0.0.1:8000/docs")
 
 
     except Exception as e:
 
-        print("❌ MongoDB Atlas Connection Failed")
+        print("MongoDB Atlas Connection Failed")
         print(f"Error: {e}")
 
 
@@ -63,7 +63,7 @@ async def lifespan(app: FastAPI):
 
     # Shutdown logic (optional)
 
-    print("\n🛑 Serendib AI Backend Shutdown\n")
+    print("\nSerendib AI Backend Shutdown\n")
 
 
 

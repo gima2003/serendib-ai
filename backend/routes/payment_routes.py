@@ -128,7 +128,8 @@ async def stripe_webhook(
             }
 
         
-        user_id = session["metadata"]["user_id"]
+        session_dict = session.to_dict()
+        user_id = session_dict.get("client_reference_id") or session_dict.get("metadata", {}).get("user_id")
 
         print("USER ID FROM STRIPE METADATA:", user_id)
         print(
@@ -137,7 +138,7 @@ async def stripe_webhook(
         )
 
 
-        subscription_id = session["subscription"]
+        subscription_id = session_dict.get("subscription")
 
         await activate_premium_subscription(
             user_id,
@@ -153,9 +154,9 @@ async def stripe_webhook(
 
     if event["type"] == "customer.subscription.deleted":
 
-        subscription = event["data"]["object"]
+        subscription = event["data"]["object"].to_dict()
 
-        subscription_id = subscription["id"]
+        subscription_id = subscription.get("id")
 
         print("\n========== CANCELLATION DEBUG ==========")
         print("STRIPE SUBSCRIPTION ID:", subscription_id)
