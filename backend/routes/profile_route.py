@@ -7,7 +7,8 @@ from fastapi import APIRouter, HTTPException, Depends
 
 from llm.llm_service import (
     LLMServiceError,
-    extract_traveller_profile
+    extract_traveller_profile,
+    validate_travel_prompt
 )
 
 from llm.prompts import build_profile_prompt
@@ -76,6 +77,13 @@ async def extract_profile(
         await check_ai_prompt_access(
             user_id
         )
+
+        if not validate_travel_prompt(request.text):
+
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid prompt. Please enter a travel-related request."
+            )
 
         prompt = build_profile_prompt(
             request.text

@@ -29,14 +29,27 @@ export const apiClient = {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
+
       console.error("API Error Data:", errorData);
+
       let errorMessage = 'API request failed';
+
       if (errorData.detail) {
-        errorMessage = typeof errorData.detail === 'string' 
-          ? errorData.detail 
-          : JSON.stringify(errorData.detail);
+        errorMessage =
+          typeof errorData.detail === 'string'
+            ? errorData.detail
+            : JSON.stringify(errorData.detail);
       }
-      throw new Error(errorMessage);
+
+      const error = new Error(errorMessage);
+
+      // Preserve HTTP status for frontend error handling
+      error.status = response.status;
+
+      // Preserve the complete backend response
+      error.response = errorData;
+
+      throw error;
     }
 
     return response.json();

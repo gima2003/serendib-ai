@@ -23,7 +23,7 @@ import UpgradeModal from '../components/UpgradeModal';
 export default function NLPPlanner() {
   const navigate = useNavigate();
   const [text, setText] = useState('');
-  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [parsedPlan, setParsedPlan] = useState(null);
@@ -55,7 +55,8 @@ export default function NLPPlanner() {
     setError(null);
 
     try {
-      const response = await tripService.parseNaturalLanguageTrip(text);
+      const response =
+        await tripService.parseNaturalLanguageTrip(text);
 
       // Store the profile returned by Agent 1.
       setParsedPlan(response.profile);
@@ -71,24 +72,33 @@ export default function NLPPlanner() {
 
     } catch (err) {
 
-    console.error(err);
+      console.error("NLP PROMPT ERROR:", err);
 
-    if (
-        err.response?.status === 403 ||
-        err.status === 403 ||
-        err.message?.includes("limit")
-    ) {
-        setIsUpgradeModalOpen(true);
+      // 400 = invalid / non-travel prompt
+      if (err.status === 400) {
+        setError(
+          err.message ||
+          "Invalid prompt. Please enter a travel-related request."
+        );
         return;
-    }
+      }
 
-    setError(
-        'Serendib AI is currently unavailable. Please try again later.'
-    );
+      // 403 = subscription limit reached
+      if (err.status === 403) {
+        setShowUpgradeModal(true);
+        return;
+      }
+
+      // Other server / LLM errors
+      setError(
+        "Serendib AI is currently unavailable. Please try again later."
+      );
 
     } finally {
-          setIsLoading(false);
-        }
+
+      setIsLoading(false);
+
+    }
   };
 
   const handleClarificationPermission = async (userResponse) => {

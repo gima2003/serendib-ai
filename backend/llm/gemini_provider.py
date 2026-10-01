@@ -37,3 +37,11 @@ def extract_with_gemini(prompt: str) -> TravellerProfile:
     return TravellerProfile.model_validate(
         llm_profile.model_dump()
     )
+
+def validate_with_gemini(prompt: str) -> str:
+    response = client.models.generate_content(
+        model="gemini-3.5-flash-lite",
+        contents=prompt,
+    )
+
+    return response.text.strip()
