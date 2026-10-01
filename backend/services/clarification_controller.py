@@ -112,6 +112,10 @@ def process_clarification_answer(
         user_answer=user_answer,
     )
 
+    print("\n========== PROFILE AFTER UPDATE SERVICE ==========")
+    print(updated_profile.model_dump_json(indent=2))
+    print("=================================================\n")
+
     readiness = check_profile_readiness(
         updated_profile
     )
@@ -120,20 +124,26 @@ def process_clarification_answer(
         readiness.missing_context
     )
 
+    next_context_name = (
+        next_context[0]
+        if next_context
+        else None
+    )
+
     return (
         updated_profile,
         readiness,
-        next_context,
+        next_context_name,
     )
 
 
 # Creates the next natural-language clarification question.
 # If no missing context remains, it returns None.
 def generate_next_clarification_question(
-    next_context: str | None
+    next_context: list[str]
 ) -> str | None:
 
-    if next_context is None:
+    if not next_context:
         return None
 
     prompt = build_clarification_prompt(
@@ -206,9 +216,14 @@ def handle_clarification_permission(
     next_context = get_next_missing_context(
         readiness.missing_context
     )
+    next_context_name = (
+    next_context[0]
+    if next_context
+    else None
+    )
 
     # Safety check in case nothing is actually missing.
-    if next_context is None:
+    if next_context_name is None:
         return (
             "finalize_available_profile",
             None,
@@ -219,7 +234,7 @@ def handle_clarification_permission(
     )
 
     return (
-        next_context,
+        next_context_name,
         question,
     )
 

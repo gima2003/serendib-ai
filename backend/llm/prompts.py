@@ -187,7 +187,7 @@ duration_days
 traveller_count
 -> ask how many people are travelling
 
-destination_preferences
+interests
 -> ask what kinds of places or experiences they enjoy,
    such as nature, beaches, wildlife, culture, adventure,
    or other interests
@@ -204,39 +204,117 @@ planning_preferences
 Ask naturally rather than listing every possible option.
 """
 
-def build_clarification_prompt(missing_context: str) -> str:
-   
-      return f"""
+def build_clarification_prompt(
+    missing_context: list[str]
+) -> str:
+
+    return f"""
 {CLARIFICATION_INSTRUCTIONS}
 
-Missing context: 
+Missing contexts:
 
-{missing_context}
+{", ".join(missing_context)}
 
-Generate one short and focused follow-up question
-for only this missing topic.
+Generate one short and natural follow-up question
+covering these missing topics together where possible.
+Do not ask separate questions.
 """
 
 PROFILE_UPDATE_INSTRUCTIONS = """
 You are updating an existing TravellerProfile for Serendib AI.
 
 You will receive:
-1. the existing traveller profile
-2. the missing context that was asked about
-3. the traveller's new answer
+1. The existing traveller profile.
+2. The clarification topic that was asked.
+3. The traveller's new answer.
 
-Your task is to extract only the new information from the answer
-and use it to update the relevant part of the existing profile.
+Your task:
+Extract all valid traveller information from the new answer
+and merge it with the existing profile.
 
 Rules:
 
-1. Preserve all existing information unless the traveller clearly
-   corrects or changes it.
-2. Do not remove existing preferences or constraints.
-3. Only update fields supported by the traveller's new answer.
-4. Do not invent missing information.
-5. Keep unknown values as null or empty according to the schema.
+1. Preserve all existing profile information.
+2. Do not delete existing preferences or constraints.
+3. Update only information explicitly supported by the traveller's answer.
+4. A traveller answer may contain information about multiple fields.
+   Extract all relevant fields, not only the clarification topic.
+5. Separate related information correctly.
+
+Food handling rules:
+- Dietary restrictions belong in dietary_requirements.
+- Food likes, cuisines, meals, dining styles, and food experiences
+  belong in food_preferences.
+- If the traveller says "no restrictions", keep:
+    dietary_requirements: []
+- Do not convert "no restrictions" into a food preference.
+
+Examples:
+
+User answer:
+"I have no food restrictions but I love authentic Sri Lankan food"
+
+Extract:
+
+dietary_requirements:
+[]
+
+food_preferences:
+[
+ "local_food",
+ "Sri Lankan authentic food"
+]
+
+
+User answer:
+"My wife is vegetarian and we enjoy local cuisine"
+
+Extract:
+
+dietary_requirements:
+[
+ "vegetarian"
+]
+
+food_preferences:
+[
+ "local_food"
+]
+
+Budget handling rules:
+
+- Budget information is optional, but the system should ask for it
+  when missing.
+
+- If the traveller provides a budget:
+    Extract amount, currency, scope, and flexibility when available.
+    Set:
+    disclosed = true
+
+- If the traveller explicitly refuses to provide budget information,
+  for example:
+    "prefer not to say"
+    "I don't want to share my budget"
+    "keep my budget private"
+
+  return:
+
+  budget:
+  {
+      "amount": null,
+      "currency": null,
+      "scope": null,
+      "flexibility": null,
+      "disclosed": false
+  }
+
+- Do not assume a budget when the traveller does not provide one.
+
+
 6. Return the complete updated TravellerProfile.
+7. Never return null for list fields.
+   Use [] when no values exist.
+8. Never invent information that the traveller did not provide.
 """
 
 

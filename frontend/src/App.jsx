@@ -16,6 +16,7 @@ import TripGeneration from "./pages/TripGeneration";
 import TripPreview from "./pages/TripPreview";
 import TripWorkspace from "./pages/TripWorkspace";
 import MyTrips from "./pages/MyTrips";
+import SubscriptionPlans from "./pages/SubscriptionPlans";
 
 const ProtectedRoute = ({ children }) => {
   const user = authService.getCurrentUser();
@@ -92,6 +93,10 @@ function App() {
             <TripPreview />
           </ProtectedRoute>
         } />
+        <Route
+            path="/subscription"
+            element={<SubscriptionPlans />}
+        />
       </Routes>
     </>
   );

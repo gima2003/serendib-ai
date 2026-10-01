@@ -1,5 +1,8 @@
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
 import { ChevronLeft, Edit2, Sparkles } from 'lucide-react';
+import UpgradeModal from '../components/UpgradeModal';
+import { checkGuidedPlanAccess } from '../services/subscriptionApi';
 
 const Section = ({ title, onEdit, children }) => (
   <div className="bg-white border border-[#EAE2D6] rounded-3xl p-6 md:p-8 shadow-sm mb-6 relative group">
@@ -21,6 +24,7 @@ export default function UnifiedReview() {
   const profile = location.state?.traveller_profile || location.state?.profileState?.traveller_profile;
   const source = location.state?.source || 'unknown';
   const raw_user_request = location.state?.raw_user_request || '';
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   
   // From old guided flow if it still exists
   const planningPreferences = location.state?.profileState?.planning_preferences || {};
@@ -41,16 +45,33 @@ export default function UnifiedReview() {
   }
 
   const handleGenerate = async () => {
-    // Send the standardized payload expected by TripGeneration
-    navigate('/plan-trip/generating', { 
-      state: { 
-        traveller_profile: profile,
-        raw_user_request: raw_user_request,
-        source: source
-      } 
-    });
-  };
+      try {
+          await checkGuidedPlanAccess();
 
+          navigate('/plan-trip/generating', { 
+              state: { 
+                  traveller_profile: profile,
+                  raw_user_request: raw_user_request,
+                  source: source
+              } 
+          });
+
+      } catch(error) {
+          if(
+              error.status === 403 ||
+              error.response?.status === 403
+          ){
+
+              setShowUpgradeModal(true);
+              return;
+          }
+          console.error(
+              "Guided plan check failed:",
+              error
+          );
+      }
+
+  };
   return (
     <div className="min-h-screen bg-[#FFFCF8] text-[#1C1917] font-sans selection:bg-orange-100 flex flex-col">
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-[#EAE2D6] px-6 py-4 flex items-center shadow-sm">
@@ -240,6 +261,11 @@ export default function UnifiedReview() {
           </button>
         </div>
       </main>
+      <UpgradeModal
+          feature="guided_plan"
+          isOpen={showUpgradeModal}
+          onClose={() => setShowUpgradeModal(false)}
+      />
     </div>
   );
 }

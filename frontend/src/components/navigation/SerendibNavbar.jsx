@@ -23,6 +23,7 @@ import {
 import { NavAnchor, BASE_MENUS, TRIPS_MENU, QUICK_CITIES, LANGUAGES, upcomingEvents, fmtDateLong } from "../common/Shared";
 import { authService } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
+import useSubscription from "../../hooks/useSubscription";
 
 /* ================================================================== */
 /*  SerendibNavbar — the one navigation bar used across the whole site. */
@@ -316,6 +317,9 @@ function ProfileMenu({ onOpenProfile, userName, initial, isMobile }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const navigate = useNavigate();
+  const {
+      subscription
+  } = useSubscription();
 
   const currentUser = authService.getCurrentUser() || {};
   const email = currentUser.email || "traveller@example.com";
@@ -377,12 +381,45 @@ function ProfileMenu({ onOpenProfile, userName, initial, isMobile }) {
           <div className="my-1 h-px bg-stone-100" />
           
           <div className="px-3 py-2 space-y-1">
-            <button className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-[14px] font-medium text-stone-700 transition-colors hover:bg-stone-50">
+            <button
+              onClick={() => navigate("/subscription")}
+              className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-[14px] font-medium text-stone-700 transition-colors hover:bg-stone-50"
+            >
+
               <div className="flex items-center gap-2.5">
-                <CreditCard size={17} className="text-stone-400" />
-                <span>My Plan</span>
+                <CreditCard
+                  size={17}
+                  className="text-stone-400"
+                />
+
+                <span>
+                  My Plan
+                </span>
               </div>
-              <span className="rounded-md bg-orange-100 px-2 py-0.5 text-[11px] font-bold text-orange-700">Plus</span>
+
+
+                <span
+                className="
+                rounded-md
+                bg-orange-100
+                px-2
+                py-0.5
+                text-[11px]
+                font-bold
+                text-orange-700
+                "
+                >
+
+                {
+                    subscription?.plan
+                        ? subscription.plan === "premium"
+                            ? "Premium"
+                            : "Free"
+                        : "Free"
+                }
+
+                </span>
+
             </button>
             <button className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-[14px] font-medium text-stone-700 transition-colors hover:bg-stone-50">
               <Sparkles size={17} className="text-stone-400" />

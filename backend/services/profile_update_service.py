@@ -32,7 +32,6 @@ def update_traveller_profile(
         updated_profile = extract_with_gemini(
             prompt
         )
-
         return normalize_traveller_profile(
             updated_profile
         )
@@ -43,6 +42,10 @@ def update_traveller_profile(
         )
 
     try:
+        updated_profile = extract_with_groq(
+            prompt
+        )
+
         updated_profile = extract_with_groq(
             prompt
         )

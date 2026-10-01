@@ -8,6 +8,10 @@ from graph.graph import build_graph
 from models.traveller_profile import TravellerProfile
 from database.core.database import db
 from security.auth_security import get_current_user
+from services.subscription_guard import (
+    check_guided_plan_access,
+    increment_guided_plan_usage,
+)
 
 router = APIRouter(prefix="/api/trips", tags=["Trips"])
 
@@ -175,11 +179,21 @@ async def cancel_trip(trip_id: str, current_user: dict = Depends(get_current_use
         raise HTTPException(status_code=500, detail="Failed to cancel trip")
 
 @router.post("/generate")
-async def generate_trip_langgraph(request: GenerateTripRequest):
+async def generate_trip_langgraph(
+    request: GenerateTripRequest,
+    current_user: dict = Depends(get_current_user)
+):
     """
     Master endpoint that runs the entire Serendib AI LangGraph workflow.
     """
     try:
+        user_id = str(current_user["_id"])
+
+
+        await check_guided_plan_access(
+            user_id
+        )
+
         app = build_graph()
         
         trip_id = f"TRIP-{uuid.uuid4().hex[:8].upper()}"
@@ -229,6 +243,10 @@ async def generate_trip_langgraph(request: GenerateTripRequest):
         logger.info(f"  Destinations: {[d.get('city') or d.get('destination') for d in (final_state.get('destinations') or [])]}")
         logger.info(f"  Schedule days: {len(schedule_obj.itinerary) if schedule_obj else 0}")
         logger.info(f"  Errors: {final_state.get('errors')}")
+
+        await increment_guided_plan_usage(
+            user_id
+        )
         
         return {
             "trip_id": trip_id,

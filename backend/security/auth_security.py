@@ -8,7 +8,11 @@ from database.core.config import JWT_SECRET_KEY, JWT_ALGORITHM, ACCESS_TOKEN_EXP
 from database.core.database import db
 from bson import ObjectId
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
+#oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
+oauth2_scheme = OAuth2PasswordBearer(
+    tokenUrl="api/auth/swagger-login"
+)
+
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     try:
