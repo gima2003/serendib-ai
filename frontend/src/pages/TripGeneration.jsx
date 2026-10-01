@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Loader2, Sparkles, Map, Building2, Car, CalendarCheck } from 'lucide-react';
 import { tripService } from '../services/tripService';
@@ -6,8 +6,10 @@ import { tripService } from '../services/tripService';
 export default function TripGeneration() {
   const location = useLocation();
   const navigate = useNavigate();
-  const plan = location.state?.plan;
+  // Support both 'plan' from NLP (if updated) and 'profileState' from GuidedPlanner
+  const plan = location.state?.traveller_profile ? location.state : (location.state?.plan || location.state?.profileState);
   const [currentStep, setCurrentStep] = useState(0);
+  const [error, setError] = useState(null);
 
   const steps = [
     { icon: Sparkles, text: "Understanding your preferences" },
@@ -32,14 +34,18 @@ export default function TripGeneration() {
     const generate = async () => {
       try {
         const result = await tripService.generateTrip(plan);
+        
+        if (!result || !result.trip_id) {
+          throw new Error("Missing response fields from backend.");
+        }
+        
         // Ensure minimum wait time for visual experience
         setTimeout(() => {
-          navigate(`/trip/${result.id}`);
-        }, 3000);
+          navigate(`/trips/${result.trip_id}/preview`, { state: { tripData: result } });
+        }, 1000);
       } catch (err) {
         console.error("Failed to generate trip", err);
-        // Ideally navigate to an error page, but for now just go back
-        navigate('/plan-trip/review', { state: { plan } });
+        setError("Unable to create your journey right now. Please try again.");
       }
     };
 
@@ -55,40 +61,55 @@ export default function TripGeneration() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#0E1512] via-[#0E1512]/80 to-transparent"></div>
 
       <div className="relative z-10 max-w-md w-full px-6 flex flex-col items-center">
-        <div className="w-20 h-20 bg-orange-500 rounded-3xl flex items-center justify-center text-white mb-8 shadow-[0_0_40px_rgba(249,115,22,0.4)] animate-pulse">
-          <Sparkles size={40} />
-        </div>
-        
-        <h1 className="text-3xl font-bold font-serif text-center mb-12">
-          Serendib AI is building your Sri Lankan journey...
-        </h1>
-
-        <div className="w-full space-y-6">
-          {steps.map((step, index) => {
-            const isActive = index === currentStep;
-            const isPast = index < currentStep;
+        {error ? (
+          <div className="w-full bg-red-900/40 border border-red-500/50 rounded-xl p-6 text-center backdrop-blur-sm">
+            <h2 className="text-xl font-semibold text-red-200 mb-2">Generation Failed</h2>
+            <p className="text-red-100/80 mb-6">{error}</p>
+            <button 
+              onClick={() => navigate('/plan-trip')}
+              className="px-6 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-white font-medium"
+            >
+              Back to Planner
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="w-20 h-20 bg-orange-500 rounded-3xl flex items-center justify-center text-white mb-8 shadow-[0_0_40px_rgba(249,115,22,0.4)] animate-pulse">
+              <Sparkles size={40} />
+            </div>
             
-            return (
-              <div 
-                key={index}
-                className={`flex items-center gap-4 transition-all duration-700 ${
-                  isActive ? 'opacity-100 scale-105 transform' : 
-                  isPast ? 'opacity-40' : 'opacity-20 translate-y-4 transform'
-                }`}
-              >
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
-                  isActive ? 'border-orange-500 text-orange-500 bg-orange-500/10' : 
-                  isPast ? 'border-green-500 text-green-500' : 'border-[#57534E] text-[#57534E]'
-                }`}>
-                  {isActive ? <Loader2 size={18} className="animate-spin" /> : <step.icon size={18} />}
-                </div>
-                <span className={`font-medium ${isActive ? 'text-white' : 'text-[#78716C]'}`}>
-                  {step.text}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+            <h1 className="text-3xl font-bold font-serif text-center mb-12">
+              Serendib AI is building your Sri Lankan journey...
+            </h1>
+    
+            <div className="w-full space-y-6">
+              {steps.map((step, index) => {
+                const isActive = index === currentStep;
+                const isPast = index < currentStep;
+                
+                return (
+                  <div 
+                    key={index}
+                    className={`flex items-center gap-4 transition-all duration-700 ${
+                      isActive ? 'opacity-100 scale-105 transform' : 
+                      isPast ? 'opacity-40' : 'opacity-20 translate-y-4 transform'
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
+                      isActive ? 'border-orange-500 text-orange-500 bg-orange-500/10' : 
+                      isPast ? 'border-green-500 text-green-500' : 'border-[#57534E] text-[#57534E]'
+                    }`}>
+                      {isActive ? <Loader2 size={18} className="animate-spin" /> : <step.icon size={18} />}
+                    </div>
+                    <span className={`font-medium ${isActive ? 'text-white' : 'text-[#78716C]'}`}>
+                      {step.text}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

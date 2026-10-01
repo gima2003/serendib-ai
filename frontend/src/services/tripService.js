@@ -1,4 +1,4 @@
-﻿import { apiClient } from './apiClient';
+import { apiClient } from './apiClient';
 
 export const tripService = {
   // TODO: Connect to actual FastAPI endpoints once they are ready
@@ -8,19 +8,25 @@ export const tripService = {
     return null;
   },
 
-  async getUpcomingTrips() {
-    // return apiClient.get('/api/trips/upcoming');
-    return [];
+  async getUpcomingTrip() {
+    return apiClient.get('/api/trips/upcoming');
   },
 
-  async getSavedTrips() {
-    // return apiClient.get('/api/trips/saved');
-    return [];
+  async getAllTrips() {
+    return apiClient.get('/api/trips');
   },
 
   async getCompletedTrips() {
     // return apiClient.get('/api/trips/completed');
     return [];
+  },
+
+  async saveTrip(tripData) {
+    return apiClient.post('/api/trips', { trip_data: tripData });
+  },
+
+  async cancelTrip(tripId) {
+    return apiClient.patch(`/api/trips/${tripId}/cancel`);
   },
 
   // eslint-disable-next-line no-unused-vars
@@ -30,8 +36,8 @@ export const tripService = {
   },
 
   async getRecommendations() {
-    // return apiClient.get('/api/recommendations');
-    return [];
+    const response = await apiClient.get('/api/trips/recommendations');
+    return response.data;
   },
 
   // Planner endpoints
@@ -61,17 +67,29 @@ export const tripService = {
     return [];
   },
 
-  // eslint-disable-next-line no-unused-vars
   async generateTrip(planPayload) {
-    // return apiClient.post('/api/trips/generate', planPayload);
-    return { id: 'new-trip-id' };
+    // Determine if it's an NLP request or guided request
+    let requestBody = {};
+    
+    if (planPayload.traveller_profile) {
+      requestBody.traveller_profile = planPayload.traveller_profile;
+    } else {
+      // Fallback if the whole object is the profile (legacy)
+      requestBody.traveller_profile = planPayload;
+    }
+
+    if (planPayload.raw_user_request) {
+      requestBody.raw_user_request = planPayload.raw_user_request;
+    } else if (planPayload.text) {
+      requestBody.raw_user_request = planPayload.text;
+    }
+    
+    return apiClient.post('/api/trips/generate', requestBody);
   },
 
   // Workspace endpoints
-  // eslint-disable-next-line no-unused-vars
   async getTrip(tripId) {
-    // return apiClient.get(`/api/trips/${tripId}`);
-    return null;
+    return apiClient.get(`/api/trips/${tripId}`);
   },
 
   // eslint-disable-next-line no-unused-vars

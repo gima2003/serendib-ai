@@ -36,7 +36,14 @@ def recommend_transport(
             score -= 50 # Over budget penalty
             
         # Preference Match
-        if opt.mode.lower() in [p.lower() for p in preferences]:
+        matched_pref = False
+        for p in preferences:
+            p_lower = p.lower()
+            if opt.mode.lower() in p_lower or p_lower in opt.mode.lower() or (opt.mode.lower() == 'taxi' and 'car' in p_lower):
+                matched_pref = True
+                break
+                
+        if matched_pref:
             score += 30
             
         # Efficiency (Cheaper is slightly better if all else equal)
@@ -54,7 +61,13 @@ def recommend_transport(
         else:
             reasons.append("Exceeds available budget but is the best available option.")
             
-        if best_opt.mode.lower() in [p.lower() for p in preferences]:
+        matched_reason = False
+        for p in preferences:
+            p_lower = p.lower()
+            if best_opt.mode.lower() in p_lower or p_lower in best_opt.mode.lower() or (best_opt.mode.lower() == 'taxi' and 'car' in p_lower):
+                matched_reason = True
+                break
+        if matched_reason:
             reasons.append("Matches traveller transport preference.")
             
         reasons.append(f"Estimated cost: {best_opt.estimated_cost_lkr} LKR.")

@@ -4,9 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 import pymongo
 from database.core.database import db
 from routes.auth_routes import router as auth_router
+from routes.subscription_routes import router as subscription_router
 from routes.destination_routes import router as destination_router
 from routes.profile_route import router as profile_router
 from routes.planner_routes import router as planner_router
+from routes.trip_routes import router as trip_router
+from routes.payment_routes import router as payment_router
 
 
 @asynccontextmanager
@@ -50,7 +53,9 @@ app.include_router(auth_router)
 app.include_router(destination_router)
 app.include_router(profile_router)
 app.include_router(planner_router)
-
+app.include_router(trip_router)
+app.include_router(subscription_router)
+app.include_router(payment_router)
 
 @app.get("/")
 async def root():

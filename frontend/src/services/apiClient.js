@@ -1,4 +1,4 @@
-﻿import { authService } from './authService';
+import { authService } from './authService';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
@@ -29,7 +29,27 @@ export const apiClient = {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.detail || 'API request failed');
+
+      console.error("API Error Data:", errorData);
+
+      let errorMessage = 'API request failed';
+
+      if (errorData.detail) {
+        errorMessage =
+          typeof errorData.detail === 'string'
+            ? errorData.detail
+            : JSON.stringify(errorData.detail);
+      }
+
+      const error = new Error(errorMessage);
+
+      // Preserve HTTP status for frontend error handling
+      error.status = response.status;
+
+      // Preserve the complete backend response
+      error.response = errorData;
+
+      throw error;
     }
 
     return response.json();

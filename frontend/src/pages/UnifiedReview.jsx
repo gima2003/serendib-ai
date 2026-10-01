@@ -1,5 +1,8 @@
-﻿import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
 import { ChevronLeft, Edit2, Sparkles } from 'lucide-react';
+import UpgradeModal from '../components/UpgradeModal';
+import { checkGuidedPlanAccess } from '../services/subscriptionApi';
 
 const Section = ({ title, onEdit, children }) => (
   <div className="bg-white border border-[#EAE2D6] rounded-3xl p-6 md:p-8 shadow-sm mb-6 relative group">
@@ -16,9 +19,17 @@ const Section = ({ title, onEdit, children }) => (
 export default function UnifiedReview() {
   const location = useLocation();
   const navigate = useNavigate();
-  const profileState = location.state?.profileState;
+  
+  // Support both old profileState and new standardized location.state
+  const profile = location.state?.traveller_profile || location.state?.profileState?.traveller_profile;
+  const source = location.state?.source || 'unknown';
+  const raw_user_request = location.state?.raw_user_request || '';
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  
+  // From old guided flow if it still exists
+  const planningPreferences = location.state?.profileState?.planning_preferences || {};
 
-  if (!profileState) {
+  if (!profile) {
     return (
       <div className="min-h-screen bg-[#FFFCF8] flex items-center justify-center flex-col gap-4">
         <p className="text-[#57534E]">No trip profile found.</p>
@@ -33,22 +44,34 @@ export default function UnifiedReview() {
     );
   }
 
-  const profile = profileState.traveller_profile;
-  const planningPreferences = profileState.planning_preferences;
-
-  if (!planningPreferences) {
-    return (
-      <div className="min-h-screen bg-[#FFFCF8] flex items-center justify-center flex-col gap-4">
-        <p className="text-[#57534E]">No trip plan found.</p>
-        <Link to="/plan-trip" className="text-orange-500 font-medium">Start Planning</Link>
-      </div>
-    );
-  }
-
   const handleGenerate = async () => {
-    navigate('/plan-trip/generating', { state: { profileState } });
-  };
+      try {
+          await checkGuidedPlanAccess();
 
+          navigate('/plan-trip/generating', { 
+              state: { 
+                  traveller_profile: profile,
+                  raw_user_request: raw_user_request,
+                  source: source
+              } 
+          });
+
+      } catch(error) {
+          if(
+              error.status === 403 ||
+              error.response?.status === 403
+          ){
+
+              setShowUpgradeModal(true);
+              return;
+          }
+          console.error(
+              "Guided plan check failed:",
+              error
+          );
+      }
+
+  };
   return (
     <div className="min-h-screen bg-[#FFFCF8] text-[#1C1917] font-sans selection:bg-orange-100 flex flex-col">
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-[#EAE2D6] px-6 py-4 flex items-center shadow-sm">
@@ -238,6 +261,11 @@ export default function UnifiedReview() {
           </button>
         </div>
       </main>
+      <UpgradeModal
+          feature="guided_plan"
+          isOpen={showUpgradeModal}
+          onClose={() => setShowUpgradeModal(false)}
+      />
     </div>
   );
 }

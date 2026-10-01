@@ -7,6 +7,8 @@ from database.core.database import db
 from models.auth_schema import UserRegister, UserLogin, Token, UserResponse, UserUpdate
 from security.auth_security import get_password_hash, verify_password, create_access_token, get_current_user
 from database.core.config import ACCESS_TOKEN_EXPIRE_MINUTES
+from services.subscription_service import create_subscription
+from fastapi.security import OAuth2PasswordRequestForm
 
 router = APIRouter(
     prefix="/api/auth",
@@ -43,14 +45,66 @@ async def register(user_data: UserRegister) -> Any:
     # Insert to MongoDB
     try:
         result = await db.users.insert_one(user_dict)
+        
     except DuplicateKeyError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Email already registered"
         )
         
-    user_dict["id"] = str(result.inserted_id)
+    user_id = str(result.inserted_id)
+
+    # Create default FREE subscription
+    await create_subscription(
+        user_id=user_id,
+        plan_name="free"
+    )
+
+    user_dict["id"] = user_id
     return user_dict
+
+@router.post("/swagger-login")
+async def swagger_login(
+    form_data: OAuth2PasswordRequestForm = Depends()
+):
+
+    user = await db.users.find_one(
+        {
+            "email": form_data.username
+        }
+    )
+
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid credentials"
+        )
+
+
+    if not verify_password(
+        form_data.password,
+        user["password_hash"]
+    ):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid credentials"
+        )
+
+
+    access_token = create_access_token(
+        data={
+            "sub": user["email"]
+        },
+        expires_delta=timedelta(
+            minutes=ACCESS_TOKEN_EXPIRE_MINUTES
+        )
+    )
+
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }
 
 @router.post("/login", response_model=Any) # Token + User info
 async def login(login_data: UserLogin) -> Any:

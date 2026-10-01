@@ -3,11 +3,12 @@ from services.guided_planner_service import (
     build_guided_profile_state,
 )
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 
 from llm.llm_service import (
     LLMServiceError,
-    extract_traveller_profile
+    extract_traveller_profile,
+    validate_travel_prompt
 )
 
 from llm.prompts import build_profile_prompt
@@ -43,6 +44,13 @@ from models.clarification_answer_request import (
 
 from models.profile_state import ProfileState
 
+from security.auth_security import get_current_user
+
+from services.subscription_guard import (
+    check_ai_prompt_access,
+    increment_ai_prompt_usage,
+)
+
 router = APIRouter(
     prefix="/profile",
     tags=["Traveller Profile"]
@@ -61,14 +69,32 @@ async def create_profile(profile: TravellerProfile):
 )
 async def extract_profile(
     request: TravellerTextRequest,
+    current_user: dict = Depends(get_current_user),
 ):
     try:
+        user_id = str(current_user["_id"])
+
+        await check_ai_prompt_access(
+            user_id
+        )
+
+        if not validate_travel_prompt(request.text):
+
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid prompt. Please enter a travel-related request."
+            )
+
         prompt = build_profile_prompt(
             request.text
         )
 
         profile = extract_traveller_profile(
             prompt
+        )
+
+        await increment_ai_prompt_usage(
+            user_id
         )
 
         profile_state = create_profile_state(
@@ -98,18 +124,29 @@ async def extract_profile(
             assistant=assistant,
         )
 
-    except LLMServiceError as error:
+    except HTTPException:
+        raise
+
+
+    except Exception as e:
+
+        print("\n🔥 PROFILE EXTRACTION ERROR 🔥")
+        print(repr(e))
+        print("==============================\n")
+
         raise HTTPException(
             status_code=503,
-            detail=str(error)
+            detail="All configured LLM providers failed."
         )
 
+    
 @router.post(
     "/guided",
     response_model=ProfileState,
 )
 async def create_guided_profile(
     request: GuidedPlannerRequest,
+    current_user: dict = Depends(get_current_user),
 ):
     return build_guided_profile_state(request)
 
@@ -179,11 +216,11 @@ async def handle_clarification_permission(
         )
 
     except Exception as error:
+        print("CLARIFICATION PERMISSION ERROR:", repr(error))
         raise HTTPException(
             status_code=500,
             detail=str(error),
         )
-
 @router.post(
     "/clarification/answer",
     response_model=ProfileConversationResponse,
@@ -201,6 +238,10 @@ async def handle_clarification_answer(
             current_context=request.current_context,
             user_answer=request.user_answer,
         )
+
+        print("\n🚀 FINAL PROFILE RESPONSE SENT TO FRONTEND")
+        print(updated_profile.model_dump_json(indent=2))
+        print(readiness.model_dump_json(indent=2))
 
         # Profile is now ready.
         if readiness.ready:
@@ -239,6 +280,7 @@ async def handle_clarification_answer(
         )
 
     except Exception as error:
+        print("CLARIFICATION PERMISSION ERROR:", repr(error))
         raise HTTPException(
             status_code=500,
             detail=str(error),

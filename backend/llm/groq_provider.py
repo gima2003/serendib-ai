@@ -46,3 +46,19 @@ def extract_with_groq(prompt: str) -> TravellerProfile:
     return TravellerProfile.model_validate(
         llm_profile.model_dump()
     )
+
+def validate_with_groq(prompt: str) -> str:
+    completion = client.chat.completions.create(
+        model="openai/gpt-oss-20b",
+
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+
+        temperature=0
+    )
+
+    return completion.choices[0].message.content.strip()

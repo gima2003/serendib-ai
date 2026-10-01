@@ -68,6 +68,13 @@ def match_interests_to_experiences(
                 )
 
                 match_strength = 0.95
+                
+            elif any(
+                normalized_interest in kw or kw in normalized_interest
+                for kw in normalized_keywords + [experience_name]
+            ):
+                match_type = "partial_keyword"
+                match_strength = 0.70
 
             if match_type:
 

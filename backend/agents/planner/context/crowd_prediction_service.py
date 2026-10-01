@@ -62,13 +62,26 @@ def calculate_crowd_prediction(travel_date: str, location: str, category: str = 
     is_popular = location.lower() in POPULAR_DESTINATIONS or category.lower() == "popular"
     if is_popular:
         score += 20
-        reasons.append("Popular tourist area")
+        reasons.append("Popular tourist destination")
         
     if is_poya and (category.lower() == "religious" or "temple" in location.lower() or "kovil" in location.lower() or location.lower() == "kandy temple of tooth"):
-        score += 20
-        reasons.append("Religious place on Poya day")
+        score += 30
+        reasons.append("Religious site on Poya day")
         
-    score = min(score, 100)
+    month = date_obj.month
+    if month in [12, 1, 2, 3]:
+        score += 25
+        reasons.append("Peak tourist season (Winter/Spring)")
+    elif month in [7, 8]:
+        score += 15
+        reasons.append("High season (Summer)")
+    elif month in [10, 11]:
+        reasons.append("Shoulder season")
+    else:
+        score -= 10
+        reasons.append("Off-peak season")
+
+    score = min(max(score, 0), 100)
     
     if score <= 30:
         crowd_level = "LOW"

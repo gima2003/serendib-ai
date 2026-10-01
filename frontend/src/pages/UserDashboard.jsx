@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import {
   Map, Calendar, Wallet, ArrowRight, Compass,
   LogOut, Sun,
@@ -16,13 +16,17 @@ import { IMG, wiki, fmtDateLong, upcomingEvents, SmartImg } from '../components/
 import { useDynamicHero } from '../hooks/useDynamicHero';
 import { useSriLankaWeather, useColomboClock, fmtTime, wmo } from '../hooks/useSriLankaWeather';
 import { getCountries, getCurrencies } from '../data/countries';
+import useSubscription from "../hooks/useSubscription";
+import SubscriptionUsageCard from "../components/SubscriptionUsageCard";
+import SubscriptionSuccessModal from "../components/SubscriptionSuccessModal";
+import SubscriptionCancellationModal from "../components/SubscriptionCancellationModal";
 
 const getDisplayCountry = (code) => {
   if (!code) return '';
   const countries = getCountries();
   const found = countries.find(c => c.code === code || c.code.toLowerCase() === code.toLowerCase() || c.name.toLowerCase() === code.toLowerCase());
   if (found) return found.name;
-  
+
   // If not found in the list, try to title-case if it's all uppercase
   if (code === code.toUpperCase() && code.length > 2) {
     return code.charAt(0).toUpperCase() + code.slice(1).toLowerCase();
@@ -96,9 +100,53 @@ const DASHBOARD_STYLES = `
 
 export default function UserDashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState(authService.getCurrentUser());
   const [activeOverlay, setActiveOverlay] = useState(null);
-  
+  const {
+    subscription,
+    usage,
+    limits,
+    plan
+  } = useSubscription();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const [showSubscriptionCancellation, setShowSubscriptionCancellation] =useState(false);
+
+  useEffect(() => {
+
+    if (
+        searchParams.get("payment")
+        === "success"
+    ) {
+        setShowPaymentSuccess(true);
+
+        // remove query after showing once
+        searchParams.delete("payment");
+    }
+
+    if (
+        searchParams.get("subscription")
+        === "cancelled"
+    ) {
+        setShowSubscriptionCancellation(true);
+
+        // remove query after showing once
+        searchParams.delete("subscription");
+    }
+
+    setSearchParams(searchParams);
+
+  }, []);
+
+  useEffect(() => {
+    if (location.state?.openProfile) {
+      setActiveOverlay('profile');
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
   // Profile form state
   const [formData, setFormData] = useState({
     full_name: user?.full_name || user?.name || '',
@@ -141,8 +189,24 @@ export default function UserDashboard() {
     const fetchDashboardData = async () => {
       try {
         setIsLoadingTrip(true);
-        const trip = await tripService.getCurrentTrip();
-        setCurrentTrip(trip);
+        const tripRes = await tripService.getUpcomingTrip();
+        if (tripRes && tripRes.trip_id) {
+          const t = tripRes;
+          const duration = t.profile?.duration_days || t.schedule_plan?.itinerary?.length || t.schedule?.schedule?.length || 0;
+          const profile = t.profile || {};
+          const dests = t.destinations || [];
+
+          setCurrentTrip({
+            id: t.trip_id,
+            days: duration,
+            travellerType: profile.travel_type || 'Couple',
+            title: t.trip_name || 'Sri Lanka Escape',
+            dates: t.start_date || profile.start_date ? new Date(t.start_date || profile.start_date).toLocaleDateString() : 'Upcoming',
+            routeSummary: dests.map(d => d.city || d.destination).join(' → ') || 'Sri Lanka'
+          });
+        } else {
+          setCurrentTrip(null);
+        }
       } catch (error) {
         console.error('Failed to fetch trip:', error);
       } finally {
@@ -152,7 +216,16 @@ export default function UserDashboard() {
       try {
         setIsLoadingRecs(true);
         const recs = await tripService.getRecommendations();
-        setRecommendations(recs);
+        if (recs && recs.length > 0) {
+          setRecommendations(recs);
+        } else {
+          // Absolute fallback
+          setRecommendations([
+            { id: 1, title: 'Ella', tags: ['Nature', 'Hiking'], match: 92, image: 'ella' },
+            { id: 2, title: 'Kandy', tags: ['Culture', 'Nature'], match: 89, image: 'kandy' },
+            { id: 3, title: 'Galle', tags: ['Beach', 'Heritage'], match: 86, image: 'galle' },
+          ]);
+        }
       } catch (error) {
         console.error('Failed to fetch recommendations:', error);
       } finally {
@@ -173,7 +246,7 @@ export default function UserDashboard() {
     try {
       setIsSaving(true);
       const updatedProfile = await profileService.updateProfile(formData);
-      
+
       if (updatedProfile) {
         const newUser = { ...user, ...updatedProfile };
         localStorage.setItem('user', JSON.stringify(newUser));
@@ -521,20 +594,24 @@ export default function UserDashboard() {
                   {recommendations.map((rec, index) => (
                     <div key={index} className="glow-card bg-white border border-[#EAE2D6] rounded-2xl overflow-hidden group cursor-pointer flex flex-col shadow-sm">
                       <div className="h-40 bg-[#FBF3EA] overflow-hidden relative">
-                        {rec.image && <img src={rec.image} alt={rec.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />}
-                        {rec.matchScore && (
+                        <SmartImg query={rec.title || rec.name || 'Sri Lanka'} alt={rec.title || rec.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        {(rec.match || rec.matchScore) && (
                           <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-[#EAE2D6] flex items-center gap-1.5 shadow-sm">
                             <span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span>
-                            <span className="text-xs font-bold text-[#1C1917]">{rec.matchScore}% Match</span>
+                            <span className="text-xs font-bold text-[#1C1917]">{rec.match || rec.matchScore}% Match</span>
                           </div>
                         )}
                       </div>
                       <div className="p-5 flex-1 flex flex-col">
                         <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-lg font-bold text-[#1C1917]">{rec.name}</h3>
-                          <span className="text-xs font-medium text-[#78716C] bg-[#FBF3EA] px-2 py-1 rounded-md">{rec.category}</span>
+                          <h3 className="text-lg font-bold text-[#1C1917]">{rec.title || rec.name}</h3>
+                          {rec.tags && rec.tags.length > 0 && (
+                            <span className="text-xs font-medium text-[#78716C] bg-[#FBF3EA] px-2 py-1 rounded-md">{rec.tags[0]}</span>
+                          )}
                         </div>
-                        <p className="text-sm text-[#57534E] mt-auto line-clamp-2">{rec.reason}</p>
+                        <p className="text-sm text-[#57534E] mt-auto line-clamp-2">
+                          {rec.reason || `Explore the beautiful attractions of ${rec.title || rec.name}.`}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -553,6 +630,11 @@ export default function UserDashboard() {
 
           {/* Sidebar / Quick Access Column */}
           <div className="lg:col-span-4 space-y-6">
+            <SubscriptionUsageCard
+                usage={usage}
+                limits={limits}
+                plan={plan}
+            />
             <h2 className="text-xl font-bold text-[#1C1917] mb-2">Quick Access</h2>
 
             <div className="grid grid-cols-2 gap-4">
@@ -767,6 +849,22 @@ export default function UserDashboard() {
           <p>Live exchange rates will appear here once connected.</p>
         </div>
       </Overlay>
+      <SubscriptionSuccessModal
+
+          isOpen={showPaymentSuccess}
+
+          onClose={() =>
+              setShowPaymentSuccess(false)
+          }
+
+      />
+      <SubscriptionCancellationModal
+          isOpen={showSubscriptionCancellation}
+          onClose={() => {
+              setShowSubscriptionCancellation(false);
+              setSearchParams({});
+          }}
+      />
 
     </div>
   );

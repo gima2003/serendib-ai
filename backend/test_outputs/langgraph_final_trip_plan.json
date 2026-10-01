@@ -1,0 +1,504 @@
+{
+  "trip_id": "TRIP-LANGGRAPH-VAL",
+  "status": "completed",
+  "start_date": null,
+  "end_date": null,
+  "itinerary": [
+    {
+      "day": 1,
+      "date": null,
+      "city": "Colombo",
+      "activities": [
+        {
+          "activity_id": "d6682af9-aaaf-43a3-98f9-46e616bf743d",
+          "time": "09:00",
+          "name": "Explore Colombo",
+          "type": "leisure",
+          "description": "Free time to explore the local area of Colombo.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "aa1f0320-5c21-4753-8d8e-aebcf38de4bf",
+          "time": "12:30",
+          "name": "Lunch in Colombo",
+          "type": "meal",
+          "description": "Explore local dining options.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "e309f935-18b0-4411-aa40-87a58f58e1ab",
+          "time": "14:00",
+          "name": "Leisure time in Colombo",
+          "type": "leisure",
+          "description": "Relax or explore at your own pace.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "46b7cb01-2a66-43ab-9afd-c1601a1920ce",
+          "time": "19:00",
+          "name": "Dinner in Colombo",
+          "type": "meal",
+          "description": "Enjoy local cuisine.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": null,
+      "warnings": [],
+      "notes": [
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    },
+    {
+      "day": 2,
+      "date": null,
+      "city": "Colombo",
+      "activities": [
+        {
+          "activity_id": "1f1eb30b-a8d4-4bd4-ad9c-5a945e70e173",
+          "time": "09:00",
+          "name": "Explore Colombo",
+          "type": "leisure",
+          "description": "Free time to explore the local area of Colombo.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "f2098de5-a7dc-4a2b-b1bf-cc60599c6d56",
+          "time": "12:30",
+          "name": "Lunch in Colombo",
+          "type": "meal",
+          "description": "Explore local dining options.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "46c15402-f2c7-4426-83a1-5a2fe15692eb",
+          "time": "14:00",
+          "name": "Leisure time in Colombo",
+          "type": "leisure",
+          "description": "Relax or explore at your own pace.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "4095eb16-b62f-4e60-93fe-687bc36c4da5",
+          "time": "19:00",
+          "name": "Dinner in Colombo",
+          "type": "meal",
+          "description": "Enjoy local cuisine.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "286bfd24-0fbf-41c4-a93b-f2a8a0f1439c",
+          "time": "Next Morning",
+          "name": "Check-out and prepare for next destination",
+          "type": "accommodation",
+          "description": null,
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": null,
+      "warnings": [],
+      "notes": [
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    },
+    {
+      "day": 3,
+      "date": null,
+      "city": "Kandy",
+      "activities": [
+        {
+          "activity_id": "1c4bdf9b-19a4-4461-8b44-bba251c0560d",
+          "time": "Morning",
+          "name": "Travel from Colombo to Kandy",
+          "type": "travel",
+          "description": "Estimated travel time: 104 minutes by car.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": 104
+        },
+        {
+          "activity_id": "6ab810c5-942f-4163-b22b-073b6c86c7eb",
+          "time": "Afternoon",
+          "name": "Kandy Lake",
+          "type": "attraction",
+          "description": "Lake / Scenic",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "077c6ee4-7426-48ef-b257-98e962296b9c",
+          "time": "12:30",
+          "name": "The Empire Cafe",
+          "type": "meal",
+          "description": "",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "f0de013b-4bcf-4a74-95b9-fc90ad787ec1",
+          "time": "14:00",
+          "name": "Royal Botanical Gardens Peradeniya",
+          "type": "attraction",
+          "description": "Botanical Garden",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "eccee3c5-4e3a-4d67-956e-cf69e426b837",
+          "time": "16:00",
+          "name": "Check-in at FOG KANDY",
+          "type": "accommodation",
+          "description": "Accommodation in Kandy.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "6004036a-6265-4a60-b961-19e760938f51",
+          "time": "19:00",
+          "name": "Cafe Secret Alley",
+          "type": "meal",
+          "description": "",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "513ce0d1-ab1e-4b98-90bb-dd77513aa662",
+          "time": "Next Morning",
+          "name": "Check-out and prepare for next destination",
+          "type": "accommodation",
+          "description": null,
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": {
+        "accommodation_id": "GEO_62384197",
+        "name": "FOG KANDY",
+        "city": "Kandy",
+        "address": "FOG KANDY, 1C Heerassagala Road, Heeressagala 20000, Sri Lanka",
+        "latitude": 7.2649337,
+        "longitude": 80.622737,
+        "accommodation_type": "Accommodation",
+        "rating": null,
+        "review_count": null,
+        "amenities": [],
+        "source": "Geoapify",
+        "source_confidence": "high",
+        "price_information": {
+          "type": "estimated_range",
+          "price_per_night_lkr": null,
+          "min_per_night_lkr": 8000.0,
+          "max_per_night_lkr": 15000.0,
+          "estimated_price_per_night_lkr": 11500.0,
+          "price_basis": "room",
+          "source": "estimated_accommodation_reference",
+          "confidence": "medium"
+        },
+        "distance_information": null,
+        "capacity_status": "unknown",
+        "maximum_guests": null,
+        "limitations": [],
+        "recommendation_score": 40.0,
+        "recommendation_reasons": [
+          "Slightly above estimated budget"
+        ],
+        "is_selected": true
+      },
+      "warnings": [
+        "Crowd Level: LOW — Regular visiting hours are fine",
+        "Weather: Cloudy, 26°C, Rain: 30%"
+      ],
+      "notes": [
+        "Travel to Kandy occupies the morning.",
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    },
+    {
+      "day": 4,
+      "date": null,
+      "city": "Nuwara Eliya",
+      "activities": [
+        {
+          "activity_id": "797e91cf-6ce8-445e-b614-4cffb1c82e30",
+          "time": "Morning",
+          "name": "Travel from Kandy to Nuwara Eliya",
+          "type": "travel",
+          "description": "Estimated travel time: 74 minutes by car.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": 74
+        },
+        {
+          "activity_id": "f6abf837-0dc5-4dfa-9ab8-7cf673f27284",
+          "time": "Afternoon",
+          "name": "Pedro Tea Estate",
+          "type": "attraction",
+          "description": "Tea Estate",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "48cf4166-83b3-4832-a53d-3374ee70a8c5",
+          "time": "12:30",
+          "name": "Themparadu",
+          "type": "meal",
+          "description": "",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "6e873fe5-baa7-4a1d-9f9f-a3c4463a08b5",
+          "time": "14:00",
+          "name": "World's End",
+          "type": "attraction",
+          "description": "Viewpoint",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "ebe8d2c9-e05f-4795-8530-5201f68825e0",
+          "time": "16:00",
+          "name": "Check-in at Lochside",
+          "type": "accommodation",
+          "description": "Accommodation in Nuwara Eliya.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "f6f6149d-79a7-40ec-880a-86728fb814a2",
+          "time": "19:00",
+          "name": "Milano Restaurant",
+          "type": "meal",
+          "description": "",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "c748bc70-4924-43de-b3fd-13463db10db8",
+          "time": "Next Morning",
+          "name": "Check-out and prepare for next destination",
+          "type": "accommodation",
+          "description": null,
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": {
+        "accommodation_id": "GEO_05eb8747",
+        "name": "Lochside",
+        "city": "Nuwara Eliya",
+        "address": "Lochside, Badulla Road, Nuwara Eliya 10000, Sri Lanka",
+        "latitude": 6.9547218,
+        "longitude": 80.7789217,
+        "accommodation_type": "Accommodation",
+        "rating": null,
+        "review_count": null,
+        "amenities": [],
+        "source": "Geoapify",
+        "source_confidence": "high",
+        "price_information": {
+          "type": "estimated_range",
+          "price_per_night_lkr": null,
+          "min_per_night_lkr": 8000.0,
+          "max_per_night_lkr": 15000.0,
+          "estimated_price_per_night_lkr": 11500.0,
+          "price_basis": "room",
+          "source": "estimated_accommodation_reference",
+          "confidence": "medium"
+        },
+        "distance_information": null,
+        "capacity_status": "unknown",
+        "maximum_guests": null,
+        "limitations": [],
+        "recommendation_score": 40.0,
+        "recommendation_reasons": [
+          "Slightly above estimated budget"
+        ],
+        "is_selected": true
+      },
+      "warnings": [
+        "Crowd Level: LOW — Regular visiting hours are fine",
+        "Weather: Rain, 16°C, Rain: 60%"
+      ],
+      "notes": [
+        "Travel to Nuwara Eliya occupies the morning.",
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    },
+    {
+      "day": 5,
+      "date": null,
+      "city": "Ella",
+      "activities": [
+        {
+          "activity_id": "d5083382-2de0-401a-adb7-5119b8d18b3e",
+          "time": "Morning",
+          "name": "Travel from Nuwara Eliya to Ella",
+          "type": "travel",
+          "description": "Estimated travel time: 58 minutes by car.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": 58
+        },
+        {
+          "activity_id": "004d2ccf-25f2-4a1e-9dd1-ab8c5e6c67b9",
+          "time": "12:30",
+          "name": "Matey Hut Ella Sri Lanka",
+          "type": "meal",
+          "description": "",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "fd29a1ab-6167-4d9d-a165-6dd9cea84452",
+          "time": "14:00",
+          "name": "Leisure time in Ella",
+          "type": "leisure",
+          "description": "Relax or explore at your own pace.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "b826fd90-ab44-4246-98ac-96b96ae21663",
+          "time": "16:00",
+          "name": "Check-in at The Hideaway Ella",
+          "type": "accommodation",
+          "description": "Accommodation in Ella.",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        },
+        {
+          "activity_id": "e3e22811-b1b6-40c2-89c2-19a9b6709651",
+          "time": "19:00",
+          "name": "Café UFO Ella",
+          "type": "meal",
+          "description": "",
+          "cost_lkr": null,
+          "warnings": [],
+          "location": null,
+          "duration_minutes": null
+        }
+      ],
+      "accommodation": {
+        "accommodation_id": "GEO_03c54627",
+        "name": "The Hideaway Ella",
+        "city": "Ella",
+        "address": "The Hideaway Ella, Karandagolla - Roseland - Heeloya Road, Makulella 90108, Sri Lanka",
+        "latitude": 6.8217716,
+        "longitude": 81.0395445,
+        "accommodation_type": "Accommodation",
+        "rating": null,
+        "review_count": null,
+        "amenities": [],
+        "source": "Geoapify",
+        "source_confidence": "high",
+        "price_information": {
+          "type": "estimated_range",
+          "price_per_night_lkr": null,
+          "min_per_night_lkr": 8000.0,
+          "max_per_night_lkr": 15000.0,
+          "estimated_price_per_night_lkr": 11500.0,
+          "price_basis": "room",
+          "source": "estimated_accommodation_reference",
+          "confidence": "medium"
+        },
+        "distance_information": null,
+        "capacity_status": "unknown",
+        "maximum_guests": null,
+        "limitations": [],
+        "recommendation_score": 40.0,
+        "recommendation_reasons": [
+          "Slightly above estimated budget"
+        ],
+        "is_selected": true
+      },
+      "warnings": [
+        "Crowd Level: LOW — Regular visiting hours are fine",
+        "Weather: Heavy Rain, 18°C, Rain: 80%"
+      ],
+      "notes": [
+        "Travel to Ella occupies the morning.",
+        "Relaxed pace — no rushing between sites."
+      ],
+      "daily_budget_lkr": 0.0
+    }
+  ],
+  "budget_summary": {
+    "available": 100000.0,
+    "estimated_cost": 52030.0,
+    "utilization_percent": 52.03,
+    "within_budget": true
+  },
+  "overall_warnings": [
+    "The complete trip cost cannot be calculated because transport pricing is incomplete.",
+    "Day 1 in Colombo is missing a selected accommodation.",
+    "Day 2 in Colombo is missing a selected accommodation."
+  ],
+  "planning_notes": [
+    "Itinerary covers 5 days across 4 destinations.",
+    "Generated from specialist agent outputs."
+  ]
+}
