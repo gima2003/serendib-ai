@@ -19,3 +19,9 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 60))
 GEOAPIFY_API_KEY = os.getenv('GEOAPIFY_API_KEY', '')
 GEOAPIFY_GEOCODING_URL = os.getenv('GEOAPIFY_GEOCODING_URL', 'https://api.geoapify.com/v1/geocode/search')
 GEOAPIFY_ROUTING_URL = os.getenv('GEOAPIFY_ROUTING_URL', 'https://api.geoapify.com/v1/routing')
+
+# Stripe Configuration
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+STRIPE_WEBHOOK_SECRET = os.getenv(
+    "STRIPE_WEBHOOK_SECRET"
+)

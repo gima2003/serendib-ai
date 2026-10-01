@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import {
   Map, Calendar, Wallet, ArrowRight, Compass,
   LogOut, Sun,
@@ -16,6 +16,10 @@ import { IMG, wiki, fmtDateLong, upcomingEvents, SmartImg } from '../components/
 import { useDynamicHero } from '../hooks/useDynamicHero';
 import { useSriLankaWeather, useColomboClock, fmtTime, wmo } from '../hooks/useSriLankaWeather';
 import { getCountries, getCurrencies } from '../data/countries';
+import useSubscription from "../hooks/useSubscription";
+import SubscriptionUsageCard from "../components/SubscriptionUsageCard";
+import SubscriptionSuccessModal from "../components/SubscriptionSuccessModal";
+import SubscriptionCancellationModal from "../components/SubscriptionCancellationModal";
 
 const getDisplayCountry = (code) => {
   if (!code) return '';
@@ -99,6 +103,42 @@ export default function UserDashboard() {
   const location = useLocation();
   const [user, setUser] = useState(authService.getCurrentUser());
   const [activeOverlay, setActiveOverlay] = useState(null);
+  const {
+    subscription,
+    usage,
+    limits,
+    plan
+  } = useSubscription();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const [showSubscriptionCancellation, setShowSubscriptionCancellation] =useState(false);
+
+  useEffect(() => {
+
+    if (
+        searchParams.get("payment")
+        === "success"
+    ) {
+        setShowPaymentSuccess(true);
+
+        // remove query after showing once
+        searchParams.delete("payment");
+    }
+
+    if (
+        searchParams.get("subscription")
+        === "cancelled"
+    ) {
+        setShowSubscriptionCancellation(true);
+
+        // remove query after showing once
+        searchParams.delete("subscription");
+    }
+
+    setSearchParams(searchParams);
+
+  }, []);
 
   useEffect(() => {
     if (location.state?.openProfile) {
@@ -590,6 +630,11 @@ export default function UserDashboard() {
 
           {/* Sidebar / Quick Access Column */}
           <div className="lg:col-span-4 space-y-6">
+            <SubscriptionUsageCard
+                usage={usage}
+                limits={limits}
+                plan={plan}
+            />
             <h2 className="text-xl font-bold text-[#1C1917] mb-2">Quick Access</h2>
 
             <div className="grid grid-cols-2 gap-4">
@@ -804,6 +849,22 @@ export default function UserDashboard() {
           <p>Live exchange rates will appear here once connected.</p>
         </div>
       </Overlay>
+      <SubscriptionSuccessModal
+
+          isOpen={showPaymentSuccess}
+
+          onClose={() =>
+              setShowPaymentSuccess(false)
+          }
+
+      />
+      <SubscriptionCancellationModal
+          isOpen={showSubscriptionCancellation}
+          onClose={() => {
+              setShowSubscriptionCancellation(false);
+              setSearchParams({});
+          }}
+      />
 
     </div>
   );

@@ -3,7 +3,7 @@ from services.guided_planner_service import (
     build_guided_profile_state,
 )
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 
 from llm.llm_service import (
     LLMServiceError,
@@ -43,6 +43,13 @@ from models.clarification_answer_request import (
 
 from models.profile_state import ProfileState
 
+from security.auth_security import get_current_user
+
+from services.subscription_guard import (
+    check_ai_prompt_access,
+    increment_ai_prompt_usage,
+)
+
 router = APIRouter(
     prefix="/profile",
     tags=["Traveller Profile"]
@@ -61,14 +68,25 @@ async def create_profile(profile: TravellerProfile):
 )
 async def extract_profile(
     request: TravellerTextRequest,
+    current_user: dict = Depends(get_current_user),
 ):
     try:
+        user_id = str(current_user["_id"])
+
+        await check_ai_prompt_access(
+            user_id
+        )
+
         prompt = build_profile_prompt(
             request.text
         )
 
         profile = extract_traveller_profile(
             prompt
+        )
+
+        await increment_ai_prompt_usage(
+            user_id
         )
 
         profile_state = create_profile_state(
@@ -98,18 +116,29 @@ async def extract_profile(
             assistant=assistant,
         )
 
+    except HTTPException:
+        raise
+
+
     except Exception as e:
+
+        print("\n🔥 PROFILE EXTRACTION ERROR 🔥")
+        print(repr(e))
+        print("==============================\n")
+
         raise HTTPException(
             status_code=503,
             detail="All configured LLM providers failed."
         )
 
+    
 @router.post(
     "/guided",
     response_model=ProfileState,
 )
 async def create_guided_profile(
     request: GuidedPlannerRequest,
+    current_user: dict = Depends(get_current_user),
 ):
     return build_guided_profile_state(request)
 

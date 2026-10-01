@@ -14,13 +14,16 @@ import {
   Compass,
   ChevronLeft,
   Loader2,
+  AlertCircle,
 } from "lucide-react";
 import { tripService } from '../services/tripService';
+import UpgradeModal from '../components/UpgradeModal';
 
 
 export default function NLPPlanner() {
   const navigate = useNavigate();
   const [text, setText] = useState('');
+  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [parsedPlan, setParsedPlan] = useState(null);
@@ -67,14 +70,25 @@ export default function NLPPlanner() {
       }
 
     } catch (err) {
-      console.error(err);
 
-      setError(
-        'Serendib AI is currently unavailable. Please try again later.'
-      );
-    } finally {
-      setIsLoading(false);
+    console.error(err);
+
+    if (
+        err.response?.status === 403 ||
+        err.status === 403 ||
+        err.message?.includes("limit")
+    ) {
+        setIsUpgradeModalOpen(true);
+        return;
     }
+
+    setError(
+        'Serendib AI is currently unavailable. Please try again later.'
+    );
+
+    } finally {
+          setIsLoading(false);
+        }
   };
 
   const handleClarificationPermission = async (userResponse) => {
@@ -594,6 +608,11 @@ export default function NLPPlanner() {
           </div>
         </div>
       )}
+      <UpgradeModal
+          feature="ai_prompt"
+          isOpen={showUpgradeModal}
+          onClose={() => setShowUpgradeModal(false)}
+      />
     </div>
   );
 }
