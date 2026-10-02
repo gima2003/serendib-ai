@@ -270,35 +270,6 @@ pip install -r requirements.txt
 
 Create a `.env` file inside the `backend` directory.
 
-Use the required configuration for your local environment:
-
-```env
-MONGODB_URL=your_mongodb_connection_string
-DATABASE_NAME=serendib_ai
-
-APP_NAME=Serendib AI
-APP_ENV=development
-
-HOST=127.0.0.1
-PORT=8000
-
-JWT_SECRET_KEY=your_jwt_secret
-JWT_ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=60
-
-GEOAPIFY_API_KEY=your_geoapify_api_key
-GEOAPIFY_GEOCODING_URL=https://api.geoapify.com/v1/geocode/search
-GEOAPIFY_ROUTING_URL=https://api.geoapify.com/v1/routing
-
-GENAI_API_KEY=your_gemini_api_key
-GROQ_API_KEY=your_groq_api_key
-
-STRIPE_SECRET_KEY=your_stripe_secret_key
-STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
-```
-
-**Do not commit the real `.env` file or any secret values to GitHub.**
-
 ### 4. Start the Backend
 
 From the `backend` directory:
