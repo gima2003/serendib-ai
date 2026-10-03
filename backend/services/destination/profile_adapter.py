@@ -135,16 +135,10 @@ def extract_destination_preferences(
     # Preferred destinations
     # -------------------------------------------------
 
-    preferred_destinations = (
-        profile.get(
-            "preferred_destinations",
-            []
-        )
-    )
+    must_visit = profile.get("must_visit_destinations", []) or []
+    preferred = profile.get("preferred_destinations", []) or []
 
-
-    if preferred_destinations is None:
-        preferred_destinations = []
+    preferred_destinations = list(set(must_visit + preferred))
 
 
 

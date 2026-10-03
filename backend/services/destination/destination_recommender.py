@@ -429,6 +429,7 @@ def recommend_from_preferred_destinations(
                 destination,
                 attractions["city"].unique()
             )
+            print(f"DEBUG {destination} -> {validation}")
 
 
             if validation["status"] != "valid":
@@ -461,24 +462,13 @@ def recommend_from_preferred_destinations(
                 continue
 
 
-            # Filter selected destination
-            if attraction_scores is not None and not attraction_scores.empty:
-
-                destination_attractions = attraction_scores[
-                    attraction_scores["city"]
-                    .str.lower()
-                    ==
-                    destination.lower()
-                ]
-
-            else:
-
-                destination_attractions = attractions[
-                    attractions["city"]
-                    .str.lower()
-                    ==
-                    destination.lower()
-                ]
+            # Always get base attractions for this destination
+            destination_attractions = attractions[
+                attractions["city"]
+                .str.lower()
+                ==
+                destination.lower()
+            ]
 
 
 
@@ -684,17 +674,17 @@ def recommend_from_preferred_destinations(
 
 
 
-            return {
+    return {
 
-                "input_interests": interests or [],
+        "input_interests": interests or [],
 
-                "matched_experiences": matched_experiences,
+        "matched_experiences": matched_experiences,
 
-                "unmatched_interests": unmatched_interests,
+        "unmatched_interests": unmatched_interests,
 
-                "recommended_destinations": recommendations
+        "recommended_destinations": recommendations
 
-            }
+    }
 
 
 
@@ -785,7 +775,7 @@ def recommend_from_traveller_profile(
         )
 
 
-        return {
+    return {
 
             "status":
                 "success",
@@ -797,7 +787,7 @@ def recommend_from_traveller_profile(
 
             **result
 
-        }
+    }
 
 
 

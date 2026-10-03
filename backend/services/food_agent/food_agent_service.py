@@ -41,7 +41,7 @@ def normalize_dietary(
 
 
 def normalize_budget(
-    budget: Optional[dict]
+    budget
 ) -> Optional[str]:
 
     """
@@ -52,6 +52,8 @@ def normalize_budget(
     if not budget:
         return None
 
+    if isinstance(budget, str):
+        return budget
 
     amount = budget.get(
         "amount",

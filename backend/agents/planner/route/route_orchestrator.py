@@ -37,6 +37,24 @@ async def route_plan(request: RouteRequest) -> RouteResponse:
             raise ValueError(f"Could not geocode location: {loc}")
         coordinates_map[loc] = coord
 
+    # Re-order destinations geographically using nearest-neighbor
+    # Always preserve the starting location
+    import math
+    ordered_destinations = [destinations[0]]
+    unvisited = destinations[1:]
+    
+    def get_distance(c1, c2):
+        # Simple Euclidean distance for rough geographic ordering
+        return math.hypot(c1.latitude - c2.latitude, c1.longitude - c2.longitude)
+
+    while unvisited:
+        current_coord = coordinates_map[ordered_destinations[-1]]
+        nearest = min(unvisited, key=lambda loc: get_distance(current_coord, coordinates_map[loc]))
+        ordered_destinations.append(nearest)
+        unvisited.remove(nearest)
+        
+    destinations = ordered_destinations
+
     # Process each leg
     for i in range(len(destinations) - 1):
         origin_name = destinations[i]
